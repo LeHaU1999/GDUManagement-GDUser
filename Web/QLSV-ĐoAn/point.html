@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Xem diem</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="./css/point.css">
+    <link rel="stylesheet" href="./css/semester.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+  </head>
+  <body>
+    <div class="container">
+      <div class="point_title">
+          <h1>Xem Điểm</h1>
+      </div>
+      <div class="point_top row ">
+          
+          <div class="information row">
+              <div class="info_left col-6">
+                  <span class="info_title"><h4>Student Code:</h4>1731102047</span>
+                  <span class="info_title"><h4>Student Name:</h4>Lê Anh Kiệt</span>
+                  <span class="info_title"><h4>Gender:</h4>Male</span>   
+                  <span class="info_title"><h4>Place:</h4>Viet Nam</span>
+                  <span class="info_title"><h4>Birth:</h4>23/06/1999</span>
+              </div>
+              <div class="info_right col-6">
+                  <span class="info_title"><h4>Class:</h4>11DHPM</span>
+                  <span class="info_title"><h4>Deparment:</h4>Kỹ thuật phần mềm</span>   
+                  <span class="info_title"><h4>Faculty:</h4>Công Nghệ Thông Tin</span>
+                  <span class="info_title"><h4>Training System:</h4>Đại học chính quy</span>
+                  <span class="info_title"><h4>Course:</h4>2017-2021</span>
+              </div>
+          </div>
+
+          <div class="btn" onclick="XemDiem();">
+              <div class="box">
+                  <h1><i>Enter semester to view exam mark!</i></h1>
+                  
+                  <div class="select">
+                    <select name="slct" id="slct">
+                      <option >Tất cả học kì</option>
+                      <option value="1">Học kì 1</option>
+                      <option value="2">Học kì 2</option>
+                      <option value="3">Học kì hè</option>
+                    </select>
+                  </div>
+                  <form action="">
+                    <input type="submit" name="" value="Xem Điểm">
+                </form>
+                  
+              </div>
+            
+          </div>
+      </div>
+
+      <div class="point_bottom row" id="divPoint">
+          <div class="point_bottom_title">
+              <h5>Học kì:</h5>
+          </div>
+          <table id="customers">
+            <tr>
+              <th style="width: 1%; font-size: 20px;">Mã </th>
+              <th style="width: 20%;">Môn học</th>
+              <th>Tính chỉ</th>
+              <th>Loại môn học</th>
+              <th style="width: 10%;">Điểm 30%</th>
+              <th style="width: 10%;">Điểm 70%(L1)</th>
+              <th style="width: 10%;">ĐIểm 70%(L2)</th>
+              <th style="width: 5%">Kết quả </th>
+            </tr>
+            <tr>
+              <td>20314</td>
+              <td>Lập trình thuyết bị di động</td>
+              <td>3</td>
+              <td>Bắt buộc</td>
+              <td>8</td>
+              <td>B+</td>
+              <td></td>
+
+              <td >
+                <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+              </td>
+            </tr>
+            <tr>
+              <td>34521</td>
+              <td>Lập trình môi trường trực quang</td>
+              <td>3</td>
+              <td>Bắt buộc</td>
+              <td>7</td>
+              <td>B</td>
+              <td></td>
+
+              <td >
+                <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+              </td>
+            </tr>
+            <tr>
+              <td>34563</td>
+              <td>Quản lý dự án phần mềm</td>
+              <td>3</td>
+              <td>Bắt buộc</td>
+              <td>9</td>
+              <td>A</td>
+              <td></td>
+
+              <td >
+                <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+              </td>
+            </tr>
+            <tr>
+              <td>09790</td>
+              <td>Bảo mật thông tin</td>
+              <td>3</td>
+              <td>Bắt buộc</td>
+              <td>9</td>
+              <td>A</td>
+
+              <td></td>
+              <td >
+                <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+              </td>
+            </tr>
+            <tr>
+              <td>87965</td>
+              <td>Anh văn chuyên nghành 2</td>
+              <td>2</td>
+              <td>Bắt buộc</td>
+              <td>7</td>
+              <td>B</td>
+
+              <td></td>
+              <td >
+                <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+              </td>
+            </tr>
+            <tr>
+              <td>76854</td>
+              <td>Quản trị cơ sở dữ liệu</td>
+              <td>3</td>
+              <td>Bắt buộc</td>
+              <td>6</td>
+              <td>C+</td>
+
+              <td></td>
+              <td >
+                <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+              </td>
+            </tr>
+           
+            
+          </table>
+      </div>
+        
+  </div>
+      
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="./js/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.example.myapplication.present.HomeFragment"
+        android:label="Trang Chủ"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/nav_thongtin"
+        android:name="com.example.myapplication.ui.ThongTinSinhVien.ThongTinSinhVienFragment"
+        android:label="Thông Tin Sinh Viên"
+        tools:layout="@layout/fragment_thongtinsinhvien" />
+
+    <fragment
+        android:id="@+id/nav_hocky"
+        android:name="com.example.myapplication.present.HocKyFragment"
+        android:label="Thời Khóa Biểu"
+        tools:layout="@layout/activity_hoc_ky" />
+    <fragment
+        android:id="@+id/nav_xemdiem"
+        android:name="com.example.myapplication.present.XemDiemFragment"
+        android:label="Xem Điểm"
+        tools:layout="@layout/fragment_xemdiem" />
+    <fragment
+        android:id="@+id/nav_tientrinh"
+        android:name="com.example.myapplication.present.TienTrinhFragment"
+        android:label="Tiến Trình Học Tập"
+        tools:layout="@layout/fragment_tientrinhhoctap" />
+</navigation>

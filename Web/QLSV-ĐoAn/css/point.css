@@ -1,0 +1,170 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif; 
+}
+body{
+  background: #e1ecf2 !important;
+}
+h1{
+  font-weight: 500;
+  padding-bottom: 10px;
+  font-size: 35px;
+}
+
+.container{
+  margin-top: 10px;
+}
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  outline: none !important;
+  box-shadow: none;
+  border: 0 !important;
+  background: #0c3061;
+  background-image: none;
+}
+/* Remove IE arrow */
+select::-ms-expand {
+  display: none;
+}
+/* Custom Select */
+.select {
+  position: relative;
+  display: flex;
+  width: 340px;
+  height: 40px;
+  line-height: 3;
+  background: #0c3061;
+  overflow: hidden;
+  border-radius: 5px;
+  margin: 10px 380px;
+
+}
+
+select {
+  flex: 1;
+  padding: 0 .5em;
+  color: #fff;
+  cursor: pointer;
+}
+/* Arrow */
+.select::after {
+  content: '\25BD';
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0 1em;
+  background: #0c3061;
+  cursor: pointer;
+  pointer-events: none;
+  -webkit-transition: .25s all ease;
+  -o-transition: .25s all ease;
+  transition: .25s all ease;
+  color: rgb(158, 152, 152);
+}
+/* Transition */
+.select:hover::after {
+  color: #f39c12;
+}
+.point_top{
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 0 10px 2px #0e0d0d1f;
+}
+.point_top_content h5{
+    margin-top: 10px;
+}
+.point_top_content{
+  padding-left: 110px !important;
+  padding-bottom: 10px;
+}
+.point_top .btn{
+    width: 100%;
+    margin: 0 auto;
+}
+
+
+.point_bottom{
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 0 10px 2px #0e0d0d1f;
+  margin-top: 5px;
+  width: 1140px;
+}
+.point_bottom_title{
+    padding: 10px;
+    color: #0a305f;
+}
+
+.information{
+  width: 700px;
+  margin: 0 auto;
+  align-items: center;  
+  justify-items: center;
+  padding: 10px;
+  display: flex;
+  margin-left: 250px !important;
+
+}
+.information .info_title{
+  display: flex;
+  flex-direction: row;
+
+}
+.information span h4{
+  color: #47c0b2;
+  font-size: 15px;
+  margin-right: 10px;
+}
+.box h1{
+  margin: 0 0 10px;
+  padding: 0 ;
+  font-size: 15px;
+}
+.box input{
+  position: relative;
+  display: inline-block;
+  font-size: 20px;
+  box-sizing: border-box;
+  transition: .5s;
+}
+.box input[type="text"]{
+  width: 300px;
+  background: rgb(224, 221, 221);
+  height: 40px;
+  border: none;
+  outline: none;
+  padding: 0 25px;
+  border-radius: 25px 0 0 25px;
+}
+.box input[type="submit"]{
+  position: relative;
+  left: -5px;
+  border-radius: 25px 25px 25px 25px;
+  width: 150px;
+  height: 40px;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  background-image: linear-gradient(to right, #0a55b0, #0a305f, #0a55b0);
+  background-size: 200%;
+  color: #fff;
+}
+.box input[type="submit"]:hover{
+  background-position: right;
+}
+.point_title{
+  width: 100%;
+  border-radius: 20px;
+  background: #0c3061;
+  color: #92a6e2;
+}
+.point_title h1{
+  font-weight: 500;
+  font-size: 35px;
+  padding: 10px;
+}

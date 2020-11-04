@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Trang Chủ</title>
+    <!-- Required meta tags -->
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="./css/login.css">
+    <link rel="stylesheet" href="./css/semester.css">
+    <link rel="stylesheet" href="./css/info.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Roboto:wght@100&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+    <script>
+      $(document).ready(function(){
+        $(".hamburger").click(function(){
+           $(".wrapper").toggleClass("collapse");
+        });
+      });
+    </script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  </head>
+  <body>
+      <div class="wrapper">
+        <div class="top_navbar">
+          <div class="hamburger">
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+          <div class="top_menu">
+            <div class="logo">GDU Management</div>
+            <ul>
+              <li><a href="#"><i class="fas fa-search"></i></a></li>
+              <li><a href="#"><i class="fas fa-bell"></i></a></li>
+              <li><a href="#"><i class="fas fa-user"></i></a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="sidebar">
+          <ul>
+            <li><a href="#" class="active">
+              <span class="icon"><i class="fas fa-user" aria-hidden="true"></i></span>
+              <span class="title">Thông Tin Cá Nhân</span>
+            </a></li>
+            <li><a href="#">
+              <span class="icon"><i class="fas fa-pencil-alt" aria-hidden="true"></i></span>
+              <span class="title">Hoạt Động</span>
+            </a></li>
+            <li><a href="#" >
+              <span class="icon"><i class="fas fa-edit" aria-hidden="true"></i></span>
+              <span class="title">Điểm</span>
+            </a></li>
+            <li><a href="#"  n>
+              <span class="icon"><i class="fas fa-calendar-alt" aria-hidden="true"></i></span>
+              <span class="title">Thời Khóa Biểu</span>
+            </a></li>
+            <li><a href="#">
+              <span class="icon"><i class="fas fa-address-book" aria-hidden="true"></i></span>
+              <span class="title">Lịch Thi</span>
+            </a></li>
+          </ul>
+        </div>
+
+        <div class="main_container">
+          <div class="item">
+            
+          <div class="info_content ">
+            <div class="info_content_right ">
+              <div class="text-center">
+                  <img src="./img/User.png" class="rounded" style="width: 200px; height: 200px;" alt="...">
+              </div>
+              <div class="info_content_right_contact">
+                  <div class="info_content_right_title">
+                      <h3>Thông tin liên lạc</h3>
+                  </div>
+                  <div class="info_content_left_detail">
+                      <i>*Thông tin liên lạc sinh viên:</i>
+                      <span class="info_title_min"><h4>Điện Thoại:</h4>0000000000</span>
+                      <span class="info_title_min"><h4>Email:</h4>lehau.mastercakhia@gmail.com</span>
+                      <span class="info_title_min"><h4>Địa chỉ tạm trú:</h4>Công nghệ thông tin</span>   
+                      <i>*Thông tin liên lạc người thân của sinh viên <br> (khi không liên lạc được với sinh viên):</i>
+                      <span class="info_title_min"><h4>Họ Tên:</h4>############</span>
+                      <span class="info_title_min"><h4>Điện Thoại:</h4>############</span>
+                      <span class="info_title_min"><h4>Địa Chỉ:</h4>############</span>
+                      
+                    </div>
+              </div>
+           </div>
+           <div class="info_content_left">
+                  <div class="info_content_left_title">
+                      <h3>Thông tin sinh viên</h3>
+                  </div>
+                  <div class="info_content_left_detail">
+                    <span class="info_title_min"><h4>MSSV:</h4>1731103085</span>
+                    <span class="info_title_min"><h4>Họ và Tên:</h4>Lê HậU</span>
+                    <span class="info_title_min"><h4>Ngày Sinh:</h4>10/11/1999</span>   
+                    <span class="info_title_min"><h4>Nơi Sinh:</h4>Đồng Tháp</span>
+                    <span class="info_title_min"><h4>Giới Tính:</h4>Nam</span>
+                   
+                  </div>
+                  <div class="info_content_right_title">
+                      <h3>Thông tin khóa học</h3>
+                  </div>
+                  <div class="info_content_left_detail">
+                    <span class="info_title_min"><h4>Khóa Học:</h4>DHCQ-Khóa 11</span>
+                    <span class="info_title_min"><h4>Niên Khóa:</h4>2018-2021</span>
+                    <span class="info_title_min"><h4>Khoa:</h4>Công nghệ thông tin</span>   
+                    <span class="info_title_min"><h4>Chuyên Nghành</h4>Kỷ thuật phần mềm</span>
+                    <span class="info_title_min"><h4>Lớp:</h4>11DHPM</span>
+                    
+                  </div>
+              </div>
+              
+              <div>
+                <div class="info_content_right_title">
+                  <h3>Tiến trình học tập</h3>
+                </div>  
+                <div id="chart_div" style="width: 420px; height: 500px;"></div>
+              </div>
+              
+          </div>
+          </div>
+          
+        </div>
+
+      </div>
+
+
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="./js/main.js"></script>
+  </body>
+</html>

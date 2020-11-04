@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="preloaded_fonts" translatable="false">
+        <item>@font/aguafina_script</item>
+        <item>@font/alex_brush</item>
+        <item>@font/habibi</item>
+        <item>@font/linden_hill</item>
+        <item>@font/meie_script</item>
+        <item>@font/ntr</item>
+    </array>
+</resources>
