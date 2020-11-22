@@ -36,6 +36,24 @@
     <Reference Include="FluentValidation, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7de548da2fbae0f0, processorArchitecture=MSIL">
       <HintPath>..\packages\FluentValidation.9.0.0\lib\net461\FluentValidation.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1404.0\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1404.0\lib\net40\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Design, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1404.0\lib\net40\Microsoft.ReportViewer.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1404.0\lib\net40\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1404.0\lib\net40\Microsoft.ReportViewer.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
@@ -57,9 +75,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controller\EncodingPasswordController.cs" />
     <Compile Include="Controller\RandomCodeControlller.cs" />
     <Compile Include="DaoImpl\AdminImpl.cs" />
     <Compile Include="DaoImpl\CheckAccountImpl.cs" />
+    <Compile Include="DaoImpl\CheckLoginImpl.cs" />
     <Compile Include="DaoImpl\ContactsImpl.cs" />
     <Compile Include="DaoImpl\DiemMonHocImpl.cs" />
     <Compile Include="DaoImpl\GiangVienImpl.cs" />
@@ -150,6 +170,12 @@
     <Compile Include="GDU_Views\frmLoadingWating.Designer.cs">
       <DependentUpon>frmLoadingWating.cs</DependentUpon>
     </Compile>
+    <Compile Include="GDU_Views\frmOptionPrint.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GDU_Views\frmOptionPrint.Designer.cs">
+      <DependentUpon>frmOptionPrint.cs</DependentUpon>
+    </Compile>
     <Compile Include="GDU_Views\frmOptions.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -174,6 +200,36 @@
     <Compile Include="GDU_Views\frmQuanLySinhVien.Designer.cs">
       <DependentUpon>frmQuanLySinhVien.cs</DependentUpon>
     </Compile>
+    <Compile Include="GDU_Views\frmReport_GetAllDiemBySinhVien.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GDU_Views\frmReport_GetAllDiemBySinhVien.Designer.cs">
+      <DependentUpon>frmReport_GetAllDiemBySinhVien.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GDU_Views\frmReport_GetDanhSachDiemSinhVien.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GDU_Views\frmReport_GetDanhSachDiemSinhVien.Designer.cs">
+      <DependentUpon>frmReport_GetDanhSachDiemSinhVien.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GDU_Views\frmReport_GetDanhSachSinhVien.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GDU_Views\frmReport_GetDanhSachSinhVien.Designer.cs">
+      <DependentUpon>frmReport_GetDanhSachSinhVien.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GDU_Views\frmReport_GetDanhSachTKB.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GDU_Views\frmReport_GetDanhSachTKB.Designer.cs">
+      <DependentUpon>frmReport_GetDanhSachTKB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GDU_Views\frmReport_GetGiangVien.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GDU_Views\frmReport_GetGiangVien.Designer.cs">
+      <DependentUpon>frmReport_GetGiangVien.cs</DependentUpon>
+    </Compile>
     <Compile Include="GDU_Views\GDUManagement.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -187,6 +243,7 @@
       <DependentUpon>frmLogin.cs</DependentUpon>
     </Compile>
     <Compile Include="IDao\IDaoCheckAccount.cs" />
+    <Compile Include="IDao\IDaoCheckLogin.cs" />
     <Compile Include="IDao\IDaoContacts.cs" />
     <Compile Include="IDao\IDaoAdmin.cs" />
     <Compile Include="IDao\IDaoDiemMonHoc.cs" />
@@ -208,8 +265,14 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controller\SendMessageController.cs" />
+    <Compile Include="Reporting.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reporting.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Service\AdminService.cs" />
     <Compile Include="Service\CheckAccountService.cs" />
+    <Compile Include="Service\CheckLoginService.cs" />
     <Compile Include="Service\ContactService.cs" />
     <Compile Include="Service\DiemMonHocService.cs" />
     <Compile Include="Service\GiangVienService.cs" />
@@ -222,6 +285,7 @@
     <Compile Include="Service\PhongHocService.cs" />
     <Compile Include="Service\SinhVienService.cs" />
     <Compile Include="Service\ThoiKhoaBieuService.cs" />
+    <Compile Include="SqlServerTypes\Loader.cs" />
     <EmbeddedResource Include="GDU_Views\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -261,6 +325,9 @@
     <EmbeddedResource Include="GDU_Views\frmLoadingWating.resx">
       <DependentUpon>frmLoadingWating.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GDU_Views\frmOptionPrint.resx">
+      <DependentUpon>frmOptionPrint.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GDU_Views\frmOptions.resx">
       <DependentUpon>frmOptions.cs</DependentUpon>
     </EmbeddedResource>
@@ -273,6 +340,21 @@
     <EmbeddedResource Include="GDU_Views\frmQuanLySinhVien.resx">
       <DependentUpon>frmQuanLySinhVien.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GDU_Views\frmReport_GetAllDiemBySinhVien.resx">
+      <DependentUpon>frmReport_GetAllDiemBySinhVien.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GDU_Views\frmReport_GetDanhSachDiemSinhVien.resx">
+      <DependentUpon>frmReport_GetDanhSachDiemSinhVien.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GDU_Views\frmReport_GetDanhSachSinhVien.resx">
+      <DependentUpon>frmReport_GetDanhSachSinhVien.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GDU_Views\frmReport_GetDanhSachTKB.resx">
+      <DependentUpon>frmReport_GetDanhSachTKB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GDU_Views\frmReport_GetGiangVien.resx">
+      <DependentUpon>frmReport_GetGiangVien.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GDU_Views\GDUManagement.resx">
       <DependentUpon>GDUManagement.cs</DependentUpon>
     </EmbeddedResource>
@@ -282,6 +364,11 @@
     <None Include="Model\GDUDataConnections.dbml.layout">
       <DependentUpon>GDUDataConnections.dbml</DependentUpon>
     </None>
+    <EmbeddedResource Include="GDU_Views\Report_GetAllDiemBySinhVien.rdlc" />
+    <EmbeddedResource Include="GDU_Views\Report_GetDanhSachDiemSinhVien.rdlc" />
+    <EmbeddedResource Include="GDU_Views\Report_GetDanhSachGiangVien.rdlc" />
+    <EmbeddedResource Include="GDU_Views\Report_GetDanhSachSinhVien.rdlc" />
+    <EmbeddedResource Include="GDU_Views\Report_GetThoiKhoaBieu.rdlc" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
@@ -323,6 +410,17 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Reporting.xsc">
+      <DependentUpon>Reporting.xsd</DependentUpon>
+    </None>
+    <None Include="Reporting.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Reporting.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Reporting.xss">
+      <DependentUpon>Reporting.xsd</DependentUpon>
+    </None>
     <None Include="Resources\logo.png" />
   </ItemGroup>
   <ItemGroup>
@@ -768,6 +866,33 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\icons8-home-page-51x40.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-add-column-40.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-add-column-40_1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-add-column-34.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-update-file-34.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="SqlServerTypes\readme.htm" />
+    <Content Include="SqlServerTypes\x64\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x64\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

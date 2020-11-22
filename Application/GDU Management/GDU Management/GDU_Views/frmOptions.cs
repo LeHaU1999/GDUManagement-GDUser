@@ -18,6 +18,11 @@ namespace GDU_Management.GDU_Views
             InitializeComponent();
         }
 
+        //delegate
+        delegate void SendEmailToFormOther(string emailAD);
+
+
+
         string _emailAdmin;
         public void FunDataOption(string emailAd)
         {
@@ -28,6 +33,8 @@ namespace GDU_Management.GDU_Views
         {
             this.Hide();
             frmAccount frm_acc = new frmAccount();
+            SendEmailToFormOther sendEmailToFrmAcc = new SendEmailToFormOther(frm_acc.FunDataFrmOther);
+            sendEmailToFrmAcc(_emailAdmin);
             frm_acc.ShowDialog();
         }
 

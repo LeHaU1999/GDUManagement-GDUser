@@ -30,6 +30,32 @@ namespace GDU_Management.DaoImpl
             db.SubmitChanges();
         }
 
+        public void DeleteThoiKhoaBieuByGiangVien(string maGV)
+        {
+            db = new GDUDataConnectionsDataContext();
+            var listDeleteThoiKhoaBieu = from x in db.ThoiKhoaBieus.Where(p => p.MaGV == maGV) select x;
+            db.ThoiKhoaBieus.DeleteAllOnSubmit(listDeleteThoiKhoaBieu.ToList());
+            db.SubmitChanges();
+        }
+
+        //xóa danh sách thời khóa biểu theo lớp.
+        public void DeleteThoiKhoaBieuByLop(string maLop)
+        {
+            db = new GDUDataConnectionsDataContext();
+            var listDeleteTKB = from x in db.ThoiKhoaBieus.Where(p => p.MaLop == maLop) select x;
+            db.ThoiKhoaBieus.DeleteAllOnSubmit(listDeleteTKB.ToList());
+            db.SubmitChanges();
+        }
+
+        //xóa thời khóa biểu theo môn học
+        public void DeleteThoiKhoaBieuByMaMonHoc(string maMonHoc)
+        {
+            db = new GDUDataConnectionsDataContext();
+            var listDeleteTKB = from x in db.ThoiKhoaBieus.Where(p => p.MaMonHoc == maMonHoc) select x;
+            db.ThoiKhoaBieus.DeleteAllOnSubmit(listDeleteTKB.ToList());
+            db.SubmitChanges();
+        }
+
         public List<ThoiKhoaBieu> GetAllMaMonHocInTKB()
         {
             db = new GDUDataConnectionsDataContext();
@@ -45,16 +71,23 @@ namespace GDU_Management.DaoImpl
             return InfoTKB;
         }
 
-        public List<ThoiKhoaBieu> GetTKBByMaLopAndMaHK(string maLop, string maHK)
+        public List<ThoiKhoaBieu> GetTKBByMaLop(string maLop)
         {
             db = new GDUDataConnectionsDataContext();
-            var tkb = from x in db.ThoiKhoaBieus where x.MaLop == maLop && x.MaHocKy == maHK select x;
+            var tkb = from x in db.ThoiKhoaBieus where x.MaLop == maLop select x;
             listTKB = new List<ThoiKhoaBieu>();
             listTKB = tkb.ToList();
             return listTKB;
         }
 
-
+        //lấy danh sách thời khóa biểu theo mã lớp và mã hk
+        public List<ThoiKhoaBieu> GetTKBByMaLopAndMaHK(string maLop, string maHK)
+        {
+            db = new GDUDataConnectionsDataContext();
+            var listMonHocByLopAndHK = from x in db.ThoiKhoaBieus.Where(p => p.MaLop == maLop && p.MaHocKy == maHK) select x;
+            listTKB = listMonHocByLopAndHK.ToList();
+            return listTKB;
+        }
 
         public void UpdateThoiKhoaBieu(ThoiKhoaBieu tkb)
         {
@@ -63,7 +96,6 @@ namespace GDU_Management.DaoImpl
             thoiKhoaBieu = db.ThoiKhoaBieus.Single(p => p.MaLop == tkb.MaLop && p.MaMonHoc == tkb.MaMonHoc);
             thoiKhoaBieu.MaGV = tkb.MaGV;
             thoiKhoaBieu.NgayHoc = tkb.NgayHoc;
-            Console.WriteLine("cahu vo day r");
             thoiKhoaBieu.MaPhongHoc = tkb.MaPhongHoc;
             thoiKhoaBieu.ThoiGianHoc = tkb.ThoiGianHoc;
             thoiKhoaBieu.NgayBatDau = tkb.NgayBatDau;

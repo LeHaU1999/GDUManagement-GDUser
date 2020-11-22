@@ -131,15 +131,15 @@
             // 
             // btnExportDSNganh
             // 
-            this.btnExportDSNganh.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.btnExportDSNganh.BackColor = System.Drawing.Color.White;
             this.btnExportDSNganh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExportDSNganh.Font = new System.Drawing.Font("Microsoft Uighur", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExportDSNganh.ForeColor = System.Drawing.SystemColors.InactiveCaption;
+            this.btnExportDSNganh.ForeColor = System.Drawing.Color.Blue;
+            this.btnExportDSNganh.Image = global::GDU_Management.Properties.Resources.icons8_print_401;
             this.btnExportDSNganh.Location = new System.Drawing.Point(662, 129);
             this.btnExportDSNganh.Name = "btnExportDSNganh";
             this.btnExportDSNganh.Size = new System.Drawing.Size(211, 56);
             this.btnExportDSNganh.TabIndex = 16;
-            this.btnExportDSNganh.Text = "P";
             this.btnExportDSNganh.UseVisualStyleBackColor = false;
             // 
             // dgvDSNganh

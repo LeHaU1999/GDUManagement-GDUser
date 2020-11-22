@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="GDUmanagement" Class="GDUDataConnectionsDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=DESKTOP-EUPI4M9;Initial Catalog=GDUmanagement;User ID=sqlserver" SettingsObjectName="GDU_Management.Properties.Settings" SettingsPropertyName="GDUmanagementConnectionString2" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=DESKTOP-8ICVA21;Initial Catalog=GDUmanagement;Integrated Security=True" SettingsObjectName="GDU_Management.Properties.Settings" SettingsPropertyName="GDUmanagementConnectionString3" Provider="System.Data.SqlClient" />
   <Table Name="dbo.Admin" Member="Admins">
     <Type Name="Admin">
       <Column Name="MaAdmin" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -14,6 +14,7 @@
       <Column Name="GhiChu" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="StatusAcc" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="StartDay" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Role" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.ThoiKhoaBieu" Member="ThoiKhoaBieus">
@@ -33,6 +34,18 @@
       <Association Name="Lop_ThoiKhoaBieu" Member="Lop" ThisKey="MaLop" OtherKey="MaLop" Type="Lop" IsForeignKey="true" />
       <Association Name="MonHoc_ThoiKhoaBieu" Member="MonHoc" ThisKey="MaMonHoc" OtherKey="MaMonHoc" Type="MonHoc" IsForeignKey="true" />
       <Association Name="PhongHoc_ThoiKhoaBieu" Member="PhongHoc" ThisKey="MaPhongHoc" OtherKey="MaPhongHoc" Type="PhongHoc" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CheckAccount" Member="CheckAccounts">
+    <Type Name="CheckAccount">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Code" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="MaAdmin" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CheckLogin" Member="CheckLogins">
+    <Type Name="CheckLogin">
+      <Column Name="ID_CheckLogin" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
     </Type>
   </Table>
   <Table Name="dbo.DiemMonHoc" Member="DiemMonHocs">
@@ -81,10 +94,10 @@
   </Table>
   <Table Name="dbo.InforContact" Member="InforContacts">
     <Type Name="InforContact">
-      <Column Name="ID" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="TenContacts" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Column Name="Email" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Column Name="Pass" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="ID" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="TenContacts" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Pass" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="Subject" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="Message" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="InfoOther" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
@@ -115,6 +128,7 @@
       <Column Name="MaNganh" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
       <Column Name="MaKhoaHoc" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
       <Association Name="Lop_ThoiKhoaBieu" Member="ThoiKhoaBieus" ThisKey="MaLop" OtherKey="MaLop" Type="ThoiKhoaBieu" />
+      <Association Name="Lop_SinhVien" Member="SinhViens" ThisKey="MaLop" OtherKey="MaLop" Type="SinhVien" />
       <Association Name="KhoasHoc_Lop" Member="KhoasHoc" ThisKey="MaKhoaHoc" OtherKey="MaKhoaHoc" Type="KhoasHoc" IsForeignKey="true" />
       <Association Name="NganhHoc_Lop" Member="NganhHoc" ThisKey="MaNganh" OtherKey="MaNganh" Type="NganhHoc" IsForeignKey="true" />
     </Type>
@@ -159,17 +173,11 @@
       <Column Name="DiaChi" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="GhiChu" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="MaLop" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
-      <Column Name="STT" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="STT" Type="System.String" DbType="NChar(5)" CanBeNull="true" />
       <Column Name="Avt" Type="System.Data.Linq.Binary" DbType="Image" CanBeNull="true" UpdateCheck="Never" />
       <Column Name="StatusAcc" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Association Name="SinhVien_DiemMonHoc" Member="DiemMonHocs" ThisKey="MaSV" OtherKey="MaSV" Type="DiemMonHoc" />
-    </Type>
-  </Table>
-  <Table Name="dbo.CheckAccount" Member="CheckAccounts">
-    <Type Name="CheckAccount">
-      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Code" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
-      <Column Name="MaAdmin" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Association Name="Lop_SinhVien" Member="Lop" ThisKey="MaLop" OtherKey="MaLop" Type="Lop" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

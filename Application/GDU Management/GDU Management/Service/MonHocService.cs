@@ -50,5 +50,11 @@ namespace GDU_Management.Service
         {
             monHocIDao.DeleteMonHocByNganh(maNganh);
         }
+
+        public List<MonHoc> SearchMonHocByTenMonHoc(string tenMonHoc, string maNganh)
+        {
+            return monHocIDao.SearchMonHocByTenMonHoc(tenMonHoc,maNganh);
+        }
+
     }
 }

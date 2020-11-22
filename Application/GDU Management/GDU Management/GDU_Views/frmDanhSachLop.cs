@@ -25,6 +25,7 @@ namespace GDU_Management
         SinhVienService sinhVienService = new SinhVienService();
         DiemMonHocService diemMonHocService = new DiemMonHocService();
         NganhHocService nganhHocService = new NganhHocService();
+        ThoiKhoaBieuService thoiKhoaBieuService = new ThoiKhoaBieuService();
 
         //public value
         string _maNganh;
@@ -142,6 +143,12 @@ namespace GDU_Management
                 btnDeleteAllLop.Enabled = false;
             }
         }
+
+        //xóa thời khóa biểu của lớp.
+        public void DeleteTKBByLop()
+        {
+            thoiKhoaBieuService.DeleteThoiKhoaBieuByLop(lblMaLop.Text);
+        }
         //-----------------------------------------KẾT THÚC HÀM PUPLIC--------------------------------//
         //----------------------------------------------------------------------------------------------------//
         
@@ -224,7 +231,7 @@ namespace GDU_Management
             if (MessageBox.Show("Xóa [" + lblMaLop.Text + "], Việc này sẽ xóa tất cả thông tin liên quan đến lớp bao gồm danh sách sinh viên trong lớp)", "Thông Báo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
             {
                 string maLop = lblMaLop.Text.Trim();
-                if (maLop.Equals("null"))
+                if (maLop.Equals("???"))
                 {
                     MessageBox.Show("Xóa thất bại, Không tồn tại mã lớp [--"+maLop+"--]", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
@@ -240,11 +247,14 @@ namespace GDU_Management
                     //xóa tất cả sinh sinh viên trong lớp
                     sinhVienService.DeleteAllSinhVienByMaLop(maLop);
 
+                    //xóa thời khóa biểu trog lớp.
+                    thoiKhoaBieuService.DeleteThoiKhoaBieuByLop(lblMaLop.Text);
+
                     //xóa lớp
                     lopService.DeleteLop(maLop);
                     LoadDanhSachLopToDatagridview();
                     MessageBox.Show("Đã Xóa [" + lblMaLop.Text + "]", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    lblMaLop.Text="null";
+                    lblMaLop.Text="???";
                     txtTenLop.Clear();
                     btnDeleteLop.Enabled = false;
                     btnSaveLop.Enabled = false;
@@ -271,6 +281,7 @@ namespace GDU_Management
             else
             {
                 dgvDanhSachLop.DataSource = lopService.SearchLopHocByTenLop(_maNganh, txtTimKiemLop.Text.Trim());
+                CountRowsLop();
             }
         }
 
@@ -281,7 +292,6 @@ namespace GDU_Management
                 if (lblMaKhoasHoc.Text !="???" & lblTenNganh.Text !="???")
                 {
                     var listLop = lopService.GetDanhSachLopByMaNganhVaMaKhoaHoc(_maNganh, lblMaKhoasHoc.Text);
-                    
                     foreach (var lp in listLop)
                     {
                         var listSV = sinhVienService.GetSinhVienByMaLop(lp.MaLop).ToList();
@@ -292,6 +302,7 @@ namespace GDU_Management
                         }
                         //xóa danh sách sinh viên trong lớp
                         sinhVienService.DeleteAllSinhVienByMaLop(lp.MaLop);
+                        thoiKhoaBieuService.DeleteThoiKhoaBieuByLop(lp.MaLop);
                     }
                     //xóa danh sách lớp
                     lopService.DeleteAllLopInNganh(lblMaKhoasHoc.Text, _maNganh);
@@ -303,6 +314,18 @@ namespace GDU_Management
                     MessageBox.Show("Deleted All Classes Failled  (-__-) !!!...", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+        }
+
+        private void btnDeleteAllLop_MouseHover(object sender, EventArgs e)
+        {
+            this.btnDeleteAllLop.BackColor = Color.Blue;
+            this.btnDeleteAllLop.ForeColor = Color.White;
+        }
+
+        private void btnDeleteAllLop_MouseLeave(object sender, EventArgs e)
+        {
+            this.btnDeleteAllLop.BackColor = Color.White;
+            this.btnDeleteAllLop.ForeColor = Color.Blue;
         }
     }
 }

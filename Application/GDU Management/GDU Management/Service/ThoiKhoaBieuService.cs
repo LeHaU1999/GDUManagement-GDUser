@@ -20,9 +20,9 @@ namespace GDU_Management.Service
         }
 
         //lấy danh sách thời khóa biểu theo mã lớp và mã học kì
-        public List<ThoiKhoaBieu> GetTKBByMaLopAndMaHK(string maLop, string maHK)
+        public List<ThoiKhoaBieu> GetTKBByMaLop(string maLop)
         {
-            return TKBIdao.GetTKBByMaLopAndMaHK(maLop, maHK);
+            return TKBIdao.GetTKBByMaLop(maLop);
         }
 
         //cập nhật thời khóa biểu
@@ -41,6 +41,31 @@ namespace GDU_Management.Service
         public ThoiKhoaBieu GetThoiKhoaBieuByMaLopMaMonHoc(string maLop, string maMH)
         {
             return TKBIdao.GetThoiKhoaBieuByMaLopMaMonHoc(maLop, maMH);
+        }
+
+        //xóa danh sách thời khóa biểu theo lớp.
+        public void DeleteThoiKhoaBieuByLop(string maLop)
+        {
+            TKBIdao.DeleteThoiKhoaBieuByLop(maLop);
+        }
+
+        //lấy danh sách thời khóa biểu theo mã lớp và mã hk
+        public List<ThoiKhoaBieu> GetTKBByMaLopAndMaHK(string maLop, string maHK)
+        {
+            return TKBIdao.GetTKBByMaLopAndMaHK(maLop, maHK);
+        }
+
+        //xóa thời khóa biểu theo môn học
+        public void DeleteThoiKhoaBieuByMaMonHoc(string maMonHoc)
+        {
+            TKBIdao.DeleteThoiKhoaBieuByMaMonHoc(maMonHoc);
+        }
+
+
+        //xóa thời khóa bieeurtheo mã giảng viên
+        public void DeleteThoiKhoaBieuByGiangVien(string maGV)
+        {
+            TKBIdao.DeleteThoiKhoaBieuByGiangVien(maGV);
         }
     }
 }

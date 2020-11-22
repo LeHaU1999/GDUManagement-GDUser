@@ -55,5 +55,11 @@ namespace GDU_Management.Service
         {
             return diemMonHocIDao.SearchDiemMonHocByMonHocAndMaSV(maMonHoc, MaSV);
         }
+
+        //xóa điểm môn học theo môn học
+        public void DeleteDiemMonHocByMaMonHoc(string maMonHoc)
+        {
+            diemMonHocIDao.DeleteDiemMonHocByMaMonHoc(maMonHoc);
+        }
     }
 }

@@ -36,6 +36,12 @@ namespace GDU_Management.Model
     partial void InsertThoiKhoaBieu(ThoiKhoaBieu instance);
     partial void UpdateThoiKhoaBieu(ThoiKhoaBieu instance);
     partial void DeleteThoiKhoaBieu(ThoiKhoaBieu instance);
+    partial void InsertCheckAccount(CheckAccount instance);
+    partial void UpdateCheckAccount(CheckAccount instance);
+    partial void DeleteCheckAccount(CheckAccount instance);
+    partial void InsertCheckLogin(CheckLogin instance);
+    partial void UpdateCheckLogin(CheckLogin instance);
+    partial void DeleteCheckLogin(CheckLogin instance);
     partial void InsertDiemMonHoc(DiemMonHoc instance);
     partial void UpdateDiemMonHoc(DiemMonHoc instance);
     partial void DeleteDiemMonHoc(DiemMonHoc instance);
@@ -45,9 +51,6 @@ namespace GDU_Management.Model
     partial void InsertHocKy(HocKy instance);
     partial void UpdateHocKy(HocKy instance);
     partial void DeleteHocKy(HocKy instance);
-    partial void InsertInforContact(InforContact instance);
-    partial void UpdateInforContact(InforContact instance);
-    partial void DeleteInforContact(InforContact instance);
     partial void InsertKhoa(Khoa instance);
     partial void UpdateKhoa(Khoa instance);
     partial void DeleteKhoa(Khoa instance);
@@ -69,13 +72,10 @@ namespace GDU_Management.Model
     partial void InsertSinhVien(SinhVien instance);
     partial void UpdateSinhVien(SinhVien instance);
     partial void DeleteSinhVien(SinhVien instance);
-    partial void InsertCheckAccount(CheckAccount instance);
-    partial void UpdateCheckAccount(CheckAccount instance);
-    partial void DeleteCheckAccount(CheckAccount instance);
     #endregion
 		
 		public GDUDataConnectionsDataContext() : 
-				base(global::GDU_Management.Properties.Settings.Default.GDUmanagementConnectionString2, mappingSource)
+				base(global::GDU_Management.Properties.Settings.Default.GDUmanagementConnectionString3, mappingSource)
 		{
 			OnCreated();
 		}
@@ -117,6 +117,22 @@ namespace GDU_Management.Model
 			get
 			{
 				return this.GetTable<ThoiKhoaBieu>();
+			}
+		}
+		
+		public System.Data.Linq.Table<CheckAccount> CheckAccounts
+		{
+			get
+			{
+				return this.GetTable<CheckAccount>();
+			}
+		}
+		
+		public System.Data.Linq.Table<CheckLogin> CheckLogins
+		{
+			get
+			{
+				return this.GetTable<CheckLogin>();
 			}
 		}
 		
@@ -207,14 +223,6 @@ namespace GDU_Management.Model
 				return this.GetTable<SinhVien>();
 			}
 		}
-		
-		public System.Data.Linq.Table<CheckAccount> CheckAccounts
-		{
-			get
-			{
-				return this.GetTable<CheckAccount>();
-			}
-		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Admin")]
@@ -247,6 +255,8 @@ namespace GDU_Management.Model
 		
 		private string _StartDay;
 		
+		private string _Role;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -275,6 +285,8 @@ namespace GDU_Management.Model
     partial void OnStatusAccChanged();
     partial void OnStartDayChanging(string value);
     partial void OnStartDayChanged();
+    partial void OnRoleChanging(string value);
+    partial void OnRoleChanged();
     #endregion
 		
 		public Admin()
@@ -518,6 +530,26 @@ namespace GDU_Management.Model
 					this._StartDay = value;
 					this.SendPropertyChanged("StartDay");
 					this.OnStartDayChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Role", DbType="NVarChar(100)")]
+		public string Role
+		{
+			get
+			{
+				return this._Role;
+			}
+			set
+			{
+				if ((this._Role != value))
+				{
+					this.OnRoleChanging(value);
+					this.SendPropertyChanging();
+					this._Role = value;
+					this.SendPropertyChanged("Role");
+					this.OnRoleChanged();
 				}
 			}
 		}
@@ -1001,6 +1033,178 @@ namespace GDU_Management.Model
 						this._MaPhongHoc = default(string);
 					}
 					this.SendPropertyChanged("PhongHoc");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.CheckAccount")]
+	public partial class CheckAccount : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ID;
+		
+		private string _Code;
+		
+		private string _MaAdmin;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDChanging(int value);
+    partial void OnIDChanged();
+    partial void OnCodeChanging(string value);
+    partial void OnCodeChanged();
+    partial void OnMaAdminChanging(string value);
+    partial void OnMaAdminChanged();
+    #endregion
+		
+		public CheckAccount()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this.OnIDChanging(value);
+					this.SendPropertyChanging();
+					this._ID = value;
+					this.SendPropertyChanged("ID");
+					this.OnIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Code", DbType="NVarChar(100)")]
+		public string Code
+		{
+			get
+			{
+				return this._Code;
+			}
+			set
+			{
+				if ((this._Code != value))
+				{
+					this.OnCodeChanging(value);
+					this.SendPropertyChanging();
+					this._Code = value;
+					this.SendPropertyChanged("Code");
+					this.OnCodeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaAdmin", DbType="NVarChar(100)")]
+		public string MaAdmin
+		{
+			get
+			{
+				return this._MaAdmin;
+			}
+			set
+			{
+				if ((this._MaAdmin != value))
+				{
+					this.OnMaAdminChanging(value);
+					this.SendPropertyChanging();
+					this._MaAdmin = value;
+					this.SendPropertyChanged("MaAdmin");
+					this.OnMaAdminChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.CheckLogin")]
+	public partial class CheckLogin : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private string _ID_CheckLogin;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnID_CheckLoginChanging(string value);
+    partial void OnID_CheckLoginChanged();
+    #endregion
+		
+		public CheckLogin()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID_CheckLogin", DbType="NVarChar(50) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string ID_CheckLogin
+		{
+			get
+			{
+				return this._ID_CheckLogin;
+			}
+			set
+			{
+				if ((this._ID_CheckLogin != value))
+				{
+					this.OnID_CheckLoginChanging(value);
+					this.SendPropertyChanging();
+					this._ID_CheckLogin = value;
+					this.SendPropertyChanged("ID_CheckLogin");
+					this.OnID_CheckLoginChanged();
 				}
 			}
 		}
@@ -1968,10 +2172,8 @@ namespace GDU_Management.Model
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.InforContact")]
-	public partial class InforContact : INotifyPropertyChanging, INotifyPropertyChanged
+	public partial class InforContact
 	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
 		private string _ID;
 		
@@ -1987,32 +2189,11 @@ namespace GDU_Management.Model
 		
 		private string _InfoOther;
 		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIDChanging(string value);
-    partial void OnIDChanged();
-    partial void OnTenContactsChanging(string value);
-    partial void OnTenContactsChanged();
-    partial void OnEmailChanging(string value);
-    partial void OnEmailChanged();
-    partial void OnPassChanging(string value);
-    partial void OnPassChanged();
-    partial void OnSubjectChanging(string value);
-    partial void OnSubjectChanged();
-    partial void OnMessageChanging(string value);
-    partial void OnMessageChanged();
-    partial void OnInfoOtherChanging(string value);
-    partial void OnInfoOtherChanged();
-    #endregion
-		
 		public InforContact()
 		{
-			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", DbType="VarChar(10) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", DbType="NVarChar(50)")]
 		public string ID
 		{
 			get
@@ -2023,16 +2204,12 @@ namespace GDU_Management.Model
 			{
 				if ((this._ID != value))
 				{
-					this.OnIDChanging(value);
-					this.SendPropertyChanging();
 					this._ID = value;
-					this.SendPropertyChanged("ID");
-					this.OnIDChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TenContacts", DbType="VarChar(100)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TenContacts", DbType="NVarChar(50)")]
 		public string TenContacts
 		{
 			get
@@ -2043,16 +2220,12 @@ namespace GDU_Management.Model
 			{
 				if ((this._TenContacts != value))
 				{
-					this.OnTenContactsChanging(value);
-					this.SendPropertyChanging();
 					this._TenContacts = value;
-					this.SendPropertyChanged("TenContacts");
-					this.OnTenContactsChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Email", DbType="VarChar(100)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Email", DbType="NVarChar(50)")]
 		public string Email
 		{
 			get
@@ -2063,16 +2236,12 @@ namespace GDU_Management.Model
 			{
 				if ((this._Email != value))
 				{
-					this.OnEmailChanging(value);
-					this.SendPropertyChanging();
 					this._Email = value;
-					this.SendPropertyChanged("Email");
-					this.OnEmailChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Pass", DbType="VarChar(100)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Pass", DbType="NVarChar(50)")]
 		public string Pass
 		{
 			get
@@ -2083,11 +2252,7 @@ namespace GDU_Management.Model
 			{
 				if ((this._Pass != value))
 				{
-					this.OnPassChanging(value);
-					this.SendPropertyChanging();
 					this._Pass = value;
-					this.SendPropertyChanged("Pass");
-					this.OnPassChanged();
 				}
 			}
 		}
@@ -2103,11 +2268,7 @@ namespace GDU_Management.Model
 			{
 				if ((this._Subject != value))
 				{
-					this.OnSubjectChanging(value);
-					this.SendPropertyChanging();
 					this._Subject = value;
-					this.SendPropertyChanged("Subject");
-					this.OnSubjectChanged();
 				}
 			}
 		}
@@ -2123,11 +2284,7 @@ namespace GDU_Management.Model
 			{
 				if ((this._Message != value))
 				{
-					this.OnMessageChanging(value);
-					this.SendPropertyChanging();
 					this._Message = value;
-					this.SendPropertyChanged("Message");
-					this.OnMessageChanged();
 				}
 			}
 		}
@@ -2143,32 +2300,8 @@ namespace GDU_Management.Model
 			{
 				if ((this._InfoOther != value))
 				{
-					this.OnInfoOtherChanging(value);
-					this.SendPropertyChanging();
 					this._InfoOther = value;
-					this.SendPropertyChanged("InfoOther");
-					this.OnInfoOtherChanged();
 				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
 	}
@@ -2517,6 +2650,8 @@ namespace GDU_Management.Model
 		
 		private EntitySet<ThoiKhoaBieu> _ThoiKhoaBieus;
 		
+		private EntitySet<SinhVien> _SinhViens;
+		
 		private EntityRef<KhoasHoc> _KhoasHoc;
 		
 		private EntityRef<NganhHoc> _NganhHoc;
@@ -2538,6 +2673,7 @@ namespace GDU_Management.Model
 		public Lop()
 		{
 			this._ThoiKhoaBieus = new EntitySet<ThoiKhoaBieu>(new Action<ThoiKhoaBieu>(this.attach_ThoiKhoaBieus), new Action<ThoiKhoaBieu>(this.detach_ThoiKhoaBieus));
+			this._SinhViens = new EntitySet<SinhVien>(new Action<SinhVien>(this.attach_SinhViens), new Action<SinhVien>(this.detach_SinhViens));
 			this._KhoasHoc = default(EntityRef<KhoasHoc>);
 			this._NganhHoc = default(EntityRef<NganhHoc>);
 			OnCreated();
@@ -2644,6 +2780,19 @@ namespace GDU_Management.Model
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Lop_SinhVien", Storage="_SinhViens", ThisKey="MaLop", OtherKey="MaLop")]
+		public EntitySet<SinhVien> SinhViens
+		{
+			get
+			{
+				return this._SinhViens;
+			}
+			set
+			{
+				this._SinhViens.Assign(value);
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="KhoasHoc_Lop", Storage="_KhoasHoc", ThisKey="MaKhoaHoc", OtherKey="MaKhoaHoc", IsForeignKey=true)]
 		public KhoasHoc KhoasHoc
 		{
@@ -2739,6 +2888,18 @@ namespace GDU_Management.Model
 		}
 		
 		private void detach_ThoiKhoaBieus(ThoiKhoaBieu entity)
+		{
+			this.SendPropertyChanging();
+			entity.Lop = null;
+		}
+		
+		private void attach_SinhViens(SinhVien entity)
+		{
+			this.SendPropertyChanging();
+			entity.Lop = this;
+		}
+		
+		private void detach_SinhViens(SinhVien entity)
 		{
 			this.SendPropertyChanging();
 			entity.Lop = null;
@@ -3323,13 +3484,15 @@ namespace GDU_Management.Model
 		
 		private string _MaLop;
 		
-		private int _STT;
+		private string _STT;
 		
 		private System.Data.Linq.Binary _Avt;
 		
 		private string _StatusAcc;
 		
 		private EntitySet<DiemMonHoc> _DiemMonHocs;
+		
+		private EntityRef<Lop> _Lop;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -3355,7 +3518,7 @@ namespace GDU_Management.Model
     partial void OnGhiChuChanged();
     partial void OnMaLopChanging(string value);
     partial void OnMaLopChanged();
-    partial void OnSTTChanging(int value);
+    partial void OnSTTChanging(string value);
     partial void OnSTTChanged();
     partial void OnAvtChanging(System.Data.Linq.Binary value);
     partial void OnAvtChanged();
@@ -3366,6 +3529,7 @@ namespace GDU_Management.Model
 		public SinhVien()
 		{
 			this._DiemMonHocs = new EntitySet<DiemMonHoc>(new Action<DiemMonHoc>(this.attach_DiemMonHocs), new Action<DiemMonHoc>(this.detach_DiemMonHocs));
+			this._Lop = default(EntityRef<Lop>);
 			OnCreated();
 		}
 		
@@ -3560,6 +3724,10 @@ namespace GDU_Management.Model
 			{
 				if ((this._MaLop != value))
 				{
+					if (this._Lop.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
 					this.OnMaLopChanging(value);
 					this.SendPropertyChanging();
 					this._MaLop = value;
@@ -3569,8 +3737,8 @@ namespace GDU_Management.Model
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_STT", AutoSync=AutoSync.Always, DbType="Int NOT NULL IDENTITY", IsDbGenerated=true)]
-		public int STT
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_STT", DbType="NChar(5)")]
+		public string STT
 		{
 			get
 			{
@@ -3642,6 +3810,40 @@ namespace GDU_Management.Model
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Lop_SinhVien", Storage="_Lop", ThisKey="MaLop", OtherKey="MaLop", IsForeignKey=true)]
+		public Lop Lop
+		{
+			get
+			{
+				return this._Lop.Entity;
+			}
+			set
+			{
+				Lop previousValue = this._Lop.Entity;
+				if (((previousValue != value) 
+							|| (this._Lop.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Lop.Entity = null;
+						previousValue.SinhViens.Remove(this);
+					}
+					this._Lop.Entity = value;
+					if ((value != null))
+					{
+						value.SinhViens.Add(this);
+						this._MaLop = value.MaLop;
+					}
+					else
+					{
+						this._MaLop = default(string);
+					}
+					this.SendPropertyChanged("Lop");
+				}
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -3672,116 +3874,6 @@ namespace GDU_Management.Model
 		{
 			this.SendPropertyChanging();
 			entity.SinhVien = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.CheckAccount")]
-	public partial class CheckAccount : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _ID;
-		
-		private string _Code;
-		
-		private string _MaAdmin;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIDChanging(int value);
-    partial void OnIDChanged();
-    partial void OnCodeChanging(string value);
-    partial void OnCodeChanged();
-    partial void OnMaAdminChanging(string value);
-    partial void OnMaAdminChanged();
-    #endregion
-		
-		public CheckAccount()
-		{
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int ID
-		{
-			get
-			{
-				return this._ID;
-			}
-			set
-			{
-				if ((this._ID != value))
-				{
-					this.OnIDChanging(value);
-					this.SendPropertyChanging();
-					this._ID = value;
-					this.SendPropertyChanged("ID");
-					this.OnIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Code", DbType="VarChar(10)")]
-		public string Code
-		{
-			get
-			{
-				return this._Code;
-			}
-			set
-			{
-				if ((this._Code != value))
-				{
-					this.OnCodeChanging(value);
-					this.SendPropertyChanging();
-					this._Code = value;
-					this.SendPropertyChanged("Code");
-					this.OnCodeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaAdmin", DbType="VarChar(10)")]
-		public string MaAdmin
-		{
-			get
-			{
-				return this._MaAdmin;
-			}
-			set
-			{
-				if ((this._MaAdmin != value))
-				{
-					this.OnMaAdminChanging(value);
-					this.SendPropertyChanging();
-					this._MaAdmin = value;
-					this.SendPropertyChanged("MaAdmin");
-					this.OnMaAdminChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
 		}
 	}
 }

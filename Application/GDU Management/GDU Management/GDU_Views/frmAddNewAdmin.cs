@@ -12,6 +12,7 @@ using GDU_Management.Service;
 using GDU_Management.Model;
 using GDU_Management.Controller;
 using System.IO;
+using System.Text.RegularExpressions;
 
 namespace GDU_Management.GDU_Views
 {
@@ -24,31 +25,43 @@ namespace GDU_Management.GDU_Views
 
         //controller
         SendMessageController sendMessageController = new SendMessageController();
+        EncodingPasswordController encodingPasswordController = new EncodingPasswordController();
 
         //khai báo các service
         AdminService adminService = new AdminService();
         ContactService contactService = new ContactService();
 
+        //delegate
+        delegate void SendInforToFrmOther(string email);
+
         //public value
-        string Id_Admin;
+        string _Id_Admin;
+        string _email;
 
         //---------------------------DANH SÁCH HÀM PUBLIC------------------------------//
         //__________________________________________________________//
         
         //nhận id admin từ frmAccount
-        public void FunData(string IDAdmin)
+        public void FunDataId(string IDAdmin)
         {
-            lblIDAdmin.Text = IDAdmin;
-            Id_Admin = IDAdmin;
+            _Id_Admin = IDAdmin;
+            lblIDAdmin.Text =_Id_Admin;
+        }
+
+        //hàm nhận email;
+        public void FunDataEmail(string email)
+        {
+            _email = email;
         }
 
         //load thông tin admin vào form
         public void LoadAdmin()
         {
-            if(lblIDAdmin.Text != "??")
+            if(lblIDAdmin.Text != "???")
             {
+                //MessageBox.Show(_Id_Admin);
                 Admin ad = new Admin();
-                ad = adminService.GetAdminByMaAdmin(lblIDAdmin.Text);
+                ad = adminService.GetAdminByMaAdmin(_Id_Admin);
                 txtTenAdmin.Text = ad.TenAdmin;
                 txtSdt.Text = ad.SDT;
                 txtEmail.Text = ad.Email;
@@ -127,9 +140,157 @@ namespace GDU_Management.GDU_Views
             sendMessageController.SendMailAddAdmin(fromEmail, toEmail, subEmail, messEmail);
         }
 
+        //check quyền cảu user
+        public bool CheckRoleUserLogin()
+        {
+            Admin ad = new Admin();
+            ad = adminService.GetAdminByEmail(_email);
+            if (ad.Role != "Ad")
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public bool CheckDataAddUser()
+        {
+            if (string.IsNullOrEmpty(txtTenAdmin.Text.Trim()))
+            {
+                MessageBox.Show("Tên user không được bỏ trống", "Cảnh Báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtTenAdmin.Focus();
+                return false;
+            }
+
+            //kiểm tra email
+            if (!string.IsNullOrEmpty(txtEmail.Text))
+            {
+                string email = txtEmail.Text;
+                var value = email.EndsWith("@gmail.com");
+                string reEmail = value.ToString();
+                if (reEmail.Equals("False"))
+                {
+                    MessageBox.Show("Định dạng email không đúng, vui lòng kiểm tra lại...", "Cảnh Báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtEmail.Focus();
+                    return false;
+                }
+                var listEmailUser = adminService.GetAllAdmin();
+                foreach (var emailUser in listEmailUser)
+                {
+                    if (txtEmail.Text.ToString() == emailUser.Email)
+                    {
+                        MessageBox.Show("Email Đã Tồn Tại", "Cảnh Báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return false;
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Email Không được bỏ trống, vui lòng kiểm tra lại...", "Cảnh Báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtEmail.Focus();
+                return false;
+            }
+
+            //kiểm tra sđt
+            if (!string.IsNullOrEmpty(txtSdt.Text))
+            {
+                Regex isValidInput = new Regex(@"^\d{10}$");
+                string sdt = txtSdt.Text.Trim();
+                if (!isValidInput.IsMatch(sdt))
+                {
+                    MessageBox.Show("SĐT bao gồm 10 số và không có kí tự, vui lòng kiểm tra lại...", "Cảnh Báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtSdt.Focus();
+                    return false;
+                }
+                var listSdtUser = adminService.GetAllAdmin();
+                foreach (var sdtUser in listSdtUser)
+                {
+                    if (txtSdt.Text.ToString() == sdtUser.SDT)
+                    {
+                        MessageBox.Show("SĐT Đã Tồn Tại", "Cảnh Báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return false;
+                    }
+                }
+
+            }
+            else
+            {
+                MessageBox.Show("SĐT Không được bỏ trống, vui lòng kiểm tra lại...", "Cảnh Báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtSdt.Focus();
+                return false;
+            }
+
+            //kiem tra dia chi
+            if (string.IsNullOrEmpty(rtxtDicChi.Text.Trim()))
+            {
+                MessageBox.Show("Địa chỉ không được bỏ trống", "Cảnh Báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                rtxtDicChi.Focus();
+                return false;
+            }
+
+            return true;
+        }
+
+        public bool CheckDataUpdateUser()
+        {
+            if (string.IsNullOrEmpty(txtTenAdmin.Text.Trim()))
+            {
+                MessageBox.Show("Tên user không được bỏ trống", "Cảnh Báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtTenAdmin.Focus();
+                return false;
+            }
+
+            //kiểm tra email
+            if (!string.IsNullOrEmpty(txtEmail.Text))
+            {
+                string email = txtEmail.Text;
+                var value = email.EndsWith("@gmail.com");
+                string reEmail = value.ToString();
+                if (reEmail.Equals("False"))
+                {
+                    MessageBox.Show("Định dạng email không đúng, vui lòng kiểm tra lại...", "Cảnh Báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtEmail.Focus();
+                    return false;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Email Không được bỏ trống, vui lòng kiểm tra lại...", "Cảnh Báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtEmail.Focus();
+                return false;
+            }
+
+            //kiểm tra sđt
+            if (!string.IsNullOrEmpty(txtSdt.Text))
+            {
+                Regex isValidInput = new Regex(@"^\d{10}$");
+                string sdt = txtSdt.Text.Trim();
+                if (!isValidInput.IsMatch(sdt))
+                {
+                    MessageBox.Show("SĐT bao gồm 10 số và không có kí tự, vui lòng kiểm tra lại...", "Cảnh Báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtSdt.Focus();
+                    return false;
+                }
+            }
+            else
+            {
+                MessageBox.Show("SĐT Không được bỏ trống, vui lòng kiểm tra lại...", "Cảnh Báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtSdt.Focus();
+                return false;
+            }
+
+            //kiem tra dia chi
+            if (string.IsNullOrEmpty(rtxtDicChi.Text.Trim()))
+            {
+                MessageBox.Show("Địa chỉ không được bỏ trống", "Cảnh Báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                rtxtDicChi.Focus();
+                return false;
+            }
+
+            return true;
+        }
+
         //---------------------------KẾT THÚC HÀM PUBLIC---------------------------------//
         //__________________________________________________________//
-
 
 
         private void picAvtAdmin_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -143,21 +304,33 @@ namespace GDU_Management.GDU_Views
 
         private void btnClose_Click(object sender, EventArgs e)
         {
+            this.Close();
             this.Hide();
             frmAccount frm_acc = new frmAccount();
+            SendInforToFrmOther sendEmail = new SendInforToFrmOther(frm_acc.FunDataFrmOther);
+            sendEmail(this._email);
             frm_acc.ShowDialog();
         }
 
         private void frmAddNewAdmin_Load(object sender, EventArgs e)
         {
+            //MessageBox.Show("id nhan dc: " + _Id_Admin + " - emal nhan dc: " + _email);
             LoadAdmin();
+            if (CheckRoleUserLogin())
+            {
+                lblAddNewAdmin.Enabled = true;
+                txtEmail.Enabled = true;
+            }
         }
 
         private void btnInsert_Click(object sender, EventArgs e)
         {
             Admin ad = new Admin();
-            if(Id_Admin == lblIDAdmin.Text)
+            if(_Id_Admin == lblIDAdmin.Text)
             {
+                if (CheckDataUpdateUser())
+                {
+
                 //UPDATE
                 ad.MaAdmin = lblIDAdmin.Text.Trim();
                 ad.TenAdmin=txtTenAdmin.Text.Trim();
@@ -167,7 +340,6 @@ namespace GDU_Management.GDU_Views
                 ad.GhiChu=rtxtGhiChu.Text.Trim();
                 ad.NamSinh = dtpNamSinh.Text.ToString().Trim();
                 ad.StartDay = dtpStartingDate.Text.ToString().Trim();
-                ad.StatusAcc = "Activate";
 
                 //update avatar
                 byte[] Image_admin = ImageToByteArray(picAvtAdmin.Image);   //lấy image từ picturebox
@@ -188,9 +360,12 @@ namespace GDU_Management.GDU_Views
                 adminService.UpdateAdmin(ad);
                 LoadAdmin();
                 MessageBox.Show("Update Information Successfully...<-/>!!!", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
             else
             {
+                if (CheckDataAddUser())
+                {
                 SendMaillToAdmin();
                 //SAVE
                 ad.MaAdmin = lblIDAdmin.Text.Trim();
@@ -201,8 +376,13 @@ namespace GDU_Management.GDU_Views
                 ad.GhiChu = rtxtGhiChu.Text.Trim();
                 ad.NamSinh = dtpNamSinh.Text.ToString().Trim();
                 ad.StartDay = dtpStartingDate.Text.ToString().Trim();
-                ad.Password = lblIDAdmin.Text.Trim();
                 ad.StatusAcc = "Activate";
+                    ad.Role = "Emp";
+                //mã hóa password
+                string maHocDES = encodingPasswordController.EncryptionByDES(lblIDAdmin.Text.Trim(), "GDUmanagement-User");
+                string maHoaMD5 = encodingPasswordController.EncryptionByMD5(maHocDES);
+                ad.Password = maHocDES + maHoaMD5;
+                
                 //iamge
                 byte[] Image_admin = ImageToByteArray(picAvtAdmin.Image);   //lấy image từ picturebox
                 System.Data.Linq.Binary img = new System.Data.Linq.Binary(Image_admin);  //chuyển image từ kiểu image về kiểu ByteArray
@@ -220,7 +400,8 @@ namespace GDU_Management.GDU_Views
                 ad.GioiTinh = gioiTinh;
                 adminService.CreateAdmin(ad);
                 MessageBox.Show("Saved Successfully...<-/>!!!", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                LoadAdmin();
+                //LoadAdmin();
+                }
             }
         }
 
@@ -233,6 +414,7 @@ namespace GDU_Management.GDU_Views
             txtSdt.Clear();
             rtxtDicChi.Clear();
             rtxtGhiChu.Clear();
+            txtEmail.Enabled = true;
             picAvtAdmin.Image = Image.FromFile(@"..\..\Resources\avt006_admin_default_160x193.jpg");
         }
     }

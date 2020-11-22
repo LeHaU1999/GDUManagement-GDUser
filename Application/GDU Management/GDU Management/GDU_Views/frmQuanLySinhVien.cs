@@ -32,6 +32,7 @@ namespace GDU_Management
         delegate void SendMaKhoaHocMaNganhToFrmDanhSachLop(string dlgtMaKhoaHoc, string MaNganh);
         delegate void SendIdSinhVienToFrmInformationSinhVien(string dlgtIdSv);
         delegate void SendEmailToFormOther(string email, string maSV, string TenSV);
+        delegate void SendEmailToFrmOther(string email);
 
 
         //khai báo service 
@@ -44,18 +45,27 @@ namespace GDU_Management
         DiemMonHocService diemMonHocService = new DiemMonHocService();
         ContactService contactService = new ContactService();
         GiangVienService giangVienService = new GiangVienService();
+        CheckLoginService checkLoginService = new CheckLoginService();
 
         //khai bao controller
         SendMessageController sendMessage = new SendMessageController();
+        RandomCodeControlller randomCodeControlller = new RandomCodeControlller();
+        EncodingPasswordController encodingPasswordController = new EncodingPasswordController();
         
         //value public
         string _maLopSV;             //giá trị mã lớp lấy từ treeview trên tabSinhVien
+        string _emailAdmin;
 
 
         //---------------------------DANH SÁCH HÀM PUBLIC------------------------------//
         //__________________________________________________________//
 
         //hàm lấy ngày giờ và điếm thời gian
+
+        public void FunDataFromGDU(string email)
+        {
+            _emailAdmin = email;
+        }
         public void NgayGio()
         {
             //get ngày
@@ -72,7 +82,21 @@ namespace GDU_Management
         {
             this.Hide();
             GDUManagement gdu = new GDUManagement();
+            SendEmailToFrmOther sendEmailToGDU = new SendEmailToFrmOther(gdu.FunData);
+            sendEmailToGDU(_emailAdmin);
             gdu.ShowDialog();
+        }
+
+        // hàm thoát chương trình
+        public void ThoatChuongTrinh()
+        {
+            DialogResult dr;
+            dr = MessageBox.Show("Bạn có muốn thoát khỏi chương trình không ?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (dr == DialogResult.Yes)
+            {
+                checkLoginService.DeleteCheckLogin();
+                Application.Exit();
+            }
         }
 
         //chuyển hình từ kiểu Image sang kiểu ByteArray  ==> Save image vào database
@@ -310,7 +334,6 @@ namespace GDU_Management
                     {
                         MessageBox.Show("Email Không được chứa khoảng trắng", "Cảnh Báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return false;
-                        break;
                     }
                 }
             }
@@ -350,6 +373,44 @@ namespace GDU_Management
                 return false;
             }
            
+            //kiểm tra địa chỉ
+            if (string.IsNullOrEmpty(rtxtDiaChi.Text))
+            {
+                MessageBox.Show("Địa Chỉ Không được bỏ trống, vui lòng kiểm tra lại...", "Cảnh Báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                rtxtDiaChi.Focus();
+                return false;
+            }
+            return true;
+        }
+
+        public bool checkDataUpdateSINHVIEN()
+        {
+            //kiểm tra tên
+            if (string.IsNullOrEmpty(txtTenSV.Text))
+            {
+                MessageBox.Show("Tên Sinh Viên Không được bỏ trống, vui lòng kiểm tra lại...", "Cảnh Báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtTenSV.Focus();
+                return false;
+            }
+            //kiểm tra sđt
+            if (!string.IsNullOrEmpty(txtSdt.Text))
+            {
+                Regex isValidInput = new Regex(@"^\d{10}$");
+                string sdt = txtSdt.Text.Trim();
+                if (!isValidInput.IsMatch(sdt))
+                {
+                    MessageBox.Show("SĐT bao gồm 10 số và không có kí tự, vui lòng kiểm tra lại...", "Cảnh Báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtSdt.Focus();
+                    return false;
+                }
+            }
+            else
+            {
+                MessageBox.Show("SĐT Không được bỏ trống, vui lòng kiểm tra lại...", "Cảnh Báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtSdt.Focus();
+                return false;
+            }
+
             //kiểm tra địa chỉ
             if (string.IsNullOrEmpty(rtxtDiaChi.Text))
             {
@@ -476,34 +537,24 @@ namespace GDU_Management
         //hàm auto id sinh viên
         public void AutoIDSinhVien()
         {
-            int SLSV =0;
-            if(dgvDanhSachSinhVien.Rows.Count > 0)
-            {
-                int a = (dgvDanhSachSinhVien.Rows.Count - 1);
-                string massv = dgvDanhSachSinhVien.Rows[a].Cells[1].Value.ToString();
-                SinhVien ssv = sinhVienService.GetSinhVienByMaSinhVien(massv);
-                SLSV = ssv.STT;
-            }
             string LastIdKhoas = cboChonKhoasHocSV.SelectedValue.ToString().Substring(1);                //lấy 2 số cuối mã khóa
-            string LastIdLop = _maLopSV.Substring(8);                                                                           //đếm số lượng sinh viên có trong data
-           
+            string LastIdLop = _maLopSV.Substring(8);                                                                           //lay 2 so cuoi ma lop
 
-            if (SLSV < 10)
+            int IdSV = 0;
+            string maSV = "";
+            IdSV = randomCodeControlller.RandomIdStudent();
+            maSV = "GD" + LastIdKhoas + LastIdLop + IdSV;
+
+            var listAllSV = sinhVienService.GetAllSinhVien();
+            foreach (var ID_Sv in listAllSV)
             {
-                lblMaSV.Text = "GD" + LastIdKhoas + LastIdLop + "000" + (SLSV+1);
+                if(maSV == ID_Sv.MaSV)
+                {
+                    IdSV = randomCodeControlller.RandomIdStudent();
+                    maSV = "GD" + LastIdKhoas + LastIdLop + IdSV;
+                }
             }
-            else if(SLSV < 100)
-            {
-                lblMaSV.Text = "GD" + LastIdKhoas + LastIdLop + "00" + SLSV;
-            }
-            else if(SLSV < 1000)
-            {
-                lblMaSV.Text = "GD" + LastIdKhoas + LastIdLop + "0" + SLSV;
-            }
-            else if (SLSV < 10000)
-            {
-                lblMaSV.Text = "GD" + LastIdKhoas + LastIdLop  + SLSV;
-            }
+            lblMaSV.Text=maSV;
         }
 
         //đếm số thứ tự danh sách khoa
@@ -784,22 +835,12 @@ namespace GDU_Management
 
         private void btnExit_QLK_Click(object sender, EventArgs e)
         {
-            DialogResult dr;
-            dr = MessageBox.Show("Bạn có muốn thoát khỏi chương trình không ?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (dr == DialogResult.Yes)
-            {
-                Application.Exit();
-            }
+            ThoatChuongTrinh();
         }
 
         private void btnExit_QLKH_Click(object sender, EventArgs e)
         {
-            DialogResult dr;
-            dr = MessageBox.Show("Bạn có muốn thoát khỏi chương trình không ?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (dr == DialogResult.Yes)
-            {
-                Application.Exit();
-            }
+            ThoatChuongTrinh();
         }
 
         private void dgvDanhSachKhoa_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -1125,12 +1166,7 @@ namespace GDU_Management
 
         private void btnExitSV_Click(object sender, EventArgs e)
         {
-            DialogResult dr;
-            dr = MessageBox.Show("Bạn có muốn thoát khỏi chương trình không ?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (dr == DialogResult.Yes)
-            {
-                Application.Exit();
-            }
+            ThoatChuongTrinh();
         }
 
         private void btnSaveSV_Click(object sender, EventArgs e)
@@ -1156,6 +1192,12 @@ namespace GDU_Management
                     sv.GioiTinh = radNu.Text;
                 }
                 sv.Email = txtEmail.Text;
+
+                //mã hoa password
+                //string maHoaPassDES = encodingPasswordController.EncryptionByDES(lblMaSV.Text.Trim(), "GDUmanagement-Student");
+                //string maHoaPassMD5 = encodingPasswordController.EncryptionByMD5(maHoaPassDES);
+                //sv.Password = maHoaPassDES+ maHoaPassMD5;
+                /////////////
                 sv.Password = lblMaSV.Text;
                 sv.NamSinh = dtpNamSinh.Text.ToString();
                 sv.SDT = txtSdt.Text;
@@ -1214,7 +1256,7 @@ namespace GDU_Management
 
         private void btnUpdateSV_Click(object sender, EventArgs e)
         {
-            if (checkDataSINHVIEN())
+            if (checkDataUpdateSINHVIEN())
             {
                 SinhVien sv = new SinhVien();
                 sv.MaSV = lblMaSV.Text;
@@ -1336,12 +1378,7 @@ namespace GDU_Management
 
         private void btnExit_allSV_Click(object sender, EventArgs e)
         {
-            DialogResult dr;
-            dr = MessageBox.Show("Bạn có muốn thoát khỏi chương trình không ?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (dr == DialogResult.Yes)
-            {
-                Application.Exit();
-            }
+            ThoatChuongTrinh();
         }
 
         private void dgvDanhSachAllSinhVien_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -1451,6 +1488,12 @@ namespace GDU_Management
         {
             this.btnExit_allSV.BackColor = Color.White;
             this.btnExit_allSV.ForeColor = Color.DimGray;
+        }
+
+        private void btnExportDSSV_Click(object sender, EventArgs e)
+        {
+            //frmReport_GetDanhSachSinhVien xem = new frmReport_GetDanhSachSinhVien();
+            //xem.ShowDialog();
         }
     }
 }

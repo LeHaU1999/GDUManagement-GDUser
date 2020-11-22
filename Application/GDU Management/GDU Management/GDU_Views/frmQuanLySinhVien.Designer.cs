@@ -89,10 +89,10 @@
             this.label14 = new System.Windows.Forms.Label();
             this.grbChonKhoa = new System.Windows.Forms.GroupBox();
             this.cboChonKhoaKL = new System.Windows.Forms.ComboBox();
-            this.btnHome_QLKH = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnExportDSKhoaHoc = new System.Windows.Forms.Button();
             this.btnXemDanhSachLop = new System.Windows.Forms.Button();
+            this.btnHome_QLKH = new System.Windows.Forms.Button();
             this.btnExit_QLKH = new System.Windows.Forms.Button();
             this.grbChonNganh = new System.Windows.Forms.GroupBox();
             this.cboChonNganhKL = new System.Windows.Forms.ComboBox();
@@ -351,9 +351,9 @@
             this.btnExportDSKhoa.Font = new System.Drawing.Font("Microsoft Uighur", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExportDSKhoa.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.btnExportDSKhoa.Image = global::GDU_Management.Properties.Resources.icons8_print_42;
-            this.btnExportDSKhoa.Location = new System.Drawing.Point(263, 1);
+            this.btnExportDSKhoa.Location = new System.Drawing.Point(263, 2);
             this.btnExportDSKhoa.Name = "btnExportDSKhoa";
-            this.btnExportDSKhoa.Size = new System.Drawing.Size(161, 60);
+            this.btnExportDSKhoa.Size = new System.Drawing.Size(160, 60);
             this.btnExportDSKhoa.TabIndex = 34;
             this.btnExportDSKhoa.UseVisualStyleBackColor = false;
             // 
@@ -379,7 +379,7 @@
             this.btnXemDSNganh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnXemDSNganh.Font = new System.Drawing.Font("Microsoft Uighur", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnXemDSNganh.ForeColor = System.Drawing.Color.White;
-            this.btnXemDSNganh.Location = new System.Drawing.Point(3, 0);
+            this.btnXemDSNganh.Location = new System.Drawing.Point(3, 2);
             this.btnXemDSNganh.Name = "btnXemDSNganh";
             this.btnXemDSNganh.Size = new System.Drawing.Size(250, 60);
             this.btnXemDSNganh.TabIndex = 13;
@@ -398,7 +398,7 @@
             this.btnHome_QLK.Image = global::GDU_Management.Properties.Resources.icons8_home_page_51x40;
             this.btnHome_QLK.Location = new System.Drawing.Point(435, 2);
             this.btnHome_QLK.Name = "btnHome_QLK";
-            this.btnHome_QLK.Size = new System.Drawing.Size(144, 57);
+            this.btnHome_QLK.Size = new System.Drawing.Size(144, 60);
             this.btnHome_QLK.TabIndex = 34;
             this.btnHome_QLK.UseVisualStyleBackColor = false;
             this.btnHome_QLK.Click += new System.EventHandler(this.btnHome_QLK_Click);
@@ -910,20 +910,6 @@
             this.cboChonKhoaKL.TabIndex = 0;
             this.cboChonKhoaKL.SelectedIndexChanged += new System.EventHandler(this.cboChonKhoa_SelectedIndexChanged);
             // 
-            // btnHome_QLKH
-            // 
-            this.btnHome_QLKH.BackColor = System.Drawing.Color.White;
-            this.btnHome_QLKH.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnHome_QLKH.Font = new System.Drawing.Font("Microsoft Uighur", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnHome_QLKH.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.btnHome_QLKH.Image = global::GDU_Management.Properties.Resources.icons8_home_page_59x45;
-            this.btnHome_QLKH.Location = new System.Drawing.Point(433, 7);
-            this.btnHome_QLKH.Name = "btnHome_QLKH";
-            this.btnHome_QLKH.Size = new System.Drawing.Size(129, 60);
-            this.btnHome_QLKH.TabIndex = 37;
-            this.btnHome_QLKH.UseVisualStyleBackColor = false;
-            this.btnHome_QLKH.Click += new System.EventHandler(this.btnHome_QLKH_Click);
-            // 
             // panel2
             // 
             this.panel2.Controls.Add(this.btnExportDSKhoaHoc);
@@ -961,6 +947,20 @@
             this.btnXemDanhSachLop.Text = "Xem DS Lớp";
             this.btnXemDanhSachLop.UseVisualStyleBackColor = false;
             this.btnXemDanhSachLop.Click += new System.EventHandler(this.btnXemDanhSachLop_Click);
+            // 
+            // btnHome_QLKH
+            // 
+            this.btnHome_QLKH.BackColor = System.Drawing.Color.White;
+            this.btnHome_QLKH.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnHome_QLKH.Font = new System.Drawing.Font("Microsoft Uighur", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnHome_QLKH.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.btnHome_QLKH.Image = global::GDU_Management.Properties.Resources.icons8_home_page_59x45;
+            this.btnHome_QLKH.Location = new System.Drawing.Point(433, 7);
+            this.btnHome_QLKH.Name = "btnHome_QLKH";
+            this.btnHome_QLKH.Size = new System.Drawing.Size(129, 60);
+            this.btnHome_QLKH.TabIndex = 37;
+            this.btnHome_QLKH.UseVisualStyleBackColor = false;
+            this.btnHome_QLKH.Click += new System.EventHandler(this.btnHome_QLKH_Click);
             // 
             // btnExit_QLKH
             // 
@@ -1572,6 +1572,7 @@
             this.btnExportDSSV.Size = new System.Drawing.Size(335, 60);
             this.btnExportDSSV.TabIndex = 79;
             this.btnExportDSSV.UseVisualStyleBackColor = false;
+            this.btnExportDSSV.Click += new System.EventHandler(this.btnExportDSSV_Click);
             // 
             // lblMaSV
             // 

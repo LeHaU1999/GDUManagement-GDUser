@@ -67,5 +67,10 @@ namespace GDU_Management.Service
         {
             giangVienIDao.DeleteListGiangVienByMaKhoa(maKhoa);
         }
+
+        public List<GiangVien> SearchGiangVienByMaGV(string maGV, string maKhoa)
+        {
+            return giangVienIDao.SearchGiangVienByMaGV(maGV, maKhoa);
+        }
     }
 }

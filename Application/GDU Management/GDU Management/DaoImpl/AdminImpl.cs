@@ -37,7 +37,7 @@ namespace GDU_Management.DaoImpl
         {
             db = new GDUDataConnectionsDataContext();
             Admin admin = new Admin();
-            admin = db.Admins.Single(p => p.MaAdmin == idAdmin);
+            admin = db.Admins.SingleOrDefault(p => p.MaAdmin == idAdmin);
             return admin;
         }
 
@@ -87,10 +87,8 @@ namespace GDU_Management.DaoImpl
             ad.NamSinh = admin.NamSinh;
             ad.SDT = admin.SDT;
             ad.Email = admin.Email;
-            //ad.Password = admin.Password;
             ad.DiaChi = admin.DiaChi;
             ad.GhiChu = admin.GhiChu;
-            ad.StatusAcc = admin.StatusAcc;
             db.SubmitChanges();
         }
 

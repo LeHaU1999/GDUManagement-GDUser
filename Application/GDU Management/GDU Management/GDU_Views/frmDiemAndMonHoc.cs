@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
 using System.Threading;
+using GDU_Management.GDU_Views;
 
 namespace GDU_Management
 {
@@ -22,6 +23,10 @@ namespace GDU_Management
             InitializeComponent();
             NgayGio();
         }
+
+        //delegate
+        delegate void SendEmailToFrmOther(string email);
+
         //Khai Báo Các Service
         MonHocService monHocService = new MonHocService();
         DiemMonHocService diemMonHocService = new DiemMonHocService();
@@ -30,6 +35,8 @@ namespace GDU_Management
         KhoasHocService khoaHocService = new KhoasHocService();
         LopService lopService = new LopService();
         SinhVienService sinhVienService = new SinhVienService();
+        CheckLoginService checkLoginService = new CheckLoginService();
+        ThoiKhoaBieuService thoiKhoaBieuService = new ThoiKhoaBieuService();
 
         //public value
         double DTB;
@@ -37,10 +44,14 @@ namespace GDU_Management
         string DiemSo;
         string Diem4;
         string maMonHoc;
+        string _emailAdmin;
 
         //---------------------------DANH SÁCH HÀM PUBLIC------------------------------//
         //---------------------------------------------------------------------------------------//
-
+        public void FunDataFromGDU(string email)
+        {
+            _emailAdmin = email;
+        }
 
         //1-Hàm lấy thời gian
         public void NgayGio()
@@ -58,7 +69,15 @@ namespace GDU_Management
         {
             this.Hide();
             GDUManagement gdu = new GDUManagement();
+            SendEmailToFrmOther sendEmaiToGDU = new SendEmailToFrmOther(gdu.FunData);
+            sendEmaiToGDU(_emailAdmin);
             gdu.ShowDialog();
+        }
+
+        //3-Thoát chương trình
+        public void ThoatChuogTrinh()
+        {
+            Application.Exit();
         }
 
         //load dữ liệu vào các combobox mặc định
@@ -143,19 +162,35 @@ namespace GDU_Management
             return true;
         }
 
+        //check diem nhap vao
+
         //check data điểm
         public bool CheckDataDiem()
         {
-            if (string.IsNullOrEmpty(txtDiem30.Text.Trim()) && Convert.ToDouble(txtDiem30.Text) > 0 && Convert.ToDouble(txtDiem30.Text) <=10 )
+            if (string.IsNullOrEmpty(txtDiem30.Text.Trim()) )
             {
-                MessageBox.Show("Điểm 30% không đuợc trống họa nhỏ hơn 0, vui lòng kiểm tra lại...", "CảnhBáo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Điểm 30% không đuợc trống, vui lòng kiểm tra lại...", "CảnhBáo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtDiem30.Focus();
                 return false;
             }
-            
-            if (string.IsNullOrEmpty(txtDiem70L1.Text.Trim()) && Convert.ToDouble(txtDiem70L1.Text) > 0 && Convert.ToDouble(txtDiem70L1.Text) <= 10)
+            double diem30 = Convert.ToDouble(txtDiem30.Text.Trim());
+            if(diem30 > 10)
+            {
+                MessageBox.Show("Điểm 30% lớn hơn 10, vui lòng kiểm tra lại...", "CảnhBáo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtDiem30.Focus();
+                return false;
+            }
+
+            if (string.IsNullOrEmpty(txtDiem70L1.Text.Trim()))
             {
                 MessageBox.Show("Điểm 70% Trống, vui lòng kiểm tra lại...", "CảnhBáo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtDiem70L1.Focus();
+                return false;
+            }
+            double diem701 = Convert.ToDouble(txtDiem70L1.Text.Trim());
+            if (diem701 > 10)
+            {
+                MessageBox.Show("Điểm 70% lớn hơn 10, vui lòng kiểm tra lại...", "CảnhBáo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtDiem70L1.Focus();
                 return false;
             }
@@ -316,6 +351,19 @@ namespace GDU_Management
             txtDiem70L2.Enabled = false;
             btnSaveDiem.Enabled = false;
         }
+
+        // hàm thoát chương trình
+        public void ThoatChuongTrinh()
+        {
+            DialogResult dr;
+            dr = MessageBox.Show("Bạn có muốn thoát khỏi chương trình  ?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (dr == DialogResult.Yes)
+            {
+                checkLoginService.DeleteCheckLogin();
+                Application.Exit();
+            }
+        }
+
         //-------------------------KẾT THÚC DS HÀM PUBLIC------------------------------//
         //--------------------------------------------------------------------------------------//
 
@@ -508,10 +556,12 @@ namespace GDU_Management
                 }
                 else
                 {
+                    diemMonHocService.DeleteDiemMonHocByMaMonHoc(lblMaMonHocMH.Text);
+                    thoiKhoaBieuService.DeleteThoiKhoaBieuByMaMonHoc(lblMaMonHocMH.Text);
                     monHocService.DeleteMonHoc(maMon);
                     LoadDanhSachMonHocToDatagridview();
                     MessageBox.Show("Đã Xóa [" + lblMaMonHocMH.Text + "]", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    lblMaMonHocMH.Text = "null";
+                    lblMaMonHocMH.Text = "???";
                     txtTenMon_MH.Text = "";
                     numericSoTinChi_MH.Value = 0;
 
@@ -567,11 +617,9 @@ namespace GDU_Management
             if (dgvDanhSachDiemSinhVien.Rows.Count <= 0)
             {
                 dgvDanhSachDiemSinhVien.Enabled = false;
-                MessageBox.Show("khong sho");
             }
             else
             {
-                MessageBox.Show("show len");
                 dgvDanhSachDiemSinhVien.Enabled = true;
                 btnSaveDiem.Enabled = true;
                 lblMaSV.DataBindings.Clear();
@@ -582,8 +630,6 @@ namespace GDU_Management
                 txtDiem70L1.DataBindings.Add("text", dgvDanhSachDiemSinhVien.DataSource, "Diem70L1");
                 txtDiem70L2.DataBindings.Clear();
                 txtDiem70L2.DataBindings.Add("text", dgvDanhSachDiemSinhVien.DataSource, "Diem70L2");
-                //rtxtGhiChu.DataBindings.Clear();
-                // rtxtGhiChu.DataBindings.Add("text", dgvDanhSachDiemSinhVien.DataSource, "GhiChu");
 
                 SinhVien sv = new SinhVien();
                 sv = sinhVienService.GetSinhVienByMaSinhVien(lblMaSV.Text.Trim());
@@ -646,6 +692,13 @@ namespace GDU_Management
             {
                 maMonHoc = cboChonMon_QLD.SelectedValue.ToString().Trim();
                 dgvDanhSachDiemSinhVien.DataSource = diemMonHocService.SearchDiemMonHocByMonHocAndMaSV(maMonHoc, txtTimKiemDiemSinhVien_QLD.Text.Trim()).ToList();
+                SinhVien sv = new SinhVien();
+                for (int i = 0; i < dgvDanhSachDiemSinhVien.Rows.Count; i++)
+                {
+                    string maSV = dgvDanhSachDiemSinhVien.Rows[i].Cells[2].Value.ToString();
+                    sv = sinhVienService.GetSinhVienByMaSinhVien(maSV);
+                    dgvDanhSachDiemSinhVien.Rows[i].Cells[3].Value = sv.TenSV;
+                }
             }
         }
 
@@ -675,7 +728,35 @@ namespace GDU_Management
 
         private void btnEXIT_QLD_Click(object sender, EventArgs e)
         {
+            ThoatChuongTrinh();
+        }
 
+        private void btnExportDSMonHoc_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void btnExportDanhSachDiem_Click(object sender, EventArgs e)
+        {
+            frmOptionPrint xem = new frmOptionPrint();
+            xem.ShowDialog();
+        }
+
+        private void txtTimKiemMonHoc_TextChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtTimKiemMonHoc.Text.Trim()))
+            {
+                LoadDanhSachMonHocToDatagridview();
+            }
+            else
+            {
+                dgvDanhSachMonHoc.DataSource = monHocService.SearchMonHocByTenMonHoc(txtTimKiemMonHoc.Text.Trim(), cboChonNganh_MH.SelectedValue.ToString());
+            }
+        }
+
+        private void txtTimKiemDiemSinhVien_QLD_MouseClick(object sender, MouseEventArgs e)
+        {
+            txtTimKiemDiemSinhVien_QLD.Clear();
         }
     }
 }

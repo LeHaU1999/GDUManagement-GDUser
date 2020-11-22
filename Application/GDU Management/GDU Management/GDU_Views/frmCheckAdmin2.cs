@@ -39,5 +39,9 @@ namespace GDU_Management
             MessageBox.Show("Đéo đủ trình mà cùng đòi vô đây, Cút đê", "Cút Đê", MessageBoxButtons.OK, MessageBoxIcon.Information);
             Application.Exit();
         }
+
+        private void frmCheckAdmin2_Load(object sender, EventArgs e)
+        {
+        }
     }
 }

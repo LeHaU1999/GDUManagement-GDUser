@@ -119,6 +119,7 @@
             this.ClientSize = new System.Drawing.Size(1050, 521);
             this.Controls.Add(this.pnCheckAdmin2);
             this.Name = "frmCheckAdmin2";
+            this.Load += new System.EventHandler(this.frmCheckAdmin2_Load);
             this.pnCheckAdmin2.ResumeLayout(false);
             this.pnCheckAdmin2.PerformLayout();
             this.ResumeLayout(false);

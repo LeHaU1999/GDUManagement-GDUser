@@ -125,9 +125,10 @@
             // 
             // btnDeleteAllLop
             // 
-            this.btnDeleteAllLop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.btnDeleteAllLop.BackColor = System.Drawing.Color.White;
+            this.btnDeleteAllLop.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDeleteAllLop.Font = new System.Drawing.Font("Microsoft Uighur", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDeleteAllLop.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.btnDeleteAllLop.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.btnDeleteAllLop.Location = new System.Drawing.Point(541, 3);
             this.btnDeleteAllLop.Name = "btnDeleteAllLop";
             this.btnDeleteAllLop.Size = new System.Drawing.Size(150, 45);
@@ -135,10 +136,13 @@
             this.btnDeleteAllLop.Text = "Delete All";
             this.btnDeleteAllLop.UseVisualStyleBackColor = false;
             this.btnDeleteAllLop.Click += new System.EventHandler(this.btnDeleteAllLop_Click);
+            this.btnDeleteAllLop.MouseLeave += new System.EventHandler(this.btnDeleteAllLop_MouseLeave);
+            this.btnDeleteAllLop.MouseHover += new System.EventHandler(this.btnDeleteAllLop_MouseHover);
             // 
             // btnExitDSLop
             // 
-            this.btnExitDSLop.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.btnExitDSLop.BackColor = System.Drawing.Color.White;
+            this.btnExitDSLop.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExitDSLop.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.btnExitDSLop.Image = global::GDU_Management.Properties.Resources.icons_exit_38;
             this.btnExitDSLop.Location = new System.Drawing.Point(695, 3);
@@ -209,7 +213,7 @@
             this.maKhoaHocDataGridViewTextBoxColumn,
             this.nganhHocDataGridViewTextBoxColumn});
             this.dgvDanhSachLop.DataSource = this.lopBindingSource;
-            this.dgvDanhSachLop.GridColor = System.Drawing.Color.Magenta;
+            this.dgvDanhSachLop.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.dgvDanhSachLop.Location = new System.Drawing.Point(14, 209);
             this.dgvDanhSachLop.Name = "dgvDanhSachLop";
             this.dgvDanhSachLop.ReadOnly = true;
@@ -378,10 +382,11 @@
             // 
             // btnExportDSLop
             // 
-            this.btnExportDSLop.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.btnExportDSLop.BackColor = System.Drawing.Color.White;
+            this.btnExportDSLop.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExportDSLop.Font = new System.Drawing.Font("Microsoft Uighur", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExportDSLop.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.btnExportDSLop.Image = global::GDU_Management.Properties.Resources.icons_print_45;
+            this.btnExportDSLop.ForeColor = System.Drawing.Color.Blue;
+            this.btnExportDSLop.Image = global::GDU_Management.Properties.Resources.icons8_print_42;
             this.btnExportDSLop.Location = new System.Drawing.Point(555, 138);
             this.btnExportDSLop.Name = "btnExportDSLop";
             this.btnExportDSLop.Size = new System.Drawing.Size(261, 65);

@@ -255,6 +255,7 @@ namespace GDU_Management
             else
             {
                 dgvDSNganh.DataSource = nganhHocService.SearchNganhHocByTenNganh(_maKhoa,txtTimKiemNganh.Text.Trim()).ToList();
+                CountRowsNganh();
             }
         }
     }

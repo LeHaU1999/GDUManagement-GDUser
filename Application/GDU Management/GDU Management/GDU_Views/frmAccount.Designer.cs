@@ -32,11 +32,10 @@
             this.pnAccount = new System.Windows.Forms.Panel();
             this.tabQuanLyAccount = new System.Windows.Forms.TabControl();
             this.tabgAccountAdmin = new System.Windows.Forms.TabPage();
+            this.lblShowPassAdmin = new System.Windows.Forms.Label();
             this.lblStatusAdmin = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.txtTimKiemAdmin = new System.Windows.Forms.TextBox();
-            this.lblShowPassword = new System.Windows.Forms.Label();
             this.btnSaveAccountAdmin = new System.Windows.Forms.Button();
             this.picAvtAdmin = new System.Windows.Forms.PictureBox();
             this.grbThongTiAdmin = new System.Windows.Forms.GroupBox();
@@ -60,12 +59,24 @@
             this.txtPassAdmin = new System.Windows.Forms.TextBox();
             this.grbEmail = new System.Windows.Forms.GroupBox();
             this.txtEmailAdmin = new System.Windows.Forms.TextBox();
-            this.dgvDanhSachAccount = new System.Windows.Forms.DataGridView();
+            this.dgvDanhSachAccountAdmin = new System.Windows.Forms.DataGridView();
+            this.STTadmin = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.maAdminDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tenAdminDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.avtDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.gioiTinhDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.namSinhDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.sDTDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.emailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.passwordDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.diaChiDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ghiChuDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.statusAccDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.adminBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tabAccountGiangVien = new System.Windows.Forms.TabPage();
+            this.lblShowPassGiangVien = new System.Windows.Forms.Label();
             this.lblStatusGV = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.txtTimKiemAccountGV = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.lblSdtGV = new System.Windows.Forms.Label();
@@ -104,13 +115,12 @@
             this.statusAccDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.khoaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.giangVienBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.lblShowPassGiangVien = new System.Windows.Forms.Label();
             this.btnSaveAccountGiangVien = new System.Windows.Forms.Button();
             this.picAvtGiangVien = new System.Windows.Forms.PictureBox();
             this.tagAccountSinhVien = new System.Windows.Forms.TabPage();
+            this.lblShowPassSinhVien = new System.Windows.Forms.Label();
             this.lblStatusSV = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.txtTimKiemAccountSV = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.lblSdtSV = new System.Windows.Forms.Label();
@@ -149,19 +159,6 @@
             this.txtEmailSV = new System.Windows.Forms.TextBox();
             this.btnSaveAccountSV = new System.Windows.Forms.Button();
             this.picAvtSinhVien = new System.Windows.Forms.PictureBox();
-            this.lblShowPassSV = new System.Windows.Forms.Label();
-            this.STTadmin = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.maAdminDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tenAdminDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.avtDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.gioiTinhDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.namSinhDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.sDTDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.emailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.passwordDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.diaChiDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ghiChuDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.statusAccDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pnAccount.SuspendLayout();
             this.tabQuanLyAccount.SuspendLayout();
             this.tabgAccountAdmin.SuspendLayout();
@@ -169,7 +166,7 @@
             this.grbThongTiAdmin.SuspendLayout();
             this.grbPass.SuspendLayout();
             this.grbEmail.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvDanhSachAccount)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDanhSachAccountAdmin)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.adminBindingSource)).BeginInit();
             this.tabAccountGiangVien.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -212,17 +209,16 @@
             // tabgAccountAdmin
             // 
             this.tabgAccountAdmin.BackColor = System.Drawing.Color.White;
+            this.tabgAccountAdmin.Controls.Add(this.lblShowPassAdmin);
             this.tabgAccountAdmin.Controls.Add(this.lblStatusAdmin);
             this.tabgAccountAdmin.Controls.Add(this.label11);
             this.tabgAccountAdmin.Controls.Add(this.label6);
-            this.tabgAccountAdmin.Controls.Add(this.txtTimKiemAdmin);
-            this.tabgAccountAdmin.Controls.Add(this.lblShowPassword);
             this.tabgAccountAdmin.Controls.Add(this.btnSaveAccountAdmin);
             this.tabgAccountAdmin.Controls.Add(this.picAvtAdmin);
             this.tabgAccountAdmin.Controls.Add(this.grbThongTiAdmin);
             this.tabgAccountAdmin.Controls.Add(this.grbPass);
             this.tabgAccountAdmin.Controls.Add(this.grbEmail);
-            this.tabgAccountAdmin.Controls.Add(this.dgvDanhSachAccount);
+            this.tabgAccountAdmin.Controls.Add(this.dgvDanhSachAccountAdmin);
             this.tabgAccountAdmin.Font = new System.Drawing.Font("Microsoft Tai Le", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabgAccountAdmin.Location = new System.Drawing.Point(4, 31);
             this.tabgAccountAdmin.Name = "tabgAccountAdmin";
@@ -230,6 +226,15 @@
             this.tabgAccountAdmin.Size = new System.Drawing.Size(1022, 509);
             this.tabgAccountAdmin.TabIndex = 0;
             this.tabgAccountAdmin.Text = "Quản trị Viên";
+            // 
+            // lblShowPassAdmin
+            // 
+            this.lblShowPassAdmin.Image = global::GDU_Management.Properties.Resources.icons8_eye_24;
+            this.lblShowPassAdmin.Location = new System.Drawing.Point(980, 129);
+            this.lblShowPassAdmin.Name = "lblShowPassAdmin";
+            this.lblShowPassAdmin.Size = new System.Drawing.Size(32, 27);
+            this.lblShowPassAdmin.TabIndex = 105;
+            this.lblShowPassAdmin.Click += new System.EventHandler(this.lblShowPassAdmin_Click);
             // 
             // lblStatusAdmin
             // 
@@ -260,31 +265,6 @@
             this.label6.Size = new System.Drawing.Size(535, 22);
             this.label6.TabIndex = 102;
             this.label6.Text = "___________________________________________________________________________";
-            // 
-            // txtTimKiemAdmin
-            // 
-            this.txtTimKiemAdmin.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTimKiemAdmin.ForeColor = System.Drawing.Color.Blue;
-            this.txtTimKiemAdmin.Location = new System.Drawing.Point(6, 466);
-            this.txtTimKiemAdmin.Name = "txtTimKiemAdmin";
-            this.txtTimKiemAdmin.Size = new System.Drawing.Size(468, 27);
-            this.txtTimKiemAdmin.TabIndex = 101;
-            this.txtTimKiemAdmin.Text = "Nhập email để tìm kiếm";
-            this.txtTimKiemAdmin.Click += new System.EventHandler(this.txtTimKiemAdmin_Click);
-            this.txtTimKiemAdmin.TextChanged += new System.EventHandler(this.txtTimKiemAdmin_TextChanged);
-            this.txtTimKiemAdmin.Leave += new System.EventHandler(this.txtTimKiemAdmin_Leave);
-            // 
-            // lblShowPassword
-            // 
-            this.lblShowPassword.BackColor = System.Drawing.Color.White;
-            this.lblShowPassword.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lblShowPassword.ForeColor = System.Drawing.Color.White;
-            this.lblShowPassword.Image = global::GDU_Management.Properties.Resources.icons8_eye_24;
-            this.lblShowPassword.Location = new System.Drawing.Point(980, 129);
-            this.lblShowPassword.Name = "lblShowPassword";
-            this.lblShowPassword.Size = new System.Drawing.Size(32, 29);
-            this.lblShowPassword.TabIndex = 100;
-            this.lblShowPassword.Click += new System.EventHandler(this.lblShowPassword_Click);
             // 
             // btnSaveAccountAdmin
             // 
@@ -372,9 +352,9 @@
             this.lblIdAdmin.AutoSize = true;
             this.lblIdAdmin.Location = new System.Drawing.Point(117, 32);
             this.lblIdAdmin.Name = "lblIdAdmin";
-            this.lblIdAdmin.Size = new System.Drawing.Size(23, 19);
+            this.lblIdAdmin.Size = new System.Drawing.Size(30, 19);
             this.lblIdAdmin.TabIndex = 93;
-            this.lblIdAdmin.Text = "??";
+            this.lblIdAdmin.Text = "???";
             // 
             // lblStartDayAdmin
             // 
@@ -499,9 +479,11 @@
             this.txtPassAdmin.Font = new System.Drawing.Font("Microsoft Tai Le", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPassAdmin.Location = new System.Drawing.Point(10, 22);
             this.txtPassAdmin.Name = "txtPassAdmin";
-            this.txtPassAdmin.PasswordChar = '*';
+            this.txtPassAdmin.PasswordChar = '●';
             this.txtPassAdmin.Size = new System.Drawing.Size(262, 27);
             this.txtPassAdmin.TabIndex = 0;
+            this.txtPassAdmin.Click += new System.EventHandler(this.txtPassAdmin_Click);
+            this.txtPassAdmin.TextChanged += new System.EventHandler(this.txtPassAdmin_TextChanged);
             // 
             // grbEmail
             // 
@@ -521,14 +503,14 @@
             this.txtEmailAdmin.Size = new System.Drawing.Size(262, 29);
             this.txtEmailAdmin.TabIndex = 0;
             // 
-            // dgvDanhSachAccount
+            // dgvDanhSachAccountAdmin
             // 
-            this.dgvDanhSachAccount.AllowUserToAddRows = false;
-            this.dgvDanhSachAccount.AllowUserToDeleteRows = false;
-            this.dgvDanhSachAccount.AutoGenerateColumns = false;
-            this.dgvDanhSachAccount.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.dgvDanhSachAccount.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvDanhSachAccount.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgvDanhSachAccountAdmin.AllowUserToAddRows = false;
+            this.dgvDanhSachAccountAdmin.AllowUserToDeleteRows = false;
+            this.dgvDanhSachAccountAdmin.AutoGenerateColumns = false;
+            this.dgvDanhSachAccountAdmin.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.dgvDanhSachAccountAdmin.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvDanhSachAccountAdmin.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.STTadmin,
             this.maAdminDataGridViewTextBoxColumn,
             this.tenAdminDataGridViewTextBoxColumn,
@@ -541,17 +523,132 @@
             this.diaChiDataGridViewTextBoxColumn,
             this.ghiChuDataGridViewTextBoxColumn,
             this.statusAccDataGridViewTextBoxColumn});
-            this.dgvDanhSachAccount.DataSource = this.adminBindingSource;
-            this.dgvDanhSachAccount.GridColor = System.Drawing.Color.DarkBlue;
-            this.dgvDanhSachAccount.Location = new System.Drawing.Point(6, 8);
-            this.dgvDanhSachAccount.Name = "dgvDanhSachAccount";
-            this.dgvDanhSachAccount.ReadOnly = true;
-            this.dgvDanhSachAccount.RowHeadersWidth = 5;
-            this.dgvDanhSachAccount.RowTemplate.Height = 24;
-            this.dgvDanhSachAccount.Size = new System.Drawing.Size(468, 443);
-            this.dgvDanhSachAccount.TabIndex = 0;
-            this.dgvDanhSachAccount.Click += new System.EventHandler(this.dgvDanhSachAccount_Click);
-            this.dgvDanhSachAccount.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dgvDanhSachAccount_MouseClick);
+            this.dgvDanhSachAccountAdmin.DataSource = this.adminBindingSource;
+            this.dgvDanhSachAccountAdmin.GridColor = System.Drawing.Color.DarkBlue;
+            this.dgvDanhSachAccountAdmin.Location = new System.Drawing.Point(6, 8);
+            this.dgvDanhSachAccountAdmin.Name = "dgvDanhSachAccountAdmin";
+            this.dgvDanhSachAccountAdmin.ReadOnly = true;
+            this.dgvDanhSachAccountAdmin.RowHeadersWidth = 5;
+            this.dgvDanhSachAccountAdmin.RowTemplate.Height = 24;
+            this.dgvDanhSachAccountAdmin.Size = new System.Drawing.Size(468, 490);
+            this.dgvDanhSachAccountAdmin.TabIndex = 0;
+            this.dgvDanhSachAccountAdmin.Click += new System.EventHandler(this.dgvDanhSachAccount_Click);
+            this.dgvDanhSachAccountAdmin.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dgvDanhSachAccount_MouseClick);
+            // 
+            // STTadmin
+            // 
+            this.STTadmin.HeaderText = "*";
+            this.STTadmin.MinimumWidth = 6;
+            this.STTadmin.Name = "STTadmin";
+            this.STTadmin.ReadOnly = true;
+            this.STTadmin.Width = 20;
+            // 
+            // maAdminDataGridViewTextBoxColumn
+            // 
+            this.maAdminDataGridViewTextBoxColumn.DataPropertyName = "MaAdmin";
+            this.maAdminDataGridViewTextBoxColumn.HeaderText = "MaAdmin";
+            this.maAdminDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.maAdminDataGridViewTextBoxColumn.Name = "maAdminDataGridViewTextBoxColumn";
+            this.maAdminDataGridViewTextBoxColumn.ReadOnly = true;
+            this.maAdminDataGridViewTextBoxColumn.Visible = false;
+            this.maAdminDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // tenAdminDataGridViewTextBoxColumn
+            // 
+            this.tenAdminDataGridViewTextBoxColumn.DataPropertyName = "TenAdmin";
+            this.tenAdminDataGridViewTextBoxColumn.HeaderText = "TenAdmin";
+            this.tenAdminDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.tenAdminDataGridViewTextBoxColumn.Name = "tenAdminDataGridViewTextBoxColumn";
+            this.tenAdminDataGridViewTextBoxColumn.ReadOnly = true;
+            this.tenAdminDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // avtDataGridViewTextBoxColumn
+            // 
+            this.avtDataGridViewTextBoxColumn.DataPropertyName = "Avt";
+            this.avtDataGridViewTextBoxColumn.HeaderText = "Avt";
+            this.avtDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.avtDataGridViewTextBoxColumn.Name = "avtDataGridViewTextBoxColumn";
+            this.avtDataGridViewTextBoxColumn.ReadOnly = true;
+            this.avtDataGridViewTextBoxColumn.Visible = false;
+            this.avtDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // gioiTinhDataGridViewTextBoxColumn
+            // 
+            this.gioiTinhDataGridViewTextBoxColumn.DataPropertyName = "GioiTinh";
+            this.gioiTinhDataGridViewTextBoxColumn.HeaderText = "GioiTinh";
+            this.gioiTinhDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.gioiTinhDataGridViewTextBoxColumn.Name = "gioiTinhDataGridViewTextBoxColumn";
+            this.gioiTinhDataGridViewTextBoxColumn.ReadOnly = true;
+            this.gioiTinhDataGridViewTextBoxColumn.Visible = false;
+            this.gioiTinhDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // namSinhDataGridViewTextBoxColumn
+            // 
+            this.namSinhDataGridViewTextBoxColumn.DataPropertyName = "NamSinh";
+            this.namSinhDataGridViewTextBoxColumn.HeaderText = "NamSinh";
+            this.namSinhDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.namSinhDataGridViewTextBoxColumn.Name = "namSinhDataGridViewTextBoxColumn";
+            this.namSinhDataGridViewTextBoxColumn.ReadOnly = true;
+            this.namSinhDataGridViewTextBoxColumn.Visible = false;
+            this.namSinhDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // sDTDataGridViewTextBoxColumn
+            // 
+            this.sDTDataGridViewTextBoxColumn.DataPropertyName = "SDT";
+            this.sDTDataGridViewTextBoxColumn.HeaderText = "SDT";
+            this.sDTDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.sDTDataGridViewTextBoxColumn.Name = "sDTDataGridViewTextBoxColumn";
+            this.sDTDataGridViewTextBoxColumn.ReadOnly = true;
+            this.sDTDataGridViewTextBoxColumn.Visible = false;
+            this.sDTDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // emailDataGridViewTextBoxColumn
+            // 
+            this.emailDataGridViewTextBoxColumn.DataPropertyName = "Email";
+            this.emailDataGridViewTextBoxColumn.HeaderText = "Email";
+            this.emailDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.emailDataGridViewTextBoxColumn.Name = "emailDataGridViewTextBoxColumn";
+            this.emailDataGridViewTextBoxColumn.ReadOnly = true;
+            this.emailDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // passwordDataGridViewTextBoxColumn
+            // 
+            this.passwordDataGridViewTextBoxColumn.DataPropertyName = "Password";
+            this.passwordDataGridViewTextBoxColumn.HeaderText = "Password";
+            this.passwordDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.passwordDataGridViewTextBoxColumn.Name = "passwordDataGridViewTextBoxColumn";
+            this.passwordDataGridViewTextBoxColumn.ReadOnly = true;
+            this.passwordDataGridViewTextBoxColumn.Visible = false;
+            this.passwordDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // diaChiDataGridViewTextBoxColumn
+            // 
+            this.diaChiDataGridViewTextBoxColumn.DataPropertyName = "DiaChi";
+            this.diaChiDataGridViewTextBoxColumn.HeaderText = "DiaChi";
+            this.diaChiDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.diaChiDataGridViewTextBoxColumn.Name = "diaChiDataGridViewTextBoxColumn";
+            this.diaChiDataGridViewTextBoxColumn.ReadOnly = true;
+            this.diaChiDataGridViewTextBoxColumn.Visible = false;
+            this.diaChiDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // ghiChuDataGridViewTextBoxColumn
+            // 
+            this.ghiChuDataGridViewTextBoxColumn.DataPropertyName = "GhiChu";
+            this.ghiChuDataGridViewTextBoxColumn.HeaderText = "GhiChu";
+            this.ghiChuDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.ghiChuDataGridViewTextBoxColumn.Name = "ghiChuDataGridViewTextBoxColumn";
+            this.ghiChuDataGridViewTextBoxColumn.ReadOnly = true;
+            this.ghiChuDataGridViewTextBoxColumn.Visible = false;
+            this.ghiChuDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // statusAccDataGridViewTextBoxColumn
+            // 
+            this.statusAccDataGridViewTextBoxColumn.DataPropertyName = "StatusAcc";
+            this.statusAccDataGridViewTextBoxColumn.HeaderText = "StatusAcc";
+            this.statusAccDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.statusAccDataGridViewTextBoxColumn.Name = "statusAccDataGridViewTextBoxColumn";
+            this.statusAccDataGridViewTextBoxColumn.ReadOnly = true;
+            this.statusAccDataGridViewTextBoxColumn.Width = 125;
             // 
             // adminBindingSource
             // 
@@ -559,15 +656,14 @@
             // 
             // tabAccountGiangVien
             // 
+            this.tabAccountGiangVien.Controls.Add(this.lblShowPassGiangVien);
             this.tabAccountGiangVien.Controls.Add(this.lblStatusGV);
             this.tabAccountGiangVien.Controls.Add(this.label7);
-            this.tabAccountGiangVien.Controls.Add(this.txtTimKiemAccountGV);
             this.tabAccountGiangVien.Controls.Add(this.label10);
             this.tabAccountGiangVien.Controls.Add(this.groupBox1);
             this.tabAccountGiangVien.Controls.Add(this.groupBox2);
             this.tabAccountGiangVien.Controls.Add(this.groupBox3);
             this.tabAccountGiangVien.Controls.Add(this.dgvDSAccountGiangVien);
-            this.tabAccountGiangVien.Controls.Add(this.lblShowPassGiangVien);
             this.tabAccountGiangVien.Controls.Add(this.btnSaveAccountGiangVien);
             this.tabAccountGiangVien.Controls.Add(this.picAvtGiangVien);
             this.tabAccountGiangVien.Location = new System.Drawing.Point(4, 31);
@@ -578,12 +674,21 @@
             this.tabAccountGiangVien.Text = "Giảng Viên";
             this.tabAccountGiangVien.UseVisualStyleBackColor = true;
             // 
+            // lblShowPassGiangVien
+            // 
+            this.lblShowPassGiangVien.Image = global::GDU_Management.Properties.Resources.icons8_eye_24;
+            this.lblShowPassGiangVien.Location = new System.Drawing.Point(980, 129);
+            this.lblShowPassGiangVien.Name = "lblShowPassGiangVien";
+            this.lblShowPassGiangVien.Size = new System.Drawing.Size(32, 27);
+            this.lblShowPassGiangVien.TabIndex = 114;
+            this.lblShowPassGiangVien.Click += new System.EventHandler(this.lblShowPassGiangVien_Click);
+            // 
             // lblStatusGV
             // 
             this.lblStatusGV.BackColor = System.Drawing.Color.Violet;
             this.lblStatusGV.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lblStatusGV.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lblStatusGV.ForeColor = System.Drawing.Color.Lime;
+            this.lblStatusGV.ForeColor = System.Drawing.Color.White;
             this.lblStatusGV.Location = new System.Drawing.Point(980, 63);
             this.lblStatusGV.Name = "lblStatusGV";
             this.lblStatusGV.Size = new System.Drawing.Size(32, 29);
@@ -598,18 +703,6 @@
             this.label7.Size = new System.Drawing.Size(535, 22);
             this.label7.TabIndex = 112;
             this.label7.Text = "___________________________________________________________________________";
-            // 
-            // txtTimKiemAccountGV
-            // 
-            this.txtTimKiemAccountGV.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTimKiemAccountGV.ForeColor = System.Drawing.Color.Blue;
-            this.txtTimKiemAccountGV.Location = new System.Drawing.Point(6, 466);
-            this.txtTimKiemAccountGV.Name = "txtTimKiemAccountGV";
-            this.txtTimKiemAccountGV.Size = new System.Drawing.Size(468, 27);
-            this.txtTimKiemAccountGV.TabIndex = 111;
-            this.txtTimKiemAccountGV.Text = "Nhập email để tìm kiếm";
-            this.txtTimKiemAccountGV.TextChanged += new System.EventHandler(this.txtTimKiemAccountGV_TextChanged);
-            this.txtTimKiemAccountGV.Leave += new System.EventHandler(this.txtTimKiemAccountGV_Leave);
             // 
             // label10
             // 
@@ -792,6 +885,8 @@
             this.txtPassGiangVien.PasswordChar = '*';
             this.txtPassGiangVien.Size = new System.Drawing.Size(262, 29);
             this.txtPassGiangVien.TabIndex = 0;
+            this.txtPassGiangVien.MouseClick += new System.Windows.Forms.MouseEventHandler(this.txtPassGiangVien_MouseClick);
+            this.txtPassGiangVien.TextChanged += new System.EventHandler(this.txtPassGiangVien_TextChanged);
             // 
             // groupBox3
             // 
@@ -841,7 +936,7 @@
             this.dgvDSAccountGiangVien.ReadOnly = true;
             this.dgvDSAccountGiangVien.RowHeadersWidth = 5;
             this.dgvDSAccountGiangVien.RowTemplate.Height = 24;
-            this.dgvDSAccountGiangVien.Size = new System.Drawing.Size(468, 443);
+            this.dgvDSAccountGiangVien.Size = new System.Drawing.Size(468, 490);
             this.dgvDSAccountGiangVien.TabIndex = 103;
             this.dgvDSAccountGiangVien.Click += new System.EventHandler(this.dgvDSAccountGiangVien_Click);
             // 
@@ -1003,18 +1098,6 @@
             // 
             this.giangVienBindingSource.DataSource = typeof(GDU_Management.Model.GiangVien);
             // 
-            // lblShowPassGiangVien
-            // 
-            this.lblShowPassGiangVien.BackColor = System.Drawing.Color.White;
-            this.lblShowPassGiangVien.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lblShowPassGiangVien.ForeColor = System.Drawing.Color.White;
-            this.lblShowPassGiangVien.Image = global::GDU_Management.Properties.Resources.icons8_eye_24;
-            this.lblShowPassGiangVien.Location = new System.Drawing.Point(980, 129);
-            this.lblShowPassGiangVien.Name = "lblShowPassGiangVien";
-            this.lblShowPassGiangVien.Size = new System.Drawing.Size(32, 29);
-            this.lblShowPassGiangVien.TabIndex = 110;
-            this.lblShowPassGiangVien.Click += new System.EventHandler(this.lblShowPassGiangVien_Click);
-            // 
             // btnSaveAccountGiangVien
             // 
             this.btnSaveAccountGiangVien.BackColor = System.Drawing.SystemColors.Control;
@@ -1028,21 +1111,20 @@
             // 
             // picAvtGiangVien
             // 
-            this.picAvtGiangVien.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.picAvtGiangVien.Image = global::GDU_Management.Properties.Resources.avt003_160x190;
             this.picAvtGiangVien.InitialImage = global::GDU_Management.Properties.Resources.icon_gdumanagement_ps_13;
             this.picAvtGiangVien.Location = new System.Drawing.Point(494, 37);
             this.picAvtGiangVien.Name = "picAvtGiangVien";
-            this.picAvtGiangVien.Size = new System.Drawing.Size(165, 195);
+            this.picAvtGiangVien.Size = new System.Drawing.Size(160, 190);
             this.picAvtGiangVien.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.picAvtGiangVien.TabIndex = 107;
             this.picAvtGiangVien.TabStop = false;
             // 
             // tagAccountSinhVien
             // 
+            this.tagAccountSinhVien.Controls.Add(this.lblShowPassSinhVien);
             this.tagAccountSinhVien.Controls.Add(this.lblStatusSV);
             this.tagAccountSinhVien.Controls.Add(this.label9);
-            this.tagAccountSinhVien.Controls.Add(this.txtTimKiemAccountSV);
             this.tagAccountSinhVien.Controls.Add(this.label13);
             this.tagAccountSinhVien.Controls.Add(this.groupBox4);
             this.tagAccountSinhVien.Controls.Add(this.dgvDSAccountSinhVien);
@@ -1050,7 +1132,6 @@
             this.tagAccountSinhVien.Controls.Add(this.groupBox6);
             this.tagAccountSinhVien.Controls.Add(this.btnSaveAccountSV);
             this.tagAccountSinhVien.Controls.Add(this.picAvtSinhVien);
-            this.tagAccountSinhVien.Controls.Add(this.lblShowPassSV);
             this.tagAccountSinhVien.Location = new System.Drawing.Point(4, 31);
             this.tagAccountSinhVien.Name = "tagAccountSinhVien";
             this.tagAccountSinhVien.Padding = new System.Windows.Forms.Padding(3);
@@ -1058,6 +1139,15 @@
             this.tagAccountSinhVien.TabIndex = 2;
             this.tagAccountSinhVien.Text = "Sinh Viên";
             this.tagAccountSinhVien.UseVisualStyleBackColor = true;
+            // 
+            // lblShowPassSinhVien
+            // 
+            this.lblShowPassSinhVien.Image = global::GDU_Management.Properties.Resources.icons8_eye_24;
+            this.lblShowPassSinhVien.Location = new System.Drawing.Point(980, 129);
+            this.lblShowPassSinhVien.Name = "lblShowPassSinhVien";
+            this.lblShowPassSinhVien.Size = new System.Drawing.Size(32, 27);
+            this.lblShowPassSinhVien.TabIndex = 124;
+            this.lblShowPassSinhVien.Click += new System.EventHandler(this.lblShowPassSinhVien_Click);
             // 
             // lblStatusSV
             // 
@@ -1079,18 +1169,6 @@
             this.label9.Size = new System.Drawing.Size(535, 22);
             this.label9.TabIndex = 122;
             this.label9.Text = "___________________________________________________________________________";
-            // 
-            // txtTimKiemAccountSV
-            // 
-            this.txtTimKiemAccountSV.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTimKiemAccountSV.ForeColor = System.Drawing.Color.Blue;
-            this.txtTimKiemAccountSV.Location = new System.Drawing.Point(6, 466);
-            this.txtTimKiemAccountSV.Name = "txtTimKiemAccountSV";
-            this.txtTimKiemAccountSV.Size = new System.Drawing.Size(468, 27);
-            this.txtTimKiemAccountSV.TabIndex = 121;
-            this.txtTimKiemAccountSV.Text = "Nhập email để tìm kiếm";
-            this.txtTimKiemAccountSV.TextChanged += new System.EventHandler(this.txtTimKiemAccountSV_TextChanged);
-            this.txtTimKiemAccountSV.Leave += new System.EventHandler(this.txtTimKiemAccountSV_Leave);
             // 
             // label13
             // 
@@ -1283,7 +1361,7 @@
             this.dgvDSAccountSinhVien.ReadOnly = true;
             this.dgvDSAccountSinhVien.RowHeadersWidth = 5;
             this.dgvDSAccountSinhVien.RowTemplate.Height = 24;
-            this.dgvDSAccountSinhVien.Size = new System.Drawing.Size(468, 443);
+            this.dgvDSAccountSinhVien.Size = new System.Drawing.Size(468, 490);
             this.dgvDSAccountSinhVien.TabIndex = 113;
             this.dgvDSAccountSinhVien.Click += new System.EventHandler(this.dgvDSAccountSinhVien_Click);
             // 
@@ -1444,6 +1522,8 @@
             this.txtPassSV.PasswordChar = '*';
             this.txtPassSV.Size = new System.Drawing.Size(262, 29);
             this.txtPassSV.TabIndex = 0;
+            this.txtPassSV.MouseClick += new System.Windows.Forms.MouseEventHandler(this.txtPassSV_MouseClick);
+            this.txtPassSV.TextChanged += new System.EventHandler(this.txtPassSV_TextChanged);
             // 
             // groupBox6
             // 
@@ -1486,133 +1566,6 @@
             this.picAvtSinhVien.TabIndex = 117;
             this.picAvtSinhVien.TabStop = false;
             // 
-            // lblShowPassSV
-            // 
-            this.lblShowPassSV.BackColor = System.Drawing.Color.White;
-            this.lblShowPassSV.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lblShowPassSV.ForeColor = System.Drawing.Color.White;
-            this.lblShowPassSV.Image = global::GDU_Management.Properties.Resources.icons8_eye_24;
-            this.lblShowPassSV.Location = new System.Drawing.Point(980, 129);
-            this.lblShowPassSV.Name = "lblShowPassSV";
-            this.lblShowPassSV.Size = new System.Drawing.Size(32, 29);
-            this.lblShowPassSV.TabIndex = 120;
-            this.lblShowPassSV.Click += new System.EventHandler(this.lblShowPassSV_Click);
-            // 
-            // STTadmin
-            // 
-            this.STTadmin.HeaderText = "*";
-            this.STTadmin.MinimumWidth = 6;
-            this.STTadmin.Name = "STTadmin";
-            this.STTadmin.ReadOnly = true;
-            this.STTadmin.Width = 20;
-            // 
-            // maAdminDataGridViewTextBoxColumn
-            // 
-            this.maAdminDataGridViewTextBoxColumn.DataPropertyName = "MaAdmin";
-            this.maAdminDataGridViewTextBoxColumn.HeaderText = "MaAdmin";
-            this.maAdminDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.maAdminDataGridViewTextBoxColumn.Name = "maAdminDataGridViewTextBoxColumn";
-            this.maAdminDataGridViewTextBoxColumn.ReadOnly = true;
-            this.maAdminDataGridViewTextBoxColumn.Visible = false;
-            this.maAdminDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // tenAdminDataGridViewTextBoxColumn
-            // 
-            this.tenAdminDataGridViewTextBoxColumn.DataPropertyName = "TenAdmin";
-            this.tenAdminDataGridViewTextBoxColumn.HeaderText = "TenAdmin";
-            this.tenAdminDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.tenAdminDataGridViewTextBoxColumn.Name = "tenAdminDataGridViewTextBoxColumn";
-            this.tenAdminDataGridViewTextBoxColumn.ReadOnly = true;
-            this.tenAdminDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // avtDataGridViewTextBoxColumn
-            // 
-            this.avtDataGridViewTextBoxColumn.DataPropertyName = "Avt";
-            this.avtDataGridViewTextBoxColumn.HeaderText = "Avt";
-            this.avtDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.avtDataGridViewTextBoxColumn.Name = "avtDataGridViewTextBoxColumn";
-            this.avtDataGridViewTextBoxColumn.ReadOnly = true;
-            this.avtDataGridViewTextBoxColumn.Visible = false;
-            this.avtDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // gioiTinhDataGridViewTextBoxColumn
-            // 
-            this.gioiTinhDataGridViewTextBoxColumn.DataPropertyName = "GioiTinh";
-            this.gioiTinhDataGridViewTextBoxColumn.HeaderText = "GioiTinh";
-            this.gioiTinhDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.gioiTinhDataGridViewTextBoxColumn.Name = "gioiTinhDataGridViewTextBoxColumn";
-            this.gioiTinhDataGridViewTextBoxColumn.ReadOnly = true;
-            this.gioiTinhDataGridViewTextBoxColumn.Visible = false;
-            this.gioiTinhDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // namSinhDataGridViewTextBoxColumn
-            // 
-            this.namSinhDataGridViewTextBoxColumn.DataPropertyName = "NamSinh";
-            this.namSinhDataGridViewTextBoxColumn.HeaderText = "NamSinh";
-            this.namSinhDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.namSinhDataGridViewTextBoxColumn.Name = "namSinhDataGridViewTextBoxColumn";
-            this.namSinhDataGridViewTextBoxColumn.ReadOnly = true;
-            this.namSinhDataGridViewTextBoxColumn.Visible = false;
-            this.namSinhDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // sDTDataGridViewTextBoxColumn
-            // 
-            this.sDTDataGridViewTextBoxColumn.DataPropertyName = "SDT";
-            this.sDTDataGridViewTextBoxColumn.HeaderText = "SDT";
-            this.sDTDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.sDTDataGridViewTextBoxColumn.Name = "sDTDataGridViewTextBoxColumn";
-            this.sDTDataGridViewTextBoxColumn.ReadOnly = true;
-            this.sDTDataGridViewTextBoxColumn.Visible = false;
-            this.sDTDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // emailDataGridViewTextBoxColumn
-            // 
-            this.emailDataGridViewTextBoxColumn.DataPropertyName = "Email";
-            this.emailDataGridViewTextBoxColumn.HeaderText = "Email";
-            this.emailDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.emailDataGridViewTextBoxColumn.Name = "emailDataGridViewTextBoxColumn";
-            this.emailDataGridViewTextBoxColumn.ReadOnly = true;
-            this.emailDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // passwordDataGridViewTextBoxColumn
-            // 
-            this.passwordDataGridViewTextBoxColumn.DataPropertyName = "Password";
-            this.passwordDataGridViewTextBoxColumn.HeaderText = "Password";
-            this.passwordDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.passwordDataGridViewTextBoxColumn.Name = "passwordDataGridViewTextBoxColumn";
-            this.passwordDataGridViewTextBoxColumn.ReadOnly = true;
-            this.passwordDataGridViewTextBoxColumn.Visible = false;
-            this.passwordDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // diaChiDataGridViewTextBoxColumn
-            // 
-            this.diaChiDataGridViewTextBoxColumn.DataPropertyName = "DiaChi";
-            this.diaChiDataGridViewTextBoxColumn.HeaderText = "DiaChi";
-            this.diaChiDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.diaChiDataGridViewTextBoxColumn.Name = "diaChiDataGridViewTextBoxColumn";
-            this.diaChiDataGridViewTextBoxColumn.ReadOnly = true;
-            this.diaChiDataGridViewTextBoxColumn.Visible = false;
-            this.diaChiDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // ghiChuDataGridViewTextBoxColumn
-            // 
-            this.ghiChuDataGridViewTextBoxColumn.DataPropertyName = "GhiChu";
-            this.ghiChuDataGridViewTextBoxColumn.HeaderText = "GhiChu";
-            this.ghiChuDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.ghiChuDataGridViewTextBoxColumn.Name = "ghiChuDataGridViewTextBoxColumn";
-            this.ghiChuDataGridViewTextBoxColumn.ReadOnly = true;
-            this.ghiChuDataGridViewTextBoxColumn.Visible = false;
-            this.ghiChuDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // statusAccDataGridViewTextBoxColumn
-            // 
-            this.statusAccDataGridViewTextBoxColumn.DataPropertyName = "StatusAcc";
-            this.statusAccDataGridViewTextBoxColumn.HeaderText = "StatusAcc";
-            this.statusAccDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.statusAccDataGridViewTextBoxColumn.Name = "statusAccDataGridViewTextBoxColumn";
-            this.statusAccDataGridViewTextBoxColumn.ReadOnly = true;
-            this.statusAccDataGridViewTextBoxColumn.Width = 125;
-            // 
             // frmAccount
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1636,7 +1589,7 @@
             this.grbPass.PerformLayout();
             this.grbEmail.ResumeLayout(false);
             this.grbEmail.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvDanhSachAccount)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDanhSachAccountAdmin)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.adminBindingSource)).EndInit();
             this.tabAccountGiangVien.ResumeLayout(false);
             this.tabAccountGiangVien.PerformLayout();
@@ -1676,7 +1629,7 @@
         private System.Windows.Forms.TextBox txtPassAdmin;
         private System.Windows.Forms.GroupBox grbEmail;
         private System.Windows.Forms.TextBox txtEmailAdmin;
-        private System.Windows.Forms.DataGridView dgvDanhSachAccount;
+        private System.Windows.Forms.DataGridView dgvDanhSachAccountAdmin;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label2;
@@ -1695,12 +1648,8 @@
         private System.Windows.Forms.Label lblAddNewAdmin;
         private System.Windows.Forms.Button btnSaveAccountAdmin;
         private System.Windows.Forms.Label lblExitAdmin;
-        private System.Windows.Forms.Label lblShowPassword;
-        private System.Windows.Forms.TextBox txtTimKiemAdmin;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox txtTimKiemAccountGV;
-        private System.Windows.Forms.Label lblShowPassGiangVien;
         private System.Windows.Forms.Button btnSaveAccountGiangVien;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.PictureBox picAvtGiangVien;
@@ -1725,7 +1674,6 @@
         private System.Windows.Forms.Label lblGioiTinhGV;
         private System.Windows.Forms.Label lblTenGV;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox txtTimKiemAccountSV;
         private System.Windows.Forms.Button btnSaveAccountSV;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.PictureBox picAvtSinhVien;
@@ -1745,7 +1693,6 @@
         private System.Windows.Forms.Label label33;
         private System.Windows.Forms.Label label34;
         private System.Windows.Forms.DataGridView dgvDSAccountSinhVien;
-        private System.Windows.Forms.Label lblShowPassSV;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.TextBox txtPassSV;
         private System.Windows.Forms.GroupBox groupBox6;
@@ -1800,5 +1747,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn diaChiDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn ghiChuDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn statusAccDataGridViewTextBoxColumn;
+        private System.Windows.Forms.Label lblShowPassAdmin;
+        private System.Windows.Forms.Label lblShowPassGiangVien;
+        private System.Windows.Forms.Label lblShowPassSinhVien;
     }
 }

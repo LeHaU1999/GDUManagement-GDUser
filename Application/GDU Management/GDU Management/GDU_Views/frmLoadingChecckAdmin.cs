@@ -63,7 +63,7 @@ namespace GDU_Management.GDU_Views
         {
             CreateVerificationCode();
             InforContact contacts = new InforContact();
-            contacts = contactService.InfoContact("5");
+            contacts = contactService.InfoContact("1");
             string fromEmail = contacts.Email;
             string toEmail = _email;
             string subEmail = contacts.Subject;

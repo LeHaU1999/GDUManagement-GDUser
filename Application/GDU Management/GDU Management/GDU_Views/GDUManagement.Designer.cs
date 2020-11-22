@@ -221,13 +221,14 @@
             // lblDiemMonHoc
             // 
             this.lblDiemMonHoc.AutoSize = true;
-            this.lblDiemMonHoc.Font = new System.Drawing.Font("Microsoft Uighur", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDiemMonHoc.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDiemMonHoc.ForeColor = System.Drawing.Color.Blue;
             this.lblDiemMonHoc.Location = new System.Drawing.Point(109, 34);
             this.lblDiemMonHoc.Name = "lblDiemMonHoc";
-            this.lblDiemMonHoc.Size = new System.Drawing.Size(301, 53);
+            this.lblDiemMonHoc.Size = new System.Drawing.Size(296, 36);
             this.lblDiemMonHoc.TabIndex = 1;
             this.lblDiemMonHoc.Text = "MÔN HỌC and ĐIỂM";
+            this.lblDiemMonHoc.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.lblDiemMonHoc.Click += new System.EventHandler(this.lblDSV_Click);
             this.lblDiemMonHoc.MouseLeave += new System.EventHandler(this.lblDiemMonHoc_MouseLeave);
             this.lblDiemMonHoc.MouseHover += new System.EventHandler(this.lblDiemMonHoc_MouseHover);
@@ -358,13 +359,14 @@
             // lblQLSV
             // 
             this.lblQLSV.AutoSize = true;
-            this.lblQLSV.Font = new System.Drawing.Font("Microsoft Uighur", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblQLSV.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblQLSV.ForeColor = System.Drawing.Color.Blue;
             this.lblQLSV.Location = new System.Drawing.Point(108, 32);
             this.lblQLSV.Name = "lblQLSV";
-            this.lblQLSV.Size = new System.Drawing.Size(290, 53);
+            this.lblQLSV.Size = new System.Drawing.Size(305, 36);
             this.lblQLSV.TabIndex = 2;
             this.lblQLSV.Text = "QUẢN LÝ SINH VIÊN";
+            this.lblQLSV.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.lblQLSV.Click += new System.EventHandler(this.lblQLSV_Click_1);
             this.lblQLSV.MouseLeave += new System.EventHandler(this.lblQLSV_MouseLeave);
             this.lblQLSV.MouseHover += new System.EventHandler(this.lblQLSV_MouseHover);
@@ -385,13 +387,14 @@
             // lblGV_TKB
             // 
             this.lblGV_TKB.AutoSize = true;
-            this.lblGV_TKB.Font = new System.Drawing.Font("Microsoft Uighur", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblGV_TKB.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblGV_TKB.ForeColor = System.Drawing.Color.Blue;
             this.lblGV_TKB.Location = new System.Drawing.Point(109, 27);
             this.lblGV_TKB.Name = "lblGV_TKB";
-            this.lblGV_TKB.Size = new System.Drawing.Size(295, 53);
+            this.lblGV_TKB.Size = new System.Drawing.Size(315, 36);
             this.lblGV_TKB.TabIndex = 2;
             this.lblGV_TKB.Text = "GIẢNG VIÊN and TKB";
+            this.lblGV_TKB.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.lblGV_TKB.Click += new System.EventHandler(this.lblGV_TKB_Click);
             this.lblGV_TKB.MouseLeave += new System.EventHandler(this.lblGV_TKB_MouseLeave);
             this.lblGV_TKB.MouseHover += new System.EventHandler(this.lblGV_TKB_MouseHover);
@@ -423,13 +426,14 @@
             // lblPhanCongCongViec
             // 
             this.lblPhanCongCongViec.AutoSize = true;
-            this.lblPhanCongCongViec.Font = new System.Drawing.Font("Microsoft Uighur", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPhanCongCongViec.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPhanCongCongViec.ForeColor = System.Drawing.Color.Blue;
             this.lblPhanCongCongViec.Location = new System.Drawing.Point(109, 32);
             this.lblPhanCongCongViec.Name = "lblPhanCongCongViec";
-            this.lblPhanCongCongViec.Size = new System.Drawing.Size(296, 43);
+            this.lblPhanCongCongViec.Size = new System.Drawing.Size(310, 29);
             this.lblPhanCongCongViec.TabIndex = 2;
             this.lblPhanCongCongViec.Text = "PHÂN CÔNG CÔNG VIỆC";
+            this.lblPhanCongCongViec.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.lblPhanCongCongViec.Click += new System.EventHandler(this.lblPhanCongCongViec_Click);
             this.lblPhanCongCongViec.MouseLeave += new System.EventHandler(this.lblPhanCongCongViec_MouseLeave);
             this.lblPhanCongCongViec.MouseHover += new System.EventHandler(this.lblPhanCongCongViec_MouseHover);

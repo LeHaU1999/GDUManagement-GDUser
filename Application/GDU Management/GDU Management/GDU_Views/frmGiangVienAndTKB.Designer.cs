@@ -279,7 +279,7 @@
             this.btnHomeGV.Location = new System.Drawing.Point(188, 5);
             this.btnHomeGV.Name = "btnHomeGV";
             this.btnHomeGV.Size = new System.Drawing.Size(154, 60);
-            this.btnHomeGV.TabIndex = 31;
+            this.btnHomeGV.TabIndex = 15;
             this.btnHomeGV.UseVisualStyleBackColor = false;
             this.btnHomeGV.Click += new System.EventHandler(this.btnHomeGV_Click);
             // 
@@ -293,15 +293,16 @@
             this.btnExportDSMonHoc.Location = new System.Drawing.Point(3, 5);
             this.btnExportDSMonHoc.Name = "btnExportDSMonHoc";
             this.btnExportDSMonHoc.Size = new System.Drawing.Size(179, 60);
-            this.btnExportDSMonHoc.TabIndex = 30;
+            this.btnExportDSMonHoc.TabIndex = 14;
             this.btnExportDSMonHoc.UseVisualStyleBackColor = false;
+            this.btnExportDSMonHoc.Click += new System.EventHandler(this.btnExportDSMonHoc_Click);
             // 
             // dgvDanhSachGiangVien
             // 
             this.dgvDanhSachGiangVien.AllowUserToAddRows = false;
             this.dgvDanhSachGiangVien.AllowUserToDeleteRows = false;
             this.dgvDanhSachGiangVien.AutoGenerateColumns = false;
-            this.dgvDanhSachGiangVien.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
+            this.dgvDanhSachGiangVien.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.dgvDanhSachGiangVien.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
             this.dgvDanhSachGiangVien.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDanhSachGiangVien.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -320,7 +321,7 @@
             this.maKhoaDataGridViewTextBoxColumn,
             this.khoaDataGridViewTextBoxColumn});
             this.dgvDanhSachGiangVien.DataSource = this.giangVienBindingSource1;
-            this.dgvDanhSachGiangVien.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.dgvDanhSachGiangVien.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.dgvDanhSachGiangVien.Location = new System.Drawing.Point(3, 425);
             this.dgvDanhSachGiangVien.Name = "dgvDanhSachGiangVien";
             this.dgvDanhSachGiangVien.ReadOnly = true;
@@ -482,6 +483,7 @@
             this.txtTimKiemGV.Name = "txtTimKiemGV";
             this.txtTimKiemGV.Size = new System.Drawing.Size(281, 27);
             this.txtTimKiemGV.TabIndex = 9;
+            this.txtTimKiemGV.TextChanged += new System.EventHandler(this.txtTimKiemGV_TextChanged);
             // 
             // panel1
             // 
@@ -688,7 +690,7 @@
             this.dtpBatDauCongViec_GV.Location = new System.Drawing.Point(126, 302);
             this.dtpBatDauCongViec_GV.Name = "dtpBatDauCongViec_GV";
             this.dtpBatDauCongViec_GV.Size = new System.Drawing.Size(310, 27);
-            this.dtpBatDauCongViec_GV.TabIndex = 88;
+            this.dtpBatDauCongViec_GV.TabIndex = 8;
             // 
             // label21
             // 
@@ -752,7 +754,7 @@
             this.rtxtDiaChi_GV.Location = new System.Drawing.Point(476, 116);
             this.rtxtDiaChi_GV.Name = "rtxtDiaChi_GV";
             this.rtxtDiaChi_GV.Size = new System.Drawing.Size(218, 107);
-            this.rtxtDiaChi_GV.TabIndex = 81;
+            this.rtxtDiaChi_GV.TabIndex = 9;
             this.rtxtDiaChi_GV.Text = "";
             // 
             // label19
@@ -770,7 +772,7 @@
             this.txtEmailGV.Location = new System.Drawing.Point(126, 193);
             this.txtEmailGV.Name = "txtEmailGV";
             this.txtEmailGV.Size = new System.Drawing.Size(310, 27);
-            this.txtEmailGV.TabIndex = 79;
+            this.txtEmailGV.TabIndex = 6;
             // 
             // label9
             // 
@@ -787,7 +789,7 @@
             this.rtxtGhiChu_GV.Location = new System.Drawing.Point(476, 264);
             this.rtxtGhiChu_GV.Name = "rtxtGhiChu_GV";
             this.rtxtGhiChu_GV.Size = new System.Drawing.Size(406, 65);
-            this.rtxtGhiChu_GV.TabIndex = 11;
+            this.rtxtGhiChu_GV.TabIndex = 10;
             this.rtxtGhiChu_GV.Text = "";
             // 
             // label6
@@ -805,7 +807,7 @@
             this.txtSDT.Location = new System.Drawing.Point(126, 261);
             this.txtSDT.Name = "txtSDT";
             this.txtSDT.Size = new System.Drawing.Size(310, 27);
-            this.txtSDT.TabIndex = 9;
+            this.txtSDT.TabIndex = 7;
             // 
             // label5
             // 
@@ -827,7 +829,7 @@
             this.cboTrinhDo.Location = new System.Drawing.Point(313, 155);
             this.cboTrinhDo.Name = "cboTrinhDo";
             this.cboTrinhDo.Size = new System.Drawing.Size(123, 28);
-            this.cboTrinhDo.TabIndex = 7;
+            this.cboTrinhDo.TabIndex = 5;
             this.cboTrinhDo.Text = "Thạc Sĩ";
             // 
             // label4
@@ -848,7 +850,7 @@
             this.cboGioiTinh.Location = new System.Drawing.Point(126, 155);
             this.cboGioiTinh.Name = "cboGioiTinh";
             this.cboGioiTinh.Size = new System.Drawing.Size(82, 28);
-            this.cboGioiTinh.TabIndex = 5;
+            this.cboGioiTinh.TabIndex = 4;
             this.cboGioiTinh.Text = "Nam";
             // 
             // label3
@@ -901,19 +903,22 @@
             // 
             // btnDeleteGV
             // 
-            this.btnDeleteGV.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.btnDeleteGV.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.btnDeleteGV.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnDeleteGV.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDeleteGV.ForeColor = System.Drawing.Color.Blue;
             this.btnDeleteGV.Image = global::GDU_Management.Properties.Resources.icons_delete_3;
             this.btnDeleteGV.Location = new System.Drawing.Point(441, 2);
             this.btnDeleteGV.Name = "btnDeleteGV";
             this.btnDeleteGV.Size = new System.Drawing.Size(140, 50);
-            this.btnDeleteGV.TabIndex = 6;
+            this.btnDeleteGV.TabIndex = 13;
             this.btnDeleteGV.UseVisualStyleBackColor = false;
             this.btnDeleteGV.Click += new System.EventHandler(this.btnDeleteGV_Click);
             // 
             // btnNewGV
             // 
-            this.btnNewGV.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.btnNewGV.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnNewGV.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNewGV.ForeColor = System.Drawing.Color.Blue;
             this.btnNewGV.Image = global::GDU_Management.Properties.Resources.icons_add_user_giang_vien_34;
             this.btnNewGV.Location = new System.Drawing.Point(3, 2);
             this.btnNewGV.Name = "btnNewGV";
@@ -924,23 +929,27 @@
             // 
             // btnUpdateGV
             // 
-            this.btnUpdateGV.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.btnUpdateGV.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnUpdateGV.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUpdateGV.ForeColor = System.Drawing.Color.Blue;
             this.btnUpdateGV.Image = global::GDU_Management.Properties.Resources.icons_update_user_36;
             this.btnUpdateGV.Location = new System.Drawing.Point(295, 2);
             this.btnUpdateGV.Name = "btnUpdateGV";
             this.btnUpdateGV.Size = new System.Drawing.Size(140, 50);
-            this.btnUpdateGV.TabIndex = 5;
+            this.btnUpdateGV.TabIndex = 12;
             this.btnUpdateGV.UseVisualStyleBackColor = false;
             this.btnUpdateGV.Click += new System.EventHandler(this.btnUpdateGV_Click);
             // 
             // btnSaveGV
             // 
-            this.btnSaveGV.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.btnSaveGV.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnSaveGV.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSaveGV.ForeColor = System.Drawing.Color.Blue;
             this.btnSaveGV.Image = global::GDU_Management.Properties.Resources.icons_save_2;
             this.btnSaveGV.Location = new System.Drawing.Point(149, 2);
             this.btnSaveGV.Name = "btnSaveGV";
             this.btnSaveGV.Size = new System.Drawing.Size(140, 50);
-            this.btnSaveGV.TabIndex = 4;
+            this.btnSaveGV.TabIndex = 11;
             this.btnSaveGV.UseVisualStyleBackColor = false;
             this.btnSaveGV.Click += new System.EventHandler(this.btnSaveGV_Click);
             // 
@@ -1069,7 +1078,7 @@
             // 
             this.rtxtGhiChu_TKB.Location = new System.Drawing.Point(710, 191);
             this.rtxtGhiChu_TKB.Name = "rtxtGhiChu_TKB";
-            this.rtxtGhiChu_TKB.Size = new System.Drawing.Size(367, 68);
+            this.rtxtGhiChu_TKB.Size = new System.Drawing.Size(422, 60);
             this.rtxtGhiChu_TKB.TabIndex = 80;
             this.rtxtGhiChu_TKB.Text = "";
             // 
@@ -1087,7 +1096,7 @@
             // 
             this.lblLop_TKB.AutoSize = true;
             this.lblLop_TKB.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLop_TKB.Location = new System.Drawing.Point(134, 68);
+            this.lblLop_TKB.Location = new System.Drawing.Point(134, 67);
             this.lblLop_TKB.Name = "lblLop_TKB";
             this.lblLop_TKB.Size = new System.Drawing.Size(40, 24);
             this.lblLop_TKB.TabIndex = 78;
@@ -1105,6 +1114,7 @@
             // 
             // cboChonPhongHoc_TKB
             // 
+            this.cboChonPhongHoc_TKB.Enabled = false;
             this.cboChonPhongHoc_TKB.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboChonPhongHoc_TKB.FormattingEnabled = true;
             this.cboChonPhongHoc_TKB.Location = new System.Drawing.Point(288, 168);
@@ -1120,9 +1130,9 @@
             this.btnExit_TKB.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.btnExit_TKB.Image = global::GDU_Management.Properties.Resources.icons_exit_38;
             this.btnExit_TKB.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnExit_TKB.Location = new System.Drawing.Point(859, 265);
+            this.btnExit_TKB.Location = new System.Drawing.Point(898, 260);
             this.btnExit_TKB.Name = "btnExit_TKB";
-            this.btnExit_TKB.Size = new System.Drawing.Size(218, 55);
+            this.btnExit_TKB.Size = new System.Drawing.Size(234, 60);
             this.btnExit_TKB.TabIndex = 75;
             this.btnExit_TKB.Text = "Thoát Chương TRình";
             this.btnExit_TKB.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -1137,42 +1147,48 @@
             this.panel2.Controls.Add(this.btnUpdateTKB);
             this.panel2.Location = new System.Drawing.Point(18, 273);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(469, 47);
+            this.panel2.Size = new System.Drawing.Size(523, 50);
             this.panel2.TabIndex = 74;
             // 
             // btnDeleteTKB
             // 
-            this.btnDeleteTKB.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.btnDeleteTKB.BackColor = System.Drawing.Color.White;
+            this.btnDeleteTKB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDeleteTKB.ForeColor = System.Drawing.Color.Blue;
             this.btnDeleteTKB.Image = global::GDU_Management.Properties.Resources.icons_delete;
-            this.btnDeleteTKB.Location = new System.Drawing.Point(354, 2);
+            this.btnDeleteTKB.Location = new System.Drawing.Point(400, 2);
             this.btnDeleteTKB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnDeleteTKB.Name = "btnDeleteTKB";
-            this.btnDeleteTKB.Size = new System.Drawing.Size(110, 41);
+            this.btnDeleteTKB.Size = new System.Drawing.Size(120, 46);
             this.btnDeleteTKB.TabIndex = 53;
             this.btnDeleteTKB.UseVisualStyleBackColor = false;
             this.btnDeleteTKB.Click += new System.EventHandler(this.btnDeleteTKB_Click);
             // 
             // btnNewTKB
             // 
-            this.btnNewTKB.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.btnNewTKB.BackColor = System.Drawing.Color.White;
             this.btnNewTKB.Enabled = false;
-            this.btnNewTKB.Image = global::GDU_Management.Properties.Resources.icons_add_new_user;
+            this.btnNewTKB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNewTKB.ForeColor = System.Drawing.Color.Blue;
+            this.btnNewTKB.Image = global::GDU_Management.Properties.Resources.icons8_add_column_34;
             this.btnNewTKB.Location = new System.Drawing.Point(3, 2);
             this.btnNewTKB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnNewTKB.Name = "btnNewTKB";
-            this.btnNewTKB.Size = new System.Drawing.Size(110, 41);
+            this.btnNewTKB.Size = new System.Drawing.Size(120, 46);
             this.btnNewTKB.TabIndex = 50;
             this.btnNewTKB.UseVisualStyleBackColor = false;
             this.btnNewTKB.Click += new System.EventHandler(this.btnNewTKB_Click);
             // 
             // btnSaveTKB
             // 
-            this.btnSaveTKB.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.btnSaveTKB.BackColor = System.Drawing.Color.White;
+            this.btnSaveTKB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSaveTKB.ForeColor = System.Drawing.Color.Blue;
             this.btnSaveTKB.Image = global::GDU_Management.Properties.Resources.icons_save;
-            this.btnSaveTKB.Location = new System.Drawing.Point(118, 2);
+            this.btnSaveTKB.Location = new System.Drawing.Point(129, 2);
             this.btnSaveTKB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnSaveTKB.Name = "btnSaveTKB";
-            this.btnSaveTKB.Size = new System.Drawing.Size(110, 41);
+            this.btnSaveTKB.Size = new System.Drawing.Size(130, 46);
             this.btnSaveTKB.TabIndex = 51;
             this.btnSaveTKB.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnSaveTKB.UseVisualStyleBackColor = false;
@@ -1180,12 +1196,14 @@
             // 
             // btnUpdateTKB
             // 
-            this.btnUpdateTKB.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.btnUpdateTKB.Image = global::GDU_Management.Properties.Resources.icons_updatepng;
-            this.btnUpdateTKB.Location = new System.Drawing.Point(240, 2);
+            this.btnUpdateTKB.BackColor = System.Drawing.Color.White;
+            this.btnUpdateTKB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUpdateTKB.ForeColor = System.Drawing.Color.Blue;
+            this.btnUpdateTKB.Image = global::GDU_Management.Properties.Resources.icons8_update_file_34;
+            this.btnUpdateTKB.Location = new System.Drawing.Point(265, 2);
             this.btnUpdateTKB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnUpdateTKB.Name = "btnUpdateTKB";
-            this.btnUpdateTKB.Size = new System.Drawing.Size(110, 41);
+            this.btnUpdateTKB.Size = new System.Drawing.Size(130, 46);
             this.btnUpdateTKB.TabIndex = 52;
             this.btnUpdateTKB.UseVisualStyleBackColor = false;
             this.btnUpdateTKB.Click += new System.EventHandler(this.btnUpdateTKB_Click);
@@ -1196,10 +1214,10 @@
             this.btnHomTKB.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnHomTKB.Font = new System.Drawing.Font("Microsoft Uighur", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnHomTKB.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.btnHomTKB.Image = global::GDU_Management.Properties.Resources.icons8_home_page_59x45;
-            this.btnHomTKB.Location = new System.Drawing.Point(710, 263);
+            this.btnHomTKB.Image = global::GDU_Management.Properties.Resources.icons8_home_page_51x40;
+            this.btnHomTKB.Location = new System.Drawing.Point(765, 260);
             this.btnHomTKB.Name = "btnHomTKB";
-            this.btnHomTKB.Size = new System.Drawing.Size(143, 55);
+            this.btnHomTKB.Size = new System.Drawing.Size(127, 60);
             this.btnHomTKB.TabIndex = 57;
             this.btnHomTKB.UseVisualStyleBackColor = false;
             this.btnHomTKB.Click += new System.EventHandler(this.btnHomTKB_Click);
@@ -1211,11 +1229,12 @@
             this.btnExportTKB.Font = new System.Drawing.Font("Microsoft Uighur", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExportTKB.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.btnExportTKB.Image = global::GDU_Management.Properties.Resources.icons8_print_42;
-            this.btnExportTKB.Location = new System.Drawing.Point(542, 265);
+            this.btnExportTKB.Location = new System.Drawing.Point(597, 260);
             this.btnExportTKB.Name = "btnExportTKB";
-            this.btnExportTKB.Size = new System.Drawing.Size(162, 55);
+            this.btnExportTKB.Size = new System.Drawing.Size(162, 60);
             this.btnExportTKB.TabIndex = 55;
             this.btnExportTKB.UseVisualStyleBackColor = false;
+            this.btnExportTKB.Click += new System.EventHandler(this.btnExportTKB_Click);
             // 
             // panel4
             // 
@@ -1416,6 +1435,7 @@
             // 
             // cboChonGV_TKB
             // 
+            this.cboChonGV_TKB.Enabled = false;
             this.cboChonGV_TKB.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboChonGV_TKB.FormattingEnabled = true;
             this.cboChonGV_TKB.Location = new System.Drawing.Point(710, 70);
@@ -1425,6 +1445,7 @@
             // 
             // cboChonMonHoc_TKB
             // 
+            this.cboChonMonHoc_TKB.Enabled = false;
             this.cboChonMonHoc_TKB.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboChonMonHoc_TKB.FormattingEnabled = true;
             this.cboChonMonHoc_TKB.Location = new System.Drawing.Point(138, 134);
@@ -1435,6 +1456,7 @@
             // 
             // cboChonNgayHoc_TKB
             // 
+            this.cboChonNgayHoc_TKB.Enabled = false;
             this.cboChonNgayHoc_TKB.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboChonNgayHoc_TKB.Items.AddRange(new object[] {
             "Thứ 2",
@@ -1465,7 +1487,7 @@
             this.dgvDanhSachTKB.AllowUserToAddRows = false;
             this.dgvDanhSachTKB.AllowUserToDeleteRows = false;
             this.dgvDanhSachTKB.AutoGenerateColumns = false;
-            this.dgvDanhSachTKB.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
+            this.dgvDanhSachTKB.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.dgvDanhSachTKB.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDanhSachTKB.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.STTTKB,
@@ -1488,6 +1510,7 @@
             this.monHocDataGridViewTextBoxColumn,
             this.phongHocDataGridViewTextBoxColumn});
             this.dgvDanhSachTKB.DataSource = this.thoiKhoaBieuBindingSource;
+            this.dgvDanhSachTKB.GridColor = System.Drawing.Color.Navy;
             this.dgvDanhSachTKB.Location = new System.Drawing.Point(346, 341);
             this.dgvDanhSachTKB.Name = "dgvDanhSachTKB";
             this.dgvDanhSachTKB.ReadOnly = true;

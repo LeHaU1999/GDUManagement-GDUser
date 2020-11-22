@@ -11,7 +11,7 @@ namespace GDU_Management.DaoImpl
     class DiemMonHocImpl : IDaoDiemMonHoc
     {
         //tao ket noi database
-        GDUDataConnectionsDataContext db = new GDUDataConnectionsDataContext();
+        GDUDataConnectionsDataContext db;
         List<DiemMonHoc> listDiemMonHocs;
         public DiemMonHoc AddDiemMonHoc(DiemMonHoc diemMonHoc)
         {
@@ -33,6 +33,16 @@ namespace GDU_Management.DaoImpl
         public void DeleteDiemMonHoc( string MaSV, string maMonHoc)
         {
             //code content
+        }
+
+
+        //xóa điểm môn học theo môn học
+        public void DeleteDiemMonHocByMaMonHoc(string maMonHoc)
+        {
+            db = new GDUDataConnectionsDataContext();
+            var listDeleteDMH = from x in db.DiemMonHocs.Where(p => p.MaMonHoc == maMonHoc) select x;
+            db.DiemMonHocs.DeleteAllOnSubmit(listDeleteDMH.ToList());
+            db.SubmitChanges();
         }
 
         public List<DiemMonHoc> GetAllDiemMonHoc()

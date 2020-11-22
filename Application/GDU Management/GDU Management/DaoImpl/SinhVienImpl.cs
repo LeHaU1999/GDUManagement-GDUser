@@ -30,7 +30,7 @@ namespace GDU_Management.DaoImpl
             db = new GDUDataConnectionsDataContext();
             db.SinhViens.InsertOnSubmit(sinhVien);
             db.SubmitChanges();
-            return null;
+            return sinhVien;
         }
 
         //xóa tất cả sinh viên

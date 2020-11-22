@@ -8,6 +8,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using GDU_Management.Controller;
+using System.Security.Cryptography;
 
 namespace GDU_Management.GDU_Views
 {
@@ -17,6 +19,13 @@ namespace GDU_Management.GDU_Views
         {
             InitializeComponent();
         }
+        //controller
+        EncodingPasswordController encodingPasswordController = new EncodingPasswordController();
+
+        string chuoiMaHoc;
+        string maHoaMD5;
+        string maHocDES;
+        string giaiMaDES;
 
         Bitmap image;
         string base64Text;
@@ -54,8 +63,6 @@ namespace GDU_Management.GDU_Views
 
         private void button2_Click(object sender, EventArgs e)
         {
-            frmLoadingWating frm_loadingW = new frmLoadingWating();
-            frm_loadingW.ShowDialog();
             byte[] imageBytes = Convert.FromBase64String(richTextBox1.Text);
            pictureBox2.Image = ByteArrayToImage(imageBytes);
 
@@ -75,5 +82,91 @@ namespace GDU_Management.GDU_Views
         {
             this.button1.BackColor = Color.Blue;
         }
+
+        private void richTextBox1_TextChanged(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(richTextBox1.Text))
+            {
+                button2.Enabled = true;
+            }
+        }
+
+       
+
+        public string MD5(string chuoi)
+        {
+            string str_md5 = "";
+            byte[] mang = System.Text.Encoding.UTF8.GetBytes(chuoi);
+
+            MD5CryptoServiceProvider my_md5 = new MD5CryptoServiceProvider();
+            mang = my_md5.ComputeHash(mang);
+
+            foreach (byte b in mang)
+            {
+                str_md5 += b.ToString("X2");
+            }
+            MessageBox.Show("ma hoa md5: "+str_md5);
+            return str_md5;
+        }
+
+
+        public string Encrypt(string source, string key)
+        {
+            TripleDESCryptoServiceProvider desCryptoProvider = new TripleDESCryptoServiceProvider();
+            MD5CryptoServiceProvider hashMD5Provider = new MD5CryptoServiceProvider();
+            byte[] byteHash;
+            byte[] byteBuff;
+
+            byteHash = hashMD5Provider.ComputeHash(Encoding.UTF8.GetBytes(key));
+            desCryptoProvider.Key = byteHash;
+            desCryptoProvider.Mode = CipherMode.ECB; //CBC, CFB
+            byteBuff = Encoding.UTF8.GetBytes(source);
+
+            string encoded =
+                Convert.ToBase64String(desCryptoProvider.CreateEncryptor().TransformFinalBlock(byteBuff, 0, byteBuff.Length));
+            return encoded;
+        }
+
+        public static string Decrypt(string encodedText, string key)
+        {
+            TripleDESCryptoServiceProvider desCryptoProvider = new TripleDESCryptoServiceProvider();
+            MD5CryptoServiceProvider hashMD5Provider = new MD5CryptoServiceProvider();
+
+            byte[] byteHash;
+            byte[] byteBuff;
+
+            byteHash = hashMD5Provider.ComputeHash(Encoding.UTF8.GetBytes(key));
+            desCryptoProvider.Key = byteHash;
+            desCryptoProvider.Mode = CipherMode.ECB; //CBC, CFB
+            byteBuff = Convert.FromBase64String(encodedText);
+
+            string plaintext = Encoding.UTF8.GetString(desCryptoProvider.CreateDecryptor().TransformFinalBlock(byteBuff, 0, byteBuff.Length));
+            return plaintext;
+        }
+
+        private void btnMaHoa_Click(object sender, EventArgs e)
+        {
+            maHoaMD5 = MD5(txtChuoiNhapVao.Text.Trim());
+            maHocDES = Encrypt(txtChuoiNhapVao.Text.Trim(), "GDUmanagement-User");
+            string maHoaMD5DES = MD5(maHocDES);
+            txtMaHoaMD5.Text = maHoaMD5;
+            txtMaHoaDES.Text = maHocDES;
+            txtMD5DES.Text = maHoaMD5DES;
+        }
+
+        private void tnGiaiMa_Click(object sender, EventArgs e)
+        {
+            giaiMaDES = Decrypt(maHocDES, "GDUmanagement");
+            txtGiaiMaDES.Text = giaiMaDES;
+        }
+
+
+        //---------------------------------------------------------------------------------
+        //---------------------------------------------------------------------------------
+        //---------------------------------------------------------------------------------
+
+
     }
 }
+    
+

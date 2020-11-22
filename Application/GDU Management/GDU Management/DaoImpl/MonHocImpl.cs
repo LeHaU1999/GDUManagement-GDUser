@@ -66,6 +66,14 @@ namespace GDU_Management.DaoImpl
             return listMonHocs;
         }
 
+        public List<MonHoc> SearchMonHocByTenMonHoc(string tenMonHoc, string maNganh)
+        {
+            db = new GDUDataConnectionsDataContext();
+            var listSearch = from x in db.MonHocs.Where(p => p.TenMonHoc.Contains(tenMonHoc) & p.MaNganh == maNganh) select x;
+            listMonHocs = listSearch.ToList();
+            return listMonHocs;
+        }
+
         public void UpdateMonHoc(MonHoc monHoc)
         {
             db = new GDUDataConnectionsDataContext();

@@ -109,6 +109,7 @@
             // lblAddNewAdmin
             // 
             this.lblAddNewAdmin.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblAddNewAdmin.Enabled = false;
             this.lblAddNewAdmin.Font = new System.Drawing.Font("Microsoft Uighur", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAddNewAdmin.ForeColor = System.Drawing.Color.Blue;
             this.lblAddNewAdmin.Location = new System.Drawing.Point(136, 4);
@@ -200,6 +201,7 @@
             // 
             // txtEmail
             // 
+            this.txtEmail.Enabled = false;
             this.txtEmail.Location = new System.Drawing.Point(137, 291);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(347, 27);
@@ -257,9 +259,9 @@
             this.lblIDAdmin.AutoSize = true;
             this.lblIDAdmin.Location = new System.Drawing.Point(133, 130);
             this.lblIDAdmin.Name = "lblIDAdmin";
-            this.lblIDAdmin.Size = new System.Drawing.Size(27, 20);
+            this.lblIDAdmin.Size = new System.Drawing.Size(36, 20);
             this.lblIDAdmin.TabIndex = 20;
-            this.lblIDAdmin.Text = "??";
+            this.lblIDAdmin.Text = "???";
             // 
             // label11
             // 

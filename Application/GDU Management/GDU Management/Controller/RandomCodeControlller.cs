@@ -9,6 +9,7 @@ namespace GDU_Management.Controller
     class RandomCodeControlller
     {
 
+
         //ramdom code xác thực
         public int RandomVerificationCode()
         {
@@ -17,6 +18,7 @@ namespace GDU_Management.Controller
             return randomCode;
         } 
 
+        //ma xac thuc
         public string VerificationCode()
         {
             string verificationCode;
@@ -30,6 +32,14 @@ namespace GDU_Management.Controller
                 verificationCode = "SNIS-" + code;
             }
             return verificationCode;
+        }
+
+        //random id sinh vien
+        public int RandomIdStudent()
+        {
+            Random rd = new Random();
+            int randomIdStudent = rd.Next(0009, 9999);
+            return randomIdStudent;
         }
     }
 }

@@ -34,7 +34,15 @@
             this.tabQLDiem = new System.Windows.Forms.TabControl();
             this.tabgQL = new System.Windows.Forms.TabPage();
             this.pnQLMonHoc = new System.Windows.Forms.Panel();
+            this.btnHomeMenu = new System.Windows.Forms.Button();
+            this.btnExportDSMonHoc = new System.Windows.Forms.Button();
             this.pnControl = new System.Windows.Forms.Panel();
+            this.btnDeleteMonHoc = new System.Windows.Forms.Button();
+            this.btnNewMonHoc = new System.Windows.Forms.Button();
+            this.btnUpdateMonHoc = new System.Windows.Forms.Button();
+            this.btnSaveMonHoc = new System.Windows.Forms.Button();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             this.pnStatusTopLeft = new System.Windows.Forms.Panel();
             this.lblAnimation3 = new System.Windows.Forms.Label();
             this.lblAnimation2 = new System.Windows.Forms.Label();
@@ -51,6 +59,12 @@
             this.txtTimKiemMonHoc = new System.Windows.Forms.TextBox();
             this.dgvDanhSachMonHoc = new System.Windows.Forms.DataGridView();
             this.STTMonHoc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.maMonHocDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tenMonHocDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.sTCDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.maNganhDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nganhHocDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.monHocBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.pnMonHoc = new System.Windows.Forms.Panel();
             this.lblMaMonHocMH = new System.Windows.Forms.Label();
             this.numericSoTinChi_MH = new System.Windows.Forms.NumericUpDown();
@@ -66,10 +80,16 @@
             this.tabgQLDiem = new System.Windows.Forms.TabPage();
             this.pnDiem = new System.Windows.Forms.Panel();
             this.pnNhapDiem = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             this.pnControl_QLD = new System.Windows.Forms.Panel();
+            this.btnExportDanhSachDiem = new System.Windows.Forms.Button();
+            this.btnEXIT_QLD = new System.Windows.Forms.Button();
+            this.btnHomQLD = new System.Windows.Forms.Button();
             this.txtDiem70L2 = new System.Windows.Forms.TextBox();
             this.label22 = new System.Windows.Forms.Label();
             this.txtDiem70L1 = new System.Windows.Forms.TextBox();
+            this.btnSaveDiem = new System.Windows.Forms.Button();
             this.lblGioiTinh = new System.Windows.Forms.Label();
             this.lbltenSV = new System.Windows.Forms.Label();
             this.lblMaSV = new System.Windows.Forms.Label();
@@ -82,7 +102,20 @@
             this.label12 = new System.Windows.Forms.Label();
             this.dgvDanhSachDiemSinhVien = new System.Windows.Forms.DataGridView();
             this.STTDSD = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.maMonHocDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.maSVDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Ten_Sinh_Vien = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.diem30DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.diem70L1DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.diem70L2DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dTBDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.diem4DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.diemChuDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.diemSoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ghiChuDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.monHocDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.sinhVienDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.diemMonHocBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.txtTimKiemDiemSinhVien_QLD = new System.Windows.Forms.TextBox();
             this.pnThongTinLop = new System.Windows.Forms.Panel();
@@ -97,39 +130,6 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.timerMonHoc = new System.Windows.Forms.Timer(this.components);
-            this.btnHomeMenu = new System.Windows.Forms.Button();
-            this.btnExportDSMonHoc = new System.Windows.Forms.Button();
-            this.btnDeleteMonHoc = new System.Windows.Forms.Button();
-            this.btnNewMonHoc = new System.Windows.Forms.Button();
-            this.btnUpdateMonHoc = new System.Windows.Forms.Button();
-            this.btnSaveMonHoc = new System.Windows.Forms.Button();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.maMonHocDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tenMonHocDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.sTCDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.maNganhDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nganhHocDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.monHocBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.label4 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.btnExportDanhSachDiem = new System.Windows.Forms.Button();
-            this.btnEXIT_QLD = new System.Windows.Forms.Button();
-            this.btnHomQLD = new System.Windows.Forms.Button();
-            this.btnSaveDiem = new System.Windows.Forms.Button();
-            this.maMonHocDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.maSVDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.diem30DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.diem70L1DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.diem70L2DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dTBDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.diem4DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.diemChuDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.diemSoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ghiChuDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.monHocDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.sinhVienDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.diemMonHocBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.pnQLDiem.SuspendLayout();
             this.tabQLDiem.SuspendLayout();
             this.tabgQL.SuspendLayout();
@@ -140,6 +140,7 @@
             this.grbDay.SuspendLayout();
             this.grbSearch_MH.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDanhSachMonHoc)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.monHocBindingSource)).BeginInit();
             this.pnMonHoc.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericSoTinChi_MH)).BeginInit();
             this.grbThongTinLop.SuspendLayout();
@@ -148,10 +149,9 @@
             this.pnNhapDiem.SuspendLayout();
             this.pnControl_QLD.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDanhSachDiemSinhVien)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.diemMonHocBindingSource)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.pnThongTinLop.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.monHocBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.diemMonHocBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // flowLayoutPanel1
@@ -213,6 +213,34 @@
             this.pnQLMonHoc.Size = new System.Drawing.Size(1390, 705);
             this.pnQLMonHoc.TabIndex = 0;
             // 
+            // btnHomeMenu
+            // 
+            this.btnHomeMenu.BackColor = System.Drawing.Color.White;
+            this.btnHomeMenu.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnHomeMenu.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnHomeMenu.ForeColor = System.Drawing.Color.Blue;
+            this.btnHomeMenu.Image = global::GDU_Management.Properties.Resources.icons8_home_page_68x55;
+            this.btnHomeMenu.Location = new System.Drawing.Point(1207, 217);
+            this.btnHomeMenu.Name = "btnHomeMenu";
+            this.btnHomeMenu.Size = new System.Drawing.Size(180, 80);
+            this.btnHomeMenu.TabIndex = 29;
+            this.btnHomeMenu.UseVisualStyleBackColor = false;
+            this.btnHomeMenu.Click += new System.EventHandler(this.btnHomeMenu_Click);
+            // 
+            // btnExportDSMonHoc
+            // 
+            this.btnExportDSMonHoc.BackColor = System.Drawing.Color.White;
+            this.btnExportDSMonHoc.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExportDSMonHoc.Font = new System.Drawing.Font("Microsoft Uighur", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExportDSMonHoc.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.btnExportDSMonHoc.Image = global::GDU_Management.Properties.Resources.icons8_print_401;
+            this.btnExportDSMonHoc.Location = new System.Drawing.Point(1207, 157);
+            this.btnExportDSMonHoc.Name = "btnExportDSMonHoc";
+            this.btnExportDSMonHoc.Size = new System.Drawing.Size(180, 53);
+            this.btnExportDSMonHoc.TabIndex = 28;
+            this.btnExportDSMonHoc.UseVisualStyleBackColor = false;
+            this.btnExportDSMonHoc.Click += new System.EventHandler(this.btnExportDSMonHoc_Click);
+            // 
             // pnControl
             // 
             this.pnControl.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
@@ -224,6 +252,68 @@
             this.pnControl.Name = "pnControl";
             this.pnControl.Size = new System.Drawing.Size(525, 53);
             this.pnControl.TabIndex = 27;
+            // 
+            // btnDeleteMonHoc
+            // 
+            this.btnDeleteMonHoc.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.btnDeleteMonHoc.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.btnDeleteMonHoc.Image = global::GDU_Management.Properties.Resources.icons_delete_3;
+            this.btnDeleteMonHoc.Location = new System.Drawing.Point(397, 3);
+            this.btnDeleteMonHoc.Name = "btnDeleteMonHoc";
+            this.btnDeleteMonHoc.Size = new System.Drawing.Size(123, 45);
+            this.btnDeleteMonHoc.TabIndex = 6;
+            this.btnDeleteMonHoc.UseVisualStyleBackColor = false;
+            this.btnDeleteMonHoc.Click += new System.EventHandler(this.btnDeleteMonHoc_Click);
+            // 
+            // btnNewMonHoc
+            // 
+            this.btnNewMonHoc.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.btnNewMonHoc.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.btnNewMonHoc.Image = global::GDU_Management.Properties.Resources.icon_mon_hoc_1;
+            this.btnNewMonHoc.Location = new System.Drawing.Point(5, 3);
+            this.btnNewMonHoc.Name = "btnNewMonHoc";
+            this.btnNewMonHoc.Size = new System.Drawing.Size(123, 45);
+            this.btnNewMonHoc.TabIndex = 3;
+            this.btnNewMonHoc.UseVisualStyleBackColor = false;
+            this.btnNewMonHoc.Click += new System.EventHandler(this.btnNewMonHoc_Click);
+            // 
+            // btnUpdateMonHoc
+            // 
+            this.btnUpdateMonHoc.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.btnUpdateMonHoc.Image = global::GDU_Management.Properties.Resources.icons_update_30;
+            this.btnUpdateMonHoc.Location = new System.Drawing.Point(268, 3);
+            this.btnUpdateMonHoc.Name = "btnUpdateMonHoc";
+            this.btnUpdateMonHoc.Size = new System.Drawing.Size(123, 45);
+            this.btnUpdateMonHoc.TabIndex = 5;
+            this.btnUpdateMonHoc.UseVisualStyleBackColor = false;
+            this.btnUpdateMonHoc.Click += new System.EventHandler(this.btnUpdateMonHoc_Click);
+            // 
+            // btnSaveMonHoc
+            // 
+            this.btnSaveMonHoc.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.btnSaveMonHoc.Image = global::GDU_Management.Properties.Resources.icons_save_2;
+            this.btnSaveMonHoc.Location = new System.Drawing.Point(134, 3);
+            this.btnSaveMonHoc.Name = "btnSaveMonHoc";
+            this.btnSaveMonHoc.Size = new System.Drawing.Size(123, 45);
+            this.btnSaveMonHoc.TabIndex = 4;
+            this.btnSaveMonHoc.UseVisualStyleBackColor = false;
+            this.btnSaveMonHoc.Click += new System.EventHandler(this.btnSaveMonHoc_Click);
+            // 
+            // label10
+            // 
+            this.label10.Image = global::GDU_Management.Properties.Resources.logo_03_03;
+            this.label10.Location = new System.Drawing.Point(1078, 13);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(147, 124);
+            this.label10.TabIndex = 24;
+            // 
+            // label7
+            // 
+            this.label7.Image = global::GDU_Management.Properties.Resources.icon_gdumanagement_ps_13;
+            this.label7.Location = new System.Drawing.Point(1231, 13);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(156, 124);
+            this.label7.TabIndex = 23;
             // 
             // pnStatusTopLeft
             // 
@@ -369,6 +459,7 @@
             this.txtTimKiemMonHoc.Name = "txtTimKiemMonHoc";
             this.txtTimKiemMonHoc.Size = new System.Drawing.Size(502, 30);
             this.txtTimKiemMonHoc.TabIndex = 9;
+            this.txtTimKiemMonHoc.TextChanged += new System.EventHandler(this.txtTimKiemMonHoc_TextChanged);
             // 
             // dgvDanhSachMonHoc
             // 
@@ -403,6 +494,57 @@
             this.STTMonHoc.Name = "STTMonHoc";
             this.STTMonHoc.ReadOnly = true;
             this.STTMonHoc.Width = 70;
+            // 
+            // maMonHocDataGridViewTextBoxColumn
+            // 
+            this.maMonHocDataGridViewTextBoxColumn.DataPropertyName = "MaMonHoc";
+            this.maMonHocDataGridViewTextBoxColumn.HeaderText = "Mã Môn Học";
+            this.maMonHocDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.maMonHocDataGridViewTextBoxColumn.Name = "maMonHocDataGridViewTextBoxColumn";
+            this.maMonHocDataGridViewTextBoxColumn.ReadOnly = true;
+            this.maMonHocDataGridViewTextBoxColumn.Width = 200;
+            // 
+            // tenMonHocDataGridViewTextBoxColumn
+            // 
+            this.tenMonHocDataGridViewTextBoxColumn.DataPropertyName = "TenMonHoc";
+            this.tenMonHocDataGridViewTextBoxColumn.HeaderText = "Tên Môn Học";
+            this.tenMonHocDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.tenMonHocDataGridViewTextBoxColumn.Name = "tenMonHocDataGridViewTextBoxColumn";
+            this.tenMonHocDataGridViewTextBoxColumn.ReadOnly = true;
+            this.tenMonHocDataGridViewTextBoxColumn.Width = 350;
+            // 
+            // sTCDataGridViewTextBoxColumn
+            // 
+            this.sTCDataGridViewTextBoxColumn.DataPropertyName = "STC";
+            this.sTCDataGridViewTextBoxColumn.HeaderText = "Số Tín Chỉ";
+            this.sTCDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.sTCDataGridViewTextBoxColumn.Name = "sTCDataGridViewTextBoxColumn";
+            this.sTCDataGridViewTextBoxColumn.ReadOnly = true;
+            this.sTCDataGridViewTextBoxColumn.Width = 150;
+            // 
+            // maNganhDataGridViewTextBoxColumn
+            // 
+            this.maNganhDataGridViewTextBoxColumn.DataPropertyName = "MaNganh";
+            this.maNganhDataGridViewTextBoxColumn.HeaderText = "Mã Ngành";
+            this.maNganhDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.maNganhDataGridViewTextBoxColumn.Name = "maNganhDataGridViewTextBoxColumn";
+            this.maNganhDataGridViewTextBoxColumn.ReadOnly = true;
+            this.maNganhDataGridViewTextBoxColumn.Visible = false;
+            this.maNganhDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // nganhHocDataGridViewTextBoxColumn
+            // 
+            this.nganhHocDataGridViewTextBoxColumn.DataPropertyName = "NganhHoc";
+            this.nganhHocDataGridViewTextBoxColumn.HeaderText = "NganhHoc";
+            this.nganhHocDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.nganhHocDataGridViewTextBoxColumn.Name = "nganhHocDataGridViewTextBoxColumn";
+            this.nganhHocDataGridViewTextBoxColumn.ReadOnly = true;
+            this.nganhHocDataGridViewTextBoxColumn.Visible = false;
+            this.nganhHocDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // monHocBindingSource
+            // 
+            this.monHocBindingSource.DataSource = typeof(GDU_Management.Model.MonHoc);
             // 
             // pnMonHoc
             // 
@@ -569,15 +711,76 @@
             this.pnNhapDiem.Size = new System.Drawing.Size(710, 298);
             this.pnNhapDiem.TabIndex = 7;
             // 
+            // label4
+            // 
+            this.label4.Image = global::GDU_Management.Properties.Resources.logo_03_03;
+            this.label4.Location = new System.Drawing.Point(376, 16);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(147, 124);
+            this.label4.TabIndex = 37;
+            // 
+            // label9
+            // 
+            this.label9.Image = global::GDU_Management.Properties.Resources.icon_gdumanagement_ps_13;
+            this.label9.Location = new System.Drawing.Point(529, 16);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(156, 124);
+            this.label9.TabIndex = 36;
+            // 
             // pnControl_QLD
             // 
             this.pnControl_QLD.Controls.Add(this.btnExportDanhSachDiem);
             this.pnControl_QLD.Controls.Add(this.btnEXIT_QLD);
             this.pnControl_QLD.Controls.Add(this.btnHomQLD);
-            this.pnControl_QLD.Location = new System.Drawing.Point(339, 160);
+            this.pnControl_QLD.Location = new System.Drawing.Point(339, 150);
             this.pnControl_QLD.Name = "pnControl_QLD";
-            this.pnControl_QLD.Size = new System.Drawing.Size(366, 133);
+            this.pnControl_QLD.Size = new System.Drawing.Size(366, 143);
             this.pnControl_QLD.TabIndex = 35;
+            // 
+            // btnExportDanhSachDiem
+            // 
+            this.btnExportDanhSachDiem.BackColor = System.Drawing.Color.White;
+            this.btnExportDanhSachDiem.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExportDanhSachDiem.Font = new System.Drawing.Font("Microsoft Uighur", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExportDanhSachDiem.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.btnExportDanhSachDiem.Image = global::GDU_Management.Properties.Resources.icons8_print_42;
+            this.btnExportDanhSachDiem.Location = new System.Drawing.Point(7, 7);
+            this.btnExportDanhSachDiem.Name = "btnExportDanhSachDiem";
+            this.btnExportDanhSachDiem.Size = new System.Drawing.Size(356, 60);
+            this.btnExportDanhSachDiem.TabIndex = 29;
+            this.btnExportDanhSachDiem.UseVisualStyleBackColor = false;
+            this.btnExportDanhSachDiem.Click += new System.EventHandler(this.btnExportDanhSachDiem_Click);
+            // 
+            // btnEXIT_QLD
+            // 
+            this.btnEXIT_QLD.BackColor = System.Drawing.Color.White;
+            this.btnEXIT_QLD.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnEXIT_QLD.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEXIT_QLD.ForeColor = System.Drawing.Color.Blue;
+            this.btnEXIT_QLD.Image = global::GDU_Management.Properties.Resources.icons_exit_38;
+            this.btnEXIT_QLD.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnEXIT_QLD.Location = new System.Drawing.Point(137, 72);
+            this.btnEXIT_QLD.Name = "btnEXIT_QLD";
+            this.btnEXIT_QLD.Size = new System.Drawing.Size(226, 60);
+            this.btnEXIT_QLD.TabIndex = 34;
+            this.btnEXIT_QLD.Text = "Thoát CHương TRình";
+            this.btnEXIT_QLD.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnEXIT_QLD.UseVisualStyleBackColor = false;
+            this.btnEXIT_QLD.Click += new System.EventHandler(this.btnEXIT_QLD_Click);
+            // 
+            // btnHomQLD
+            // 
+            this.btnHomQLD.BackColor = System.Drawing.Color.White;
+            this.btnHomQLD.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnHomQLD.Font = new System.Drawing.Font("Microsoft Uighur", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnHomQLD.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.btnHomQLD.Image = global::GDU_Management.Properties.Resources.icons8_home_page_51x40;
+            this.btnHomQLD.Location = new System.Drawing.Point(7, 73);
+            this.btnHomQLD.Name = "btnHomQLD";
+            this.btnHomQLD.Size = new System.Drawing.Size(124, 60);
+            this.btnHomQLD.TabIndex = 30;
+            this.btnHomQLD.UseVisualStyleBackColor = false;
+            this.btnHomQLD.Click += new System.EventHandler(this.btnHomQLD_Click);
             // 
             // txtDiem70L2
             // 
@@ -608,6 +811,19 @@
             this.txtDiem70L1.TabIndex = 7;
             this.txtDiem70L1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.txtDiem70L1_MouseClick);
             this.txtDiem70L1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDiem70L1_KeyPress);
+            // 
+            // btnSaveDiem
+            // 
+            this.btnSaveDiem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.btnSaveDiem.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSaveDiem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.btnSaveDiem.Image = global::GDU_Management.Properties.Resources.icons_save;
+            this.btnSaveDiem.Location = new System.Drawing.Point(173, 250);
+            this.btnSaveDiem.Name = "btnSaveDiem";
+            this.btnSaveDiem.Size = new System.Drawing.Size(160, 38);
+            this.btnSaveDiem.TabIndex = 14;
+            this.btnSaveDiem.UseVisualStyleBackColor = false;
+            this.btnSaveDiem.Click += new System.EventHandler(this.btnSaveDiem_Click);
             // 
             // lblGioiTinh
             // 
@@ -741,6 +957,25 @@
             this.STTDSD.ReadOnly = true;
             this.STTDSD.Width = 50;
             // 
+            // maMonHocDataGridViewTextBoxColumn1
+            // 
+            this.maMonHocDataGridViewTextBoxColumn1.DataPropertyName = "MaMonHoc";
+            this.maMonHocDataGridViewTextBoxColumn1.HeaderText = "Mã Môn Học";
+            this.maMonHocDataGridViewTextBoxColumn1.MinimumWidth = 6;
+            this.maMonHocDataGridViewTextBoxColumn1.Name = "maMonHocDataGridViewTextBoxColumn1";
+            this.maMonHocDataGridViewTextBoxColumn1.ReadOnly = true;
+            this.maMonHocDataGridViewTextBoxColumn1.Visible = false;
+            this.maMonHocDataGridViewTextBoxColumn1.Width = 125;
+            // 
+            // maSVDataGridViewTextBoxColumn
+            // 
+            this.maSVDataGridViewTextBoxColumn.DataPropertyName = "MaSV";
+            this.maSVDataGridViewTextBoxColumn.HeaderText = "Mã SV";
+            this.maSVDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.maSVDataGridViewTextBoxColumn.Name = "maSVDataGridViewTextBoxColumn";
+            this.maSVDataGridViewTextBoxColumn.ReadOnly = true;
+            this.maSVDataGridViewTextBoxColumn.Width = 125;
+            // 
             // Ten_Sinh_Vien
             // 
             this.Ten_Sinh_Vien.HeaderText = "Tên SV";
@@ -748,6 +983,102 @@
             this.Ten_Sinh_Vien.Name = "Ten_Sinh_Vien";
             this.Ten_Sinh_Vien.ReadOnly = true;
             this.Ten_Sinh_Vien.Width = 200;
+            // 
+            // diem30DataGridViewTextBoxColumn
+            // 
+            this.diem30DataGridViewTextBoxColumn.DataPropertyName = "Diem30";
+            this.diem30DataGridViewTextBoxColumn.HeaderText = "Điểm 30%";
+            this.diem30DataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.diem30DataGridViewTextBoxColumn.Name = "diem30DataGridViewTextBoxColumn";
+            this.diem30DataGridViewTextBoxColumn.ReadOnly = true;
+            this.diem30DataGridViewTextBoxColumn.Width = 75;
+            // 
+            // diem70L1DataGridViewTextBoxColumn
+            // 
+            this.diem70L1DataGridViewTextBoxColumn.DataPropertyName = "Diem70L1";
+            this.diem70L1DataGridViewTextBoxColumn.HeaderText = "Điểm 70%";
+            this.diem70L1DataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.diem70L1DataGridViewTextBoxColumn.Name = "diem70L1DataGridViewTextBoxColumn";
+            this.diem70L1DataGridViewTextBoxColumn.ReadOnly = true;
+            this.diem70L1DataGridViewTextBoxColumn.Width = 75;
+            // 
+            // diem70L2DataGridViewTextBoxColumn
+            // 
+            this.diem70L2DataGridViewTextBoxColumn.DataPropertyName = "Diem70L2";
+            this.diem70L2DataGridViewTextBoxColumn.HeaderText = "Điểm 70%*";
+            this.diem70L2DataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.diem70L2DataGridViewTextBoxColumn.Name = "diem70L2DataGridViewTextBoxColumn";
+            this.diem70L2DataGridViewTextBoxColumn.ReadOnly = true;
+            this.diem70L2DataGridViewTextBoxColumn.Width = 75;
+            // 
+            // dTBDataGridViewTextBoxColumn
+            // 
+            this.dTBDataGridViewTextBoxColumn.DataPropertyName = "DTB";
+            this.dTBDataGridViewTextBoxColumn.HeaderText = "ĐTB";
+            this.dTBDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.dTBDataGridViewTextBoxColumn.Name = "dTBDataGridViewTextBoxColumn";
+            this.dTBDataGridViewTextBoxColumn.ReadOnly = true;
+            this.dTBDataGridViewTextBoxColumn.Width = 80;
+            // 
+            // diem4DataGridViewTextBoxColumn
+            // 
+            this.diem4DataGridViewTextBoxColumn.DataPropertyName = "Diem4";
+            this.diem4DataGridViewTextBoxColumn.HeaderText = "Điểm 4";
+            this.diem4DataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.diem4DataGridViewTextBoxColumn.Name = "diem4DataGridViewTextBoxColumn";
+            this.diem4DataGridViewTextBoxColumn.ReadOnly = true;
+            this.diem4DataGridViewTextBoxColumn.Width = 80;
+            // 
+            // diemChuDataGridViewTextBoxColumn
+            // 
+            this.diemChuDataGridViewTextBoxColumn.DataPropertyName = "DiemChu";
+            this.diemChuDataGridViewTextBoxColumn.HeaderText = "Điểm Chữ";
+            this.diemChuDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.diemChuDataGridViewTextBoxColumn.Name = "diemChuDataGridViewTextBoxColumn";
+            this.diemChuDataGridViewTextBoxColumn.ReadOnly = true;
+            this.diemChuDataGridViewTextBoxColumn.Width = 80;
+            // 
+            // diemSoDataGridViewTextBoxColumn
+            // 
+            this.diemSoDataGridViewTextBoxColumn.DataPropertyName = "DiemSo";
+            this.diemSoDataGridViewTextBoxColumn.HeaderText = "Điểm Số";
+            this.diemSoDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.diemSoDataGridViewTextBoxColumn.Name = "diemSoDataGridViewTextBoxColumn";
+            this.diemSoDataGridViewTextBoxColumn.ReadOnly = true;
+            this.diemSoDataGridViewTextBoxColumn.Width = 80;
+            // 
+            // ghiChuDataGridViewTextBoxColumn
+            // 
+            this.ghiChuDataGridViewTextBoxColumn.DataPropertyName = "GhiChu";
+            this.ghiChuDataGridViewTextBoxColumn.HeaderText = "Ghi CHú";
+            this.ghiChuDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.ghiChuDataGridViewTextBoxColumn.Name = "ghiChuDataGridViewTextBoxColumn";
+            this.ghiChuDataGridViewTextBoxColumn.ReadOnly = true;
+            this.ghiChuDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // monHocDataGridViewTextBoxColumn
+            // 
+            this.monHocDataGridViewTextBoxColumn.DataPropertyName = "MonHoc";
+            this.monHocDataGridViewTextBoxColumn.HeaderText = "MonHoc";
+            this.monHocDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.monHocDataGridViewTextBoxColumn.Name = "monHocDataGridViewTextBoxColumn";
+            this.monHocDataGridViewTextBoxColumn.ReadOnly = true;
+            this.monHocDataGridViewTextBoxColumn.Visible = false;
+            this.monHocDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // sinhVienDataGridViewTextBoxColumn
+            // 
+            this.sinhVienDataGridViewTextBoxColumn.DataPropertyName = "SinhVien";
+            this.sinhVienDataGridViewTextBoxColumn.HeaderText = "SinhVien";
+            this.sinhVienDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.sinhVienDataGridViewTextBoxColumn.Name = "sinhVienDataGridViewTextBoxColumn";
+            this.sinhVienDataGridViewTextBoxColumn.ReadOnly = true;
+            this.sinhVienDataGridViewTextBoxColumn.Visible = false;
+            this.sinhVienDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // diemMonHocBindingSource
+            // 
+            this.diemMonHocBindingSource.DataSource = typeof(GDU_Management.Model.DiemMonHoc);
             // 
             // groupBox2
             // 
@@ -768,6 +1099,7 @@
             this.txtTimKiemDiemSinhVien_QLD.Size = new System.Drawing.Size(641, 33);
             this.txtTimKiemDiemSinhVien_QLD.TabIndex = 9;
             this.txtTimKiemDiemSinhVien_QLD.Text = "Nhập mã sinh viên để tìm kiếm";
+            this.txtTimKiemDiemSinhVien_QLD.MouseClick += new System.Windows.Forms.MouseEventHandler(this.txtTimKiemDiemSinhVien_QLD_MouseClick);
             this.txtTimKiemDiemSinhVien_QLD.TextChanged += new System.EventHandler(this.txtTimKiemDiemSinhVien_QLD_TextChanged);
             // 
             // pnThongTinLop
@@ -895,334 +1227,6 @@
             this.timerMonHoc.Interval = 1000;
             this.timerMonHoc.Tick += new System.EventHandler(this.timerMonHoc_Tick);
             // 
-            // btnHomeMenu
-            // 
-            this.btnHomeMenu.BackColor = System.Drawing.Color.White;
-            this.btnHomeMenu.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnHomeMenu.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnHomeMenu.ForeColor = System.Drawing.Color.Blue;
-            this.btnHomeMenu.Image = global::GDU_Management.Properties.Resources.icons8_home_page_68x55;
-            this.btnHomeMenu.Location = new System.Drawing.Point(1207, 217);
-            this.btnHomeMenu.Name = "btnHomeMenu";
-            this.btnHomeMenu.Size = new System.Drawing.Size(180, 80);
-            this.btnHomeMenu.TabIndex = 29;
-            this.btnHomeMenu.UseVisualStyleBackColor = false;
-            this.btnHomeMenu.Click += new System.EventHandler(this.btnHomeMenu_Click);
-            // 
-            // btnExportDSMonHoc
-            // 
-            this.btnExportDSMonHoc.BackColor = System.Drawing.Color.White;
-            this.btnExportDSMonHoc.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnExportDSMonHoc.Font = new System.Drawing.Font("Microsoft Uighur", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExportDSMonHoc.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.btnExportDSMonHoc.Image = global::GDU_Management.Properties.Resources.icons8_print_401;
-            this.btnExportDSMonHoc.Location = new System.Drawing.Point(1207, 157);
-            this.btnExportDSMonHoc.Name = "btnExportDSMonHoc";
-            this.btnExportDSMonHoc.Size = new System.Drawing.Size(180, 53);
-            this.btnExportDSMonHoc.TabIndex = 28;
-            this.btnExportDSMonHoc.UseVisualStyleBackColor = false;
-            // 
-            // btnDeleteMonHoc
-            // 
-            this.btnDeleteMonHoc.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.btnDeleteMonHoc.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.btnDeleteMonHoc.Image = global::GDU_Management.Properties.Resources.icons_delete_3;
-            this.btnDeleteMonHoc.Location = new System.Drawing.Point(397, 3);
-            this.btnDeleteMonHoc.Name = "btnDeleteMonHoc";
-            this.btnDeleteMonHoc.Size = new System.Drawing.Size(123, 45);
-            this.btnDeleteMonHoc.TabIndex = 6;
-            this.btnDeleteMonHoc.UseVisualStyleBackColor = false;
-            this.btnDeleteMonHoc.Click += new System.EventHandler(this.btnDeleteMonHoc_Click);
-            // 
-            // btnNewMonHoc
-            // 
-            this.btnNewMonHoc.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.btnNewMonHoc.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.btnNewMonHoc.Image = global::GDU_Management.Properties.Resources.icon_mon_hoc_1;
-            this.btnNewMonHoc.Location = new System.Drawing.Point(5, 3);
-            this.btnNewMonHoc.Name = "btnNewMonHoc";
-            this.btnNewMonHoc.Size = new System.Drawing.Size(123, 45);
-            this.btnNewMonHoc.TabIndex = 3;
-            this.btnNewMonHoc.UseVisualStyleBackColor = false;
-            this.btnNewMonHoc.Click += new System.EventHandler(this.btnNewMonHoc_Click);
-            // 
-            // btnUpdateMonHoc
-            // 
-            this.btnUpdateMonHoc.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.btnUpdateMonHoc.Image = global::GDU_Management.Properties.Resources.icons_update_30;
-            this.btnUpdateMonHoc.Location = new System.Drawing.Point(268, 3);
-            this.btnUpdateMonHoc.Name = "btnUpdateMonHoc";
-            this.btnUpdateMonHoc.Size = new System.Drawing.Size(123, 45);
-            this.btnUpdateMonHoc.TabIndex = 5;
-            this.btnUpdateMonHoc.UseVisualStyleBackColor = false;
-            this.btnUpdateMonHoc.Click += new System.EventHandler(this.btnUpdateMonHoc_Click);
-            // 
-            // btnSaveMonHoc
-            // 
-            this.btnSaveMonHoc.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.btnSaveMonHoc.Image = global::GDU_Management.Properties.Resources.icons_save_2;
-            this.btnSaveMonHoc.Location = new System.Drawing.Point(134, 3);
-            this.btnSaveMonHoc.Name = "btnSaveMonHoc";
-            this.btnSaveMonHoc.Size = new System.Drawing.Size(123, 45);
-            this.btnSaveMonHoc.TabIndex = 4;
-            this.btnSaveMonHoc.UseVisualStyleBackColor = false;
-            this.btnSaveMonHoc.Click += new System.EventHandler(this.btnSaveMonHoc_Click);
-            // 
-            // label10
-            // 
-            this.label10.Image = global::GDU_Management.Properties.Resources.logo_03_03;
-            this.label10.Location = new System.Drawing.Point(1078, 13);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(147, 124);
-            this.label10.TabIndex = 24;
-            // 
-            // label7
-            // 
-            this.label7.Image = global::GDU_Management.Properties.Resources.icon_gdumanagement_ps_13;
-            this.label7.Location = new System.Drawing.Point(1231, 13);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(156, 124);
-            this.label7.TabIndex = 23;
-            // 
-            // maMonHocDataGridViewTextBoxColumn
-            // 
-            this.maMonHocDataGridViewTextBoxColumn.DataPropertyName = "MaMonHoc";
-            this.maMonHocDataGridViewTextBoxColumn.HeaderText = "Mã Môn Học";
-            this.maMonHocDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.maMonHocDataGridViewTextBoxColumn.Name = "maMonHocDataGridViewTextBoxColumn";
-            this.maMonHocDataGridViewTextBoxColumn.ReadOnly = true;
-            this.maMonHocDataGridViewTextBoxColumn.Width = 200;
-            // 
-            // tenMonHocDataGridViewTextBoxColumn
-            // 
-            this.tenMonHocDataGridViewTextBoxColumn.DataPropertyName = "TenMonHoc";
-            this.tenMonHocDataGridViewTextBoxColumn.HeaderText = "Tên Môn Học";
-            this.tenMonHocDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.tenMonHocDataGridViewTextBoxColumn.Name = "tenMonHocDataGridViewTextBoxColumn";
-            this.tenMonHocDataGridViewTextBoxColumn.ReadOnly = true;
-            this.tenMonHocDataGridViewTextBoxColumn.Width = 350;
-            // 
-            // sTCDataGridViewTextBoxColumn
-            // 
-            this.sTCDataGridViewTextBoxColumn.DataPropertyName = "STC";
-            this.sTCDataGridViewTextBoxColumn.HeaderText = "Số Tín Chỉ";
-            this.sTCDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.sTCDataGridViewTextBoxColumn.Name = "sTCDataGridViewTextBoxColumn";
-            this.sTCDataGridViewTextBoxColumn.ReadOnly = true;
-            this.sTCDataGridViewTextBoxColumn.Width = 150;
-            // 
-            // maNganhDataGridViewTextBoxColumn
-            // 
-            this.maNganhDataGridViewTextBoxColumn.DataPropertyName = "MaNganh";
-            this.maNganhDataGridViewTextBoxColumn.HeaderText = "Mã Ngành";
-            this.maNganhDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.maNganhDataGridViewTextBoxColumn.Name = "maNganhDataGridViewTextBoxColumn";
-            this.maNganhDataGridViewTextBoxColumn.ReadOnly = true;
-            this.maNganhDataGridViewTextBoxColumn.Visible = false;
-            this.maNganhDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // nganhHocDataGridViewTextBoxColumn
-            // 
-            this.nganhHocDataGridViewTextBoxColumn.DataPropertyName = "NganhHoc";
-            this.nganhHocDataGridViewTextBoxColumn.HeaderText = "NganhHoc";
-            this.nganhHocDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.nganhHocDataGridViewTextBoxColumn.Name = "nganhHocDataGridViewTextBoxColumn";
-            this.nganhHocDataGridViewTextBoxColumn.ReadOnly = true;
-            this.nganhHocDataGridViewTextBoxColumn.Visible = false;
-            this.nganhHocDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // monHocBindingSource
-            // 
-            this.monHocBindingSource.DataSource = typeof(GDU_Management.Model.MonHoc);
-            // 
-            // label4
-            // 
-            this.label4.Image = global::GDU_Management.Properties.Resources.logo_03_03;
-            this.label4.Location = new System.Drawing.Point(376, 16);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(147, 124);
-            this.label4.TabIndex = 37;
-            // 
-            // label9
-            // 
-            this.label9.Image = global::GDU_Management.Properties.Resources.icon_gdumanagement_ps_13;
-            this.label9.Location = new System.Drawing.Point(529, 16);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(156, 124);
-            this.label9.TabIndex = 36;
-            // 
-            // btnExportDanhSachDiem
-            // 
-            this.btnExportDanhSachDiem.BackColor = System.Drawing.Color.White;
-            this.btnExportDanhSachDiem.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnExportDanhSachDiem.Font = new System.Drawing.Font("Microsoft Uighur", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExportDanhSachDiem.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.btnExportDanhSachDiem.Image = global::GDU_Management.Properties.Resources.icons8_print_42;
-            this.btnExportDanhSachDiem.Location = new System.Drawing.Point(7, 7);
-            this.btnExportDanhSachDiem.Name = "btnExportDanhSachDiem";
-            this.btnExportDanhSachDiem.Size = new System.Drawing.Size(356, 60);
-            this.btnExportDanhSachDiem.TabIndex = 29;
-            this.btnExportDanhSachDiem.UseVisualStyleBackColor = false;
-            // 
-            // btnEXIT_QLD
-            // 
-            this.btnEXIT_QLD.BackColor = System.Drawing.Color.White;
-            this.btnEXIT_QLD.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnEXIT_QLD.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEXIT_QLD.ForeColor = System.Drawing.Color.Blue;
-            this.btnEXIT_QLD.Image = global::GDU_Management.Properties.Resources.icons_exit_38;
-            this.btnEXIT_QLD.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEXIT_QLD.Location = new System.Drawing.Point(137, 72);
-            this.btnEXIT_QLD.Name = "btnEXIT_QLD";
-            this.btnEXIT_QLD.Size = new System.Drawing.Size(226, 55);
-            this.btnEXIT_QLD.TabIndex = 34;
-            this.btnEXIT_QLD.Text = "Thoát CHương TRình";
-            this.btnEXIT_QLD.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnEXIT_QLD.UseVisualStyleBackColor = false;
-            this.btnEXIT_QLD.Click += new System.EventHandler(this.btnEXIT_QLD_Click);
-            // 
-            // btnHomQLD
-            // 
-            this.btnHomQLD.BackColor = System.Drawing.Color.White;
-            this.btnHomQLD.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnHomQLD.Font = new System.Drawing.Font("Microsoft Uighur", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnHomQLD.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.btnHomQLD.Image = global::GDU_Management.Properties.Resources.icons8_home_page_59x45;
-            this.btnHomQLD.Location = new System.Drawing.Point(7, 73);
-            this.btnHomQLD.Name = "btnHomQLD";
-            this.btnHomQLD.Size = new System.Drawing.Size(124, 55);
-            this.btnHomQLD.TabIndex = 30;
-            this.btnHomQLD.UseVisualStyleBackColor = false;
-            this.btnHomQLD.Click += new System.EventHandler(this.btnHomQLD_Click);
-            // 
-            // btnSaveDiem
-            // 
-            this.btnSaveDiem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.btnSaveDiem.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSaveDiem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.btnSaveDiem.Image = global::GDU_Management.Properties.Resources.icons_save;
-            this.btnSaveDiem.Location = new System.Drawing.Point(173, 250);
-            this.btnSaveDiem.Name = "btnSaveDiem";
-            this.btnSaveDiem.Size = new System.Drawing.Size(160, 38);
-            this.btnSaveDiem.TabIndex = 14;
-            this.btnSaveDiem.UseVisualStyleBackColor = false;
-            this.btnSaveDiem.Click += new System.EventHandler(this.btnSaveDiem_Click);
-            // 
-            // maMonHocDataGridViewTextBoxColumn1
-            // 
-            this.maMonHocDataGridViewTextBoxColumn1.DataPropertyName = "MaMonHoc";
-            this.maMonHocDataGridViewTextBoxColumn1.HeaderText = "Mã Môn Học";
-            this.maMonHocDataGridViewTextBoxColumn1.MinimumWidth = 6;
-            this.maMonHocDataGridViewTextBoxColumn1.Name = "maMonHocDataGridViewTextBoxColumn1";
-            this.maMonHocDataGridViewTextBoxColumn1.ReadOnly = true;
-            this.maMonHocDataGridViewTextBoxColumn1.Visible = false;
-            this.maMonHocDataGridViewTextBoxColumn1.Width = 125;
-            // 
-            // maSVDataGridViewTextBoxColumn
-            // 
-            this.maSVDataGridViewTextBoxColumn.DataPropertyName = "MaSV";
-            this.maSVDataGridViewTextBoxColumn.HeaderText = "Mã SV";
-            this.maSVDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.maSVDataGridViewTextBoxColumn.Name = "maSVDataGridViewTextBoxColumn";
-            this.maSVDataGridViewTextBoxColumn.ReadOnly = true;
-            this.maSVDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // diem30DataGridViewTextBoxColumn
-            // 
-            this.diem30DataGridViewTextBoxColumn.DataPropertyName = "Diem30";
-            this.diem30DataGridViewTextBoxColumn.HeaderText = "Điểm 30%";
-            this.diem30DataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.diem30DataGridViewTextBoxColumn.Name = "diem30DataGridViewTextBoxColumn";
-            this.diem30DataGridViewTextBoxColumn.ReadOnly = true;
-            this.diem30DataGridViewTextBoxColumn.Width = 75;
-            // 
-            // diem70L1DataGridViewTextBoxColumn
-            // 
-            this.diem70L1DataGridViewTextBoxColumn.DataPropertyName = "Diem70L1";
-            this.diem70L1DataGridViewTextBoxColumn.HeaderText = "Điểm 70%";
-            this.diem70L1DataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.diem70L1DataGridViewTextBoxColumn.Name = "diem70L1DataGridViewTextBoxColumn";
-            this.diem70L1DataGridViewTextBoxColumn.ReadOnly = true;
-            this.diem70L1DataGridViewTextBoxColumn.Width = 75;
-            // 
-            // diem70L2DataGridViewTextBoxColumn
-            // 
-            this.diem70L2DataGridViewTextBoxColumn.DataPropertyName = "Diem70L2";
-            this.diem70L2DataGridViewTextBoxColumn.HeaderText = "Điểm 70%*";
-            this.diem70L2DataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.diem70L2DataGridViewTextBoxColumn.Name = "diem70L2DataGridViewTextBoxColumn";
-            this.diem70L2DataGridViewTextBoxColumn.ReadOnly = true;
-            this.diem70L2DataGridViewTextBoxColumn.Width = 75;
-            // 
-            // dTBDataGridViewTextBoxColumn
-            // 
-            this.dTBDataGridViewTextBoxColumn.DataPropertyName = "DTB";
-            this.dTBDataGridViewTextBoxColumn.HeaderText = "ĐTB";
-            this.dTBDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.dTBDataGridViewTextBoxColumn.Name = "dTBDataGridViewTextBoxColumn";
-            this.dTBDataGridViewTextBoxColumn.ReadOnly = true;
-            this.dTBDataGridViewTextBoxColumn.Width = 80;
-            // 
-            // diem4DataGridViewTextBoxColumn
-            // 
-            this.diem4DataGridViewTextBoxColumn.DataPropertyName = "Diem4";
-            this.diem4DataGridViewTextBoxColumn.HeaderText = "Điểm 4";
-            this.diem4DataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.diem4DataGridViewTextBoxColumn.Name = "diem4DataGridViewTextBoxColumn";
-            this.diem4DataGridViewTextBoxColumn.ReadOnly = true;
-            this.diem4DataGridViewTextBoxColumn.Width = 80;
-            // 
-            // diemChuDataGridViewTextBoxColumn
-            // 
-            this.diemChuDataGridViewTextBoxColumn.DataPropertyName = "DiemChu";
-            this.diemChuDataGridViewTextBoxColumn.HeaderText = "Điểm Chữ";
-            this.diemChuDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.diemChuDataGridViewTextBoxColumn.Name = "diemChuDataGridViewTextBoxColumn";
-            this.diemChuDataGridViewTextBoxColumn.ReadOnly = true;
-            this.diemChuDataGridViewTextBoxColumn.Width = 80;
-            // 
-            // diemSoDataGridViewTextBoxColumn
-            // 
-            this.diemSoDataGridViewTextBoxColumn.DataPropertyName = "DiemSo";
-            this.diemSoDataGridViewTextBoxColumn.HeaderText = "Điểm Số";
-            this.diemSoDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.diemSoDataGridViewTextBoxColumn.Name = "diemSoDataGridViewTextBoxColumn";
-            this.diemSoDataGridViewTextBoxColumn.ReadOnly = true;
-            this.diemSoDataGridViewTextBoxColumn.Width = 80;
-            // 
-            // ghiChuDataGridViewTextBoxColumn
-            // 
-            this.ghiChuDataGridViewTextBoxColumn.DataPropertyName = "GhiChu";
-            this.ghiChuDataGridViewTextBoxColumn.HeaderText = "Ghi CHú";
-            this.ghiChuDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.ghiChuDataGridViewTextBoxColumn.Name = "ghiChuDataGridViewTextBoxColumn";
-            this.ghiChuDataGridViewTextBoxColumn.ReadOnly = true;
-            this.ghiChuDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // monHocDataGridViewTextBoxColumn
-            // 
-            this.monHocDataGridViewTextBoxColumn.DataPropertyName = "MonHoc";
-            this.monHocDataGridViewTextBoxColumn.HeaderText = "MonHoc";
-            this.monHocDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.monHocDataGridViewTextBoxColumn.Name = "monHocDataGridViewTextBoxColumn";
-            this.monHocDataGridViewTextBoxColumn.ReadOnly = true;
-            this.monHocDataGridViewTextBoxColumn.Visible = false;
-            this.monHocDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // sinhVienDataGridViewTextBoxColumn
-            // 
-            this.sinhVienDataGridViewTextBoxColumn.DataPropertyName = "SinhVien";
-            this.sinhVienDataGridViewTextBoxColumn.HeaderText = "SinhVien";
-            this.sinhVienDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.sinhVienDataGridViewTextBoxColumn.Name = "sinhVienDataGridViewTextBoxColumn";
-            this.sinhVienDataGridViewTextBoxColumn.ReadOnly = true;
-            this.sinhVienDataGridViewTextBoxColumn.Visible = false;
-            this.sinhVienDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // diemMonHocBindingSource
-            // 
-            this.diemMonHocBindingSource.DataSource = typeof(GDU_Management.Model.DiemMonHoc);
-            // 
             // frmDiemAndMonHoc
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1248,6 +1252,7 @@
             this.grbSearch_MH.ResumeLayout(false);
             this.grbSearch_MH.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDanhSachMonHoc)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.monHocBindingSource)).EndInit();
             this.pnMonHoc.ResumeLayout(false);
             this.pnMonHoc.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericSoTinChi_MH)).EndInit();
@@ -1259,12 +1264,11 @@
             this.pnNhapDiem.PerformLayout();
             this.pnControl_QLD.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvDanhSachDiemSinhVien)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.diemMonHocBindingSource)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.pnThongTinLop.ResumeLayout(false);
             this.pnThongTinLop.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.monHocBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.diemMonHocBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }

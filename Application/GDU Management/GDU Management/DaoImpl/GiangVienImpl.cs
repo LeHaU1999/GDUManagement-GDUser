@@ -78,6 +78,14 @@ namespace GDU_Management.DaoImpl
             return listGV;
         }
 
+        public List<GiangVien> SearchGiangVienByMaGV(string maGV, string maKhoa)
+        {
+            db = new GDUDataConnectionsDataContext();
+            var listSearch = from x in db.GiangViens.Where(p => p.MaGV.Contains(maGV) & p.MaKhoa ==maKhoa) select x;
+            listGV = listSearch.ToList();
+            return listGV;
+        }
+
         //cập nhật tào khoản giảng viên
         public void UpdateAccountGiangVien(GiangVien giangVien)
         {

@@ -8,6 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using GDU_Management.GDU_Views;
+using GDU_Management.Model;
+using GDU_Management.Service;
+using GDU_Management.GDU_View;
 
 namespace GDU_Management
 {
@@ -21,6 +24,10 @@ namespace GDU_Management
 
         //delegate truyen data
         delegate void SendEmaiAdminToFrmOther(string email);
+
+        //service
+        AdminService adminService = new AdminService();
+        CheckLoginService checkLoginService = new CheckLoginService();
 
         //public value
         string _emailAdmin;
@@ -56,7 +63,9 @@ namespace GDU_Management
         {
             this.Hide();
             frmQuanLySinhVien qlsv = new frmQuanLySinhVien();
-                qlsv.ShowDialog();
+            SendEmaiAdminToFrmOther sendEmailToQLSV = new SendEmaiAdminToFrmOther(qlsv.FunDataFromGDU);
+            sendEmailToQLSV(_emailAdmin);
+            qlsv.ShowDialog();
         }
 
         //hàm vào form Môn Học - Điểm
@@ -64,6 +73,8 @@ namespace GDU_Management
         {
             this.Hide();
             frmDiemAndMonHoc monHoc_diem = new frmDiemAndMonHoc();
+            SendEmaiAdminToFrmOther sendEmailToQLDiemAndMobHoc = new SendEmaiAdminToFrmOther(monHoc_diem.FunDataFromGDU);
+            sendEmailToQLDiemAndMobHoc(_emailAdmin);
             monHoc_diem.ShowDialog();
         }
 
@@ -72,6 +83,8 @@ namespace GDU_Management
         {
             this.Hide();
             frmGiaoVienAndTKB frmGv_tkb = new frmGiaoVienAndTKB();
+            SendEmaiAdminToFrmOther sendEmailToTKB = new SendEmaiAdminToFrmOther(frmGv_tkb.FunDataFromGDU);
+            sendEmailToTKB(_emailAdmin);
             frmGv_tkb.ShowDialog();
         }
 
@@ -79,6 +92,8 @@ namespace GDU_Management
         {
             this.Hide();
             frmPhanCongCongViec frmPccv = new frmPhanCongCongViec();
+            SendEmaiAdminToFrmOther sendEmailToPCCV = new SendEmaiAdminToFrmOther(frmPccv.FubDataFromGDU);
+            sendEmailToPCCV(_emailAdmin);
             frmPccv.ShowDialog();
         }
         // KẾT THÚC DS HÀM PUBLIC
@@ -167,6 +182,7 @@ namespace GDU_Management
             dr = MessageBox.Show("Bạn có muốn thoát khỏi chương trình không ?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (dr == DialogResult.Yes)
             {
+                checkLoginService.DeleteCheckLogin();
                 Application.Exit();
             }
         }
@@ -176,6 +192,7 @@ namespace GDU_Management
             dr = MessageBox.Show("Bạn có muốn Đăng Xuất khỏi chương trình không ?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (dr == DialogResult.Yes)
             {
+                checkLoginService.DeleteCheckLogin();
                 this.Hide();
                 frmLogin frmlogin = new frmLogin();
                 frmlogin.ShowDialog();
@@ -338,22 +355,43 @@ namespace GDU_Management
 
         private void lblLogoGDU_Click(object sender, EventArgs e)
         {
-            DialogResult dr;
-            dr = MessageBox.Show("Đây là phần dành cho quản lý bạn cần phải xác minh trước khi truy cập", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (dr == DialogResult.Yes)
+            string maADCheckLg;
+            Admin ad = new Admin();
+            ad = adminService.GetAdminByEmail(_emailAdmin);
+            maADCheckLg = ad.MaAdmin;
+            var listCheckLg = checkLoginService.GetCheckLogin();
+            if (listCheckLg.Count < 1)
             {
-                // gui email admin den form loading => gui maill 
-                frmLoadingChecckAdmin frm_loading = new frmLoadingChecckAdmin();
-                SendEmaiAdminToFrmOther sendEmailToLoading = new SendEmaiAdminToFrmOther(frm_loading.FunDataFromGDU);
-                sendEmailToLoading(_emailAdmin);
+                DialogResult dr;
+                dr = MessageBox.Show("Đây là phần dành cho quản lý bạn cần phải xác minh trước khi truy cập", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (dr == DialogResult.Yes)
+                {
+                    // gui email admin den form loading => gui maill 
+                    frmLoadingChecckAdmin frm_loading = new frmLoadingChecckAdmin();
+                    SendEmaiAdminToFrmOther sendEmailToLoading = new SendEmaiAdminToFrmOther(frm_loading.FunDataFromGDU);
+                    sendEmailToLoading(_emailAdmin);
 
-                //gui mail den form CheckEmail
-                frmCheckAdmin frm_chk = new frmCheckAdmin();
-                SendEmaiAdminToFrmOther sendEmailToOption = new SendEmaiAdminToFrmOther(frm_chk.FunDataChkAcc);
-                sendEmailToOption(_emailAdmin);
+                    //gui mail den form CheckEmail
+                    frmCheckAdmin frm_chk = new frmCheckAdmin();
+                    SendEmaiAdminToFrmOther sendEmailToOption = new SendEmaiAdminToFrmOther(frm_chk.FunDataChkAcc);
+                    sendEmailToOption(_emailAdmin);
 
-                frm_loading.ShowDialog();
-                frm_chk.ShowDialog();
+                    frm_loading.ShowDialog();
+                    frm_chk.ShowDialog();
+                }
+            }
+            else
+            {
+                foreach(var maAD in listCheckLg)
+                {
+                    if(maAD.ID_CheckLogin == maADCheckLg)
+                    {
+                        frmOptions frm_opn = new frmOptions();
+                        SendEmaiAdminToFrmOther senEmailToFrmOption = new SendEmaiAdminToFrmOther(frm_opn.FunDataOption);
+                        senEmailToFrmOption(_emailAdmin);
+                        frm_opn.ShowDialog();
+                    }
+                }
             }
         }
     }

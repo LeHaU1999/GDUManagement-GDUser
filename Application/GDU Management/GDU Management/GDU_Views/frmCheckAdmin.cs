@@ -26,11 +26,12 @@ namespace GDU_Management
         //service 
         CheckAccountService checkAccountService = new CheckAccountService();
         ContactService contactService = new ContactService();
+        CheckLoginService checkLoginService = new CheckLoginService();
         AdminService adminService = new AdminService();
 
         //controller
         RandomCodeControlller rd = new RandomCodeControlller();
-        SendMessageController sendMessage = new SendMessageController();
+        SendMessageController sendMessageController = new SendMessageController();
 
         //public value
         string _email;
@@ -72,7 +73,7 @@ namespace GDU_Management
             string subEmail = contacts.Subject;
             string messEmail = contacts.Message + "\n";
             string code = "-------------------" + "\n" + _VerificationCode + "\n" + "-------------------" + "\n" + contacts.InfoOther;
-            sendMessage.SendVerificationCode(fromEmail, toEmail, subEmail, messEmail + code);
+            sendMessageController.SendVerificationCode(fromEmail, toEmail, subEmail, messEmail + code);
         }
 
         //load tên vs id admin bằng email
@@ -95,6 +96,15 @@ namespace GDU_Management
             checkAccountService.DeleteVerificationCode();
             Application.Exit();
         }
+
+        //tạo checkLogin
+        public void CreateCheckLogin()
+        {
+            CheckLogin chkLogin = new CheckLogin();
+            chkLogin.ID_CheckLogin = _idAdmin;
+            checkLoginService.CreateCheckLogin(chkLogin);
+
+        }
         //-------------------------KẾT THÚC DS HÀM PUBLIC------------------------------//
         //_________________________________________________________//
 
@@ -102,6 +112,12 @@ namespace GDU_Management
         {
             LoadAdmin();
             btnGoOnForm.Enabled = false;
+            if (!sendMessageController.IsConnectedToInternet())
+            {
+                MessageBox.Show("Không thể thực hiệu xác thực. Vui lòng kiểm tra lại kết nối interner (-__-) !!!", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.Close();
+            }
+
         }
 
         private void lblGuiLaiMatKhau_MouseHover(object sender, EventArgs e)
@@ -132,6 +148,7 @@ namespace GDU_Management
                     frmOptions frm_Opn = new frmOptions();
                     SendEmailToFrmOption sendEmail = new SendEmailToFrmOption(frm_Opn.FunDataOption);
                     sendEmail(_email);
+                    CreateCheckLogin();
                     checkAccountService.DeleteVerificationCode();
                     frm_Opn.ShowDialog();
                     break;

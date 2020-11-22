@@ -24,6 +24,8 @@ namespace GDU_Management
             InitializeComponent();
             timerGiangvien_TKB.Start();
         }
+        //delegate
+        delegate void SendEmailToFrmOther(string email);
 
         //khai báo các service
         GiangVienService giangVienService = new GiangVienService();
@@ -36,23 +38,33 @@ namespace GDU_Management
         LopService lopService = new LopService();
         PhongHocService phongHocService = new PhongHocService();
         ContactService contactService = new ContactService();
+        CheckLoginService checkLoginService = new CheckLoginService();
 
         //khai báo các controller
         SendMessageController sendMessage = new SendMessageController();
+        EncodingPasswordController encodingPasswordController = new EncodingPasswordController();
 
         //public value
         string maLop;
         string ca1, ca2, ca3, ca4, thoiGianHoc;
         string subEmail, messEmail;
+        string _emailAdmin;
+        string _maMonHoc;
 
 
 
         //---------------------------DANH SÁCH HÀM PUBLIC------------------------------//
         //---------------------------------------------------------------------------------------//
+        public void FunDataFromGDU(string email)
+        {
+            _emailAdmin = email;
+        }
         public void goHomeMenu()
         {
             this.Hide();
             GDUManagement gdu =new GDUManagement();
+            SendEmailToFrmOther sendEmailToGDU = new SendEmailToFrmOther(gdu.FunData);
+            sendEmailToGDU(_emailAdmin);
             gdu.ShowDialog();
         }
 
@@ -106,6 +118,7 @@ namespace GDU_Management
             dgvDanhSachTKB.DataSource = thoiKhoaBieuService.GetTKBByMaLopAndMaHK(maLop, cboChonHocKy_TKB.SelectedValue.ToString()).ToList();
             if (dgvDanhSachTKB.Rows.Count > 0)
             {
+                dgvDanhSachTKB.Enabled = true;
                 LoadChiTietThoiKhoaBieu();
                 CountRowsTKB();
             }  
@@ -153,10 +166,17 @@ namespace GDU_Management
         //laod môn học vạo combobox
         public void LoadMonHocToCbo()
         {
-            cboChonMonHoc_TKB.ResetText();
-            cboChonMonHoc_TKB.DataSource = monHocService.GetMonHocByNganh(cboChonNganh_TKB.SelectedValue.ToString()).ToList();
-            cboChonMonHoc_TKB.DisplayMember = "TenMonHoc";
-            cboChonMonHoc_TKB.ValueMember = "MaMonHoc";
+            try
+            {
+                cboChonMonHoc_TKB.ResetText();
+                cboChonMonHoc_TKB.DataSource = monHocService.GetMonHocByNganh(cboChonNganh_TKB.SelectedValue.ToString()).ToList();
+                cboChonMonHoc_TKB.DisplayMember = "TenMonHoc";
+                cboChonMonHoc_TKB.ValueMember = "MaMonHoc";
+            }
+            catch
+            {
+
+            }
         }
 
 
@@ -191,6 +211,7 @@ namespace GDU_Management
         //check data Giảng Viên
         public bool checkDataGiangVien()
         {
+            var listAllGV = giangVienService.GetAllGiangVien();
             if (string.IsNullOrEmpty(txtTenGV.Text.Trim()))                 //kiểm tra tên giảng viên
             {
                 MessageBox.Show("Tên Giảng Viên không được bỏ trống", "Cảnh Báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -210,6 +231,16 @@ namespace GDU_Management
                     txtEmailGV.Focus();
                     return false;
                 }
+                
+                foreach(var emailGV in listAllGV)
+                {
+                    if(txtEmailGV.Text.Trim() == emailGV.Email)
+                    {
+                        MessageBox.Show("Email đã tồn tại...", "Cảnh Báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        txtEmailGV.Focus();
+                        return false;
+                    }
+                }
             }
             else
             {
@@ -219,6 +250,74 @@ namespace GDU_Management
             }
 
             
+            if (!string.IsNullOrEmpty(txtSDT.Text))             //kiểm tra sdt
+            {
+                Regex isValidInput = new Regex(@"^\d{10}$");
+                string sdt = txtSDT.Text.Trim();
+                if (!isValidInput.IsMatch(sdt))
+                {
+                    MessageBox.Show("SĐT bao gồm 10 số và không có kí tự, vui lòng kiểm tra lại...", "Cảnh Báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtSDT.Focus();
+                    return false;
+                }
+                foreach(var sdtGV in listAllGV)
+                {
+                    if(txtSDT.Text.Trim() == sdtGV.SDT)
+                    {
+                        MessageBox.Show("SĐT đã tồn tại...", "Cảnh Báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        txtSDT.Focus();
+                        return false;
+                    }
+                }
+                
+            }
+            else
+            {
+                MessageBox.Show("SĐT Không được bỏ trống, vui lòng kiểm tra lại...", "Cảnh Báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtSDT.Focus();
+                return false;
+            }
+
+            if (string.IsNullOrEmpty(rtxtDiaChi_GV.Text.Trim()))           //kiểm tra địa chỉ
+            {
+                MessageBox.Show("Địa chỉ không được bỏ trống", "Cảnh Báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                rtxtDiaChi_GV.Focus();
+                return false;
+            }
+
+            return true;
+        }
+
+        //check data update giảng viên
+        public bool checkDataUpdateGiangVien()
+        {
+            var listAllGV = giangVienService.GetAllGiangVien();
+            if (string.IsNullOrEmpty(txtTenGV.Text.Trim()))                 //kiểm tra tên giảng viên
+            {
+                MessageBox.Show("Tên Giảng Viên không được bỏ trống", "Cảnh Báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtTenGV.Focus();
+                return false;
+            }
+
+            if (!string.IsNullOrEmpty(txtEmailGV.Text))          //kiểm tra email
+            {
+                string email = txtEmailGV.Text;
+                var value = email.EndsWith("@gmail.com");
+                string reEmail = value.ToString();
+                if (reEmail.Equals("False"))
+                {
+                    MessageBox.Show("Định dạng email không đúng, vui lòng kiểm tra lại...", "Cảnh Báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtEmailGV.Focus();
+                    return false;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Email Không được bỏ trống, vui lòng kiểm tra lại...", "Cảnh Báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtEmailGV.Focus();
+                return false;
+            }
+
             if (!string.IsNullOrEmpty(txtSDT.Text))             //kiểm tra sdt
             {
                 Regex isValidInput = new Regex(@"^\d{10}$");
@@ -243,9 +342,9 @@ namespace GDU_Management
                 rtxtDiaChi_GV.Focus();
                 return false;
             }
-
             return true;
         }
+   
 
         //check data TKB
         public bool checkDataTKB()
@@ -284,10 +383,10 @@ namespace GDU_Management
         }
 
         //lấy danh sách môn học chưa có trong thòi khóa biểu
-        public List<MonHoc> checkMonHoc()
+        public List<MonHoc> DanhSachMonHocChuaSave()
         {
             List<MonHoc> listAllMonHocNganh = monHocService.GetMonHocByNganh(cboChonNganh_TKB.SelectedValue.ToString());
-            var listTKB = thoiKhoaBieuService.GetTKBByMaLopAndMaHK(maLop, cboChonHocKy_TKB.SelectedValue.ToString());
+            var listTKB = thoiKhoaBieuService.GetTKBByMaLop(maLop);
             List<MonHoc> listNewMonHoc = new List<MonHoc>();
 
             foreach(var mhTkb in listTKB)
@@ -301,7 +400,6 @@ namespace GDU_Management
                 }
             }
             IEnumerable<MonHoc> otherSubject = listAllMonHocNganh.Except(listNewMonHoc);
-
             return otherSubject.ToList();
         } 
 
@@ -319,7 +417,8 @@ namespace GDU_Management
             MonHoc mh = new MonHoc();
             mh = monHocService.GetMonHocByMaMonHoc(dgvDanhSachTKB.CurrentRow.Cells[2].Value.ToString());
             cboChonMonHoc_TKB.Text = mh.TenMonHoc;
-            
+            _maMonHoc = dgvDanhSachTKB.CurrentRow.Cells[2].Value.ToString();
+
             //giảng viên
             GiangVien gv = new GiangVien();
             gv = giangVienService.GetGiangVienByMaGV(dgvDanhSachTKB.CurrentRow.Cells[5].Value.ToString());
@@ -504,7 +603,7 @@ namespace GDU_Management
             string fromEmail = contacts.Email;
             string toEmail = txtEmailGV.Text.Trim();
             string subEmail = contacts.Subject;
-            string InfoGV = "---------------------------------------------------------" + "\n" + txtTenGV.Text + " - " + lblMaGV_GV.Text + "\n" + "---------------------------------------------------------";
+            string InfoGV = "---------------------------------------------------------" + "\n" + lblMaGV_GV.Text + " - " +txtTenGV.Text+ "\n" + "---------------------------------------------------------";
             string messEmail = contacts.Message +"\n"+InfoGV+"\n"+ contacts.InfoOther;
             // MessageBox.Show("from: "+ fromEmail);
             //MessageBox.Show("to: " + toEmail);
@@ -535,6 +634,18 @@ namespace GDU_Management
             string subject = contacts.Subject;
             string message = other + "\n" + maGV + "\n" + nameGV + "\n" + namSinh + "\n" + sdtGV + "\n" + emailGV + "\n" + trinhDo + "\n" + dcGV + "\n" + startDay + "\n" + contacts.InfoOther;
             sendMessage.SendMaillUpdateGiangVien(from, to, subject, message);
+        }
+
+        // hàm thoát chương trình
+        public void ThoatChuongTrinh()
+        {
+            DialogResult dr;
+            dr = MessageBox.Show("Bạn có muốn thoát khỏi chương trình  ?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (dr == DialogResult.Yes)
+            {
+                checkLoginService.DeleteCheckLogin();
+                Application.Exit();
+            }
         }
 
         //-------------------------KẾT THÚC DS HÀM PUBLIC------------------------------//
@@ -626,22 +737,12 @@ namespace GDU_Management
 
         private void btnExit_TKB_Click(object sender, EventArgs e)
         {
-            DialogResult dr;
-            dr = MessageBox.Show("Bạn có muốn thoát khỏi chương trình không ?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (dr == DialogResult.Yes)
-            {
-                Application.Exit();
-            }
+            ThoatChuongTrinh();
         }
 
         private void btnExit_GV_Click(object sender, EventArgs e)
         {
-            DialogResult dr;
-            dr = MessageBox.Show("Bạn có muốn thoát khỏi chương trình không ?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (dr == DialogResult.Yes)
-            {
-                Application.Exit();
-            }
+            ThoatChuongTrinh();
         }
 
 
@@ -679,7 +780,14 @@ namespace GDU_Management
                 giangVien.SDT = txtSDT.Text.Trim();
                 giangVien.GhiChu = rtxtGhiChu_GV.Text.Trim();
                 giangVien.DiaChi = rtxtDiaChi_GV.Text.Trim();
-                giangVien.Password = lblMaGV_GV.Text.Trim();
+                giangVien.StatusAcc = "Activate";
+
+                //mã hóa password 
+                //string maHoaDES = encodingPasswordController.EncryptionByDES(lblMaGV_GV.Text.Trim() , "GDUmanagement-Lecturers");
+                //string maHoaMD5 = encodingPasswordController.EncryptionByMD5(maHoaDES);
+                //giangVien.Password = maHoaDES+ maHoaMD5;
+                ///////
+                giangVien.Password = lblMaGV_GV.Text;
                 giangVien.NgayBatDau = dtpBatDauCongViec_GV.Value.ToString();
                 giangVien.MaKhoa = cboChonKhoa_GV.SelectedValue.ToString().Trim();
                 giangVien.Avt = ImageToByteArray(picAvtGV.Image);
@@ -699,7 +807,7 @@ namespace GDU_Management
 
         private void btnUpdateGV_Click(object sender, EventArgs e)
         {
-            if (checkDataGiangVien())
+            if (checkDataUpdateGiangVien())
             {
                 //gửi mail  đến giảng viên
                 SendMailUpdateGiangVienSuccessfully();
@@ -865,7 +973,7 @@ namespace GDU_Management
                 }
                 else
                 {
-                    picAvtGV.Image = Image.FromFile(@"..\..\Resources\avt011_default_teacher_160x190.jpgg");
+                    thoiKhoaBieuService.DeleteThoiKhoaBieuByGiangVien(lblMaGV_GV.Text);
                     giangVienService.DeleteGiangVien(lblMaGV_GV.Text.Trim());
                     btnNewGV.Enabled = true;
                     btnSaveGV.Enabled = false;
@@ -892,6 +1000,8 @@ namespace GDU_Management
             cboChonGV_TKB.DataSource = giangVienService.GetGiangVienByMaKhoa(cboChonKhoa_TKB.SelectedValue.ToString()).ToList();
             cboChonGV_TKB.DisplayMember = "TenGV";
             cboChonGV_TKB.ValueMember = "MaGV";
+
+            btnNewTKB.Enabled = false;
         }
 
         private void cboChonNganh_TKB_SelectedIndexChanged(object sender, EventArgs e)
@@ -928,48 +1038,72 @@ namespace GDU_Management
             LoadDanhSachThoiKhoaBieuToDgv();
             LoadMonHocToCbo();
             btnNewTKB.Enabled = true;
+            btnSaveTKB.Enabled = false;
+            btnUpdateTKB.Enabled = false;
+            btnDeleteTKB.Enabled = false;
+
+            cboChonMonHoc_TKB.Enabled = false;
+            cboChonNgayHoc_TKB.Enabled = false;
+            cboChonPhongHoc_TKB.Enabled = false;
+            cboChonGV_TKB.Enabled = false;
         }
 
         private void cboChoHocKy_TKB_SelectedIndexChanged(object sender, EventArgs e)
         {
-            LoadDanhSachThoiKhoaBieuToDgv();
+            if(cboChonNganh_TKB.Text == "")
+            {
+                LoadDanhSachThoiKhoaBieuToDgv();
+            }
+            else
+            {
+                LoadDanhSachThoiKhoaBieuToDgv();
+                cboChonMonHoc_TKB.DataSource = DanhSachMonHocChuaSave();
+                btnSaveTKB.Enabled = false;
+                btnUpdateTKB.Enabled = false;
+                btnDeleteTKB.Enabled = false; 
+            }
         }
 
         private void btnNewTKB_Click(object sender, EventArgs e)
         {
-            cboChonMonHoc_TKB.DataSource = checkMonHoc();
-            if (cboChonMonHoc_TKB.Text != "")
-            {
-                cboChonMonHoc_TKB.Enabled = true;
-                cboChonMonHoc_TKB.SelectedItem.ToString();
-                cboChonGV_TKB.ResetText();
-                cboChonPhongHoc_TKB.ResetText();
-                cboChonNgayHoc_TKB.ResetText();
-                lblTinChi.Text = "???";
-                rtxtGhiChu_TKB.Text = "";
-                btnSaveTKB.Enabled = true;
-                btnDeleteTKB.Enabled = false;
-                btnUpdateTKB.Enabled = false;
+            cboChonMonHoc_TKB.DataSource = DanhSachMonHocChuaSave();
+                if (cboChonMonHoc_TKB.Text != "")
+                {
+                    cboChonMonHoc_TKB.Text = "";
+                    
+                    cboChonGV_TKB.ResetText();
+                    lblTinChi.Text = "???";
+                    rtxtGhiChu_TKB.Text = "";
 
-                chkCa1.Enabled = true;
-                chkCa2.Enabled = true;
-                chkCa3.Enabled = true;
-                chkCa4.Enabled = true;
+                    btnSaveTKB.Enabled = true;
+                    btnDeleteTKB.Enabled = false;
+                    btnUpdateTKB.Enabled = false;
 
-                chkCa1.Checked = false;
-                chkCa2.Checked = false;
-                chkCa3.Checked = false;
-                chkCa4.Checked = false;
+                    chkCa1.Enabled = true;
+                    chkCa2.Enabled = true;
+                    chkCa3.Enabled = true;
+                    chkCa4.Enabled = true;
 
-                cboChonMonHoc_TKB.DataSource = checkMonHoc();
-                cboChonMonHoc_TKB.DisplayMember = "TenMonHoc";
-                cboChonMonHoc_TKB.ValueMember = "MaMonHoc";
-            }
-            else
-            {
-                MessageBox.Show("khong co mon hoc, vui long them mon hoc truoc khi khoi tạo tkb");
-            }
+                    chkCa1.Checked = false;
+                    chkCa2.Checked = false;
+                    chkCa3.Checked = false;
+                    chkCa4.Checked = false;
 
+                    cboChonNganh_TKB.Enabled = true;
+                    cboChonMonHoc_TKB.Enabled = true;
+                    cboChonPhongHoc_TKB.Enabled = true;
+                    cboChonGV_TKB.Enabled = true;
+                cboChonNgayHoc_TKB.Enabled = true;
+
+                    cboChonNgayHoc_TKB.ResetText();
+                    cboChonMonHoc_TKB.DataSource = DanhSachMonHocChuaSave();
+                    cboChonMonHoc_TKB.DisplayMember = "TenMonHoc";
+                    cboChonMonHoc_TKB.ValueMember = "MaMonHoc";
+                }
+                else
+                {
+                    MessageBox.Show("khong co mon hoc, vui long them mon hoc truoc khi khoi tạo tkb");
+                }
         }
 
         private void btnSaveTKB_Click(object sender, EventArgs e)
@@ -1002,9 +1136,10 @@ namespace GDU_Management
             if (checkDataTKB())
             {
                 ThoiKhoaBieu tkb = new ThoiKhoaBieu();
+                //MessageBox.Show("maLop: " + maLop + " maMonHoc: " + _maMonHoc);
                 tkb.MaLop = maLop;
                 tkb.MaHocKy = cboChonHocKy_TKB.SelectedValue.ToString();
-                tkb.MaMonHoc = cboChonMonHoc_TKB.SelectedValue.ToString();
+                tkb.MaMonHoc = _maMonHoc;
                 tkb.MaGV = cboChonGV_TKB.SelectedValue.ToString();
                 tkb.NgayHoc = cboChonNgayHoc_TKB.Text.Trim();
                 tkb.MaPhongHoc = cboChonPhongHoc_TKB.Text.ToString();
@@ -1022,9 +1157,7 @@ namespace GDU_Management
         {
             if (MessageBox.Show("Xóa  ?", "Thông Báo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
             {
-                //MessageBox.Show("ma lop: "+maLop);
-                //MessageBox.Show("ma mon hoc: " + cboChonMonHoc_TKB.SelectedValue.ToString());
-                thoiKhoaBieuService.DeleteThoiKhoaBieu(maLop, cboChonMonHoc_TKB.SelectedValue.ToString());
+                thoiKhoaBieuService.DeleteThoiKhoaBieu(maLop, _maMonHoc);
                 btnSaveTKB.Enabled = false;
                 btnUpdateTKB.Enabled = false;
                 btnDeleteTKB.Enabled = false;
@@ -1040,10 +1173,11 @@ namespace GDU_Management
             }
             else
             {
+                dgvDanhSachTKB.Enabled = true;
+                btnSaveTKB.Enabled = false;
                 cboChonMonHoc_TKB.Enabled = false;
                 btnUpdateTKB.Enabled = true;
                 btnDeleteTKB.Enabled = true;
-                btnSaveTKB.Enabled = true;
                 ShowDataToField();
             }
         }
@@ -1062,7 +1196,6 @@ namespace GDU_Management
 
         private void lblViewClass_Click(object sender, EventArgs e)
         {
-           
             cboChonPhongHoc_TKB.DataSource = phongHocService.GetAllPhongHoc();                  //get phòng học
             cboChonPhongHoc_TKB.DisplayMember = "MaPhongHoc";
             cboChonPhongHoc_TKB.ValueMember = "MaPhongHoc";
@@ -1075,9 +1208,31 @@ namespace GDU_Management
             //cboChonPhongHoc_TKB.ValueMember = "MaPhongHoc";
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnExportTKB_Click(object sender, EventArgs e)
+        {/*
+            frmReport_GetDanhSachTKB xem = new frmReport_GetDanhSachTKB();
+            xem.ShowDialog();
+            */
+        }
+
+        private void btnExportDSMonHoc_Click(object sender, EventArgs e)
+        {/*
+            frmReport_GetGiangVien xem = new frmReport_GetGiangVien();
+            xem.ShowDialog();
+            */
+        }
+
+        private void txtTimKiemGV_TextChanged(object sender, EventArgs e)
         {
-            checkMonHoc();
+            if (string.IsNullOrEmpty(txtTimKiemGV.Text.Trim()))
+            {
+                LoadDanhSachGiangVienToDgv();
+            }
+            else
+            {
+                dgvDanhSachGiangVien.DataSource = giangVienService.SearchGiangVienByMaGV(txtTimKiemGV.Text.Trim(), cboChonKhoa_GV.SelectedValue.ToString());
+                CountRowsGiangVien();
+            }
         }
 
         private void lblViewClass_DoubleClick(object sender, EventArgs e)

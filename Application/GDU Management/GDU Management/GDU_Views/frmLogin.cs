@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using GDU_Management.Model;
 using GDU_Management.Service;
+using GDU_Management.Controller;
 
 namespace GDU_Management
 {
@@ -20,6 +21,9 @@ namespace GDU_Management
         }
         //delegate
         delegate void SendEmailAdminToFrmOther(string emailAdmin);
+
+        //controller
+        EncodingPasswordController encodingPasswordController = new EncodingPasswordController(); 
 
         // service
         AdminService adminService = new AdminService();
@@ -36,11 +40,18 @@ namespace GDU_Management
             }
         }
 
+        public string EncodingPasswordLogin(string pass)
+        {
+            string maHocDES = encodingPasswordController.EncryptionByDES(pass, "GDUmanagement-User");
+            string maHoaMD5 = encodingPasswordController.EncryptionByMD5(maHocDES);
+            string passEncoding = maHocDES + maHoaMD5;
+            return passEncoding;
+        }
 
         private void frmLogin_Load(object sender, EventArgs e)
         {
             btnLogin.Enabled = false;
-            txtUsername.Text = "1";
+            txtUsername.Text = "ngochaule469@gmail.com";
             txtPassword.Text = "1";
         }
 
@@ -52,7 +63,9 @@ namespace GDU_Management
         private void btnLogin_Click(object sender, EventArgs e)
         {
             Admin ad = new Admin();
-            var login = adminService.LoginToSystem(txtUsername.Text, txtPassword.Text);
+           string pass = EncodingPasswordLogin(txtPassword.Text.Trim());
+            //string pass = txtPassword.Text.Trim();
+            var login = adminService.LoginToSystem(txtUsername.Text, pass);
             if (login.Any())
             {
                 ad = adminService.GetAdminByEmail(txtUsername.Text);

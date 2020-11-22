@@ -12,6 +12,7 @@ using GDU_Management.Model;
 using System.Text.RegularExpressions;
 using System.IO;
 using GDU_Management.GDU_Views;
+using GDU_Management.Controller;
 
 namespace GDU_Management.GDU_View
 {
@@ -26,19 +27,41 @@ namespace GDU_Management.GDU_View
         GiangVienService giangVienService = new GiangVienService();
         SinhVienService sinhVienService = new SinhVienService();
 
+        //controller
+        EncodingPasswordController encodingPasswordController = new EncodingPasswordController();
+
         //public value
-        string ID_Admin;
-        string ID_GV;
-        string ID_SV;
-        bool showPass = false;
+        string _ID_Admin;
+        string _ID_GV;
+        string _ID_SV;
+        string _email;
+        string _passAd;
+        string _passGV;
+        string _passSV;
+        bool _showPassAdmin = true;
+        bool _showPassGV = true;
+        bool _showPassSV = true;
 
         //delegate truyền id qua form khác(AddNewAdmin)
-        delegate void SendIdADmin(string dlgIDAdmin);
+        delegate void SendInforADmin(string inforAd );
         delegate void SendIdSV(string dlgIDSV);
 
 
         //---------------------------DANH SÁCH HÀM PUBLIC------------------------------//
         //__________________________________________________________//
+
+        //nhận email ddac gửi từ form khác đến
+        public void FunDataFrmOther(string emailAD)
+        {
+            _email = emailAD;
+        }
+
+        public void StartDefault()
+        {
+            lblShowPassAdmin.Hide();
+            lblShowPassGiangVien.Hide();
+            lblShowPassSinhVien.Hide();
+        }
 
         //chuyển hình từ kiểu Image sang kiểu ByteArray
         private byte[] ImageToByteArray(System.Drawing.Image img)
@@ -60,19 +83,10 @@ namespace GDU_Management.GDU_View
             }
         }
 
-        public void HideForm()
-        {
-            this.Hide();
-        }
-        public void ShowForm()
-        {
-            this.ShowDialog();
-        }
-
         //hàm load data Admin vào dgv
         public void LoadAdminToDgv()
         {
-            dgvDanhSachAccount.DataSource = adminService.GetAllAdmin();
+            dgvDanhSachAccountAdmin.DataSource = adminService.GetAllAdmin();
             CountRowsAdmin();
         }
 
@@ -92,14 +106,20 @@ namespace GDU_Management.GDU_View
         //hiện data admin lên các field
         public void ShowInfoAdmin()
         {
-            MessageBox.Show("id ad min" + dgvDanhSachAccount.CurrentRow.Cells[1].Value.ToString().Trim());
-            ID_Admin = dgvDanhSachAccount.CurrentRow.Cells[1].Value.ToString().Trim();
-            MessageBox.Show("id ad min" + ID_Admin);
+            _ID_Admin = dgvDanhSachAccountAdmin.CurrentRow.Cells[1].Value.ToString().Trim();
             Admin admin = new Admin();
-            admin = adminService.GetAdminByMaAdmin(ID_Admin);
+            admin = adminService.GetAdminByMaAdmin(_ID_Admin);
             txtEmailAdmin.Text = admin.Email;
-            txtPassAdmin.Text = admin.Password;
-            picAvtAdmin.Image = ByteArrayToImage(admin.Avt.ToArray());
+            txtPassAdmin.Text = "????????";
+            if(admin.Avt != null)
+            {
+                picAvtAdmin.Image = ByteArrayToImage(admin.Avt.ToArray());
+            }
+            else
+            {
+                picAvtAdmin.Image = Image.FromFile(@"..\..\Resources\avt006_admin_default_160x193.jpg");
+            }
+           
             lblIdAdmin.Text = admin.MaAdmin;
             txtTenAdmin.Text = admin.TenAdmin;
             dtpNamSinhAdmin.Text = admin.NamSinh;
@@ -131,17 +151,17 @@ namespace GDU_Management.GDU_View
             {
                 lblStatusAdmin.BackColor = Color.Violet;
             }
-            //CountRowsAdmin();
         }
 
         //show data giảng viên lên các field
         public void ShowInfoGiangVien()
         {
-            ID_GV = dgvDSAccountGiangVien.CurrentRow.Cells[1].Value.ToString().Trim();
+            
+            _ID_GV = dgvDSAccountGiangVien.CurrentRow.Cells[1].Value.ToString().Trim();
             GiangVien gv = new GiangVien();
-            gv = giangVienService.GetGiangVienByMaGV(ID_GV);
+            gv = giangVienService.GetGiangVienByMaGV(_ID_GV);
             txtEmailGiangVien.Text = gv.Email;
-            txtPassGiangVien.Text = gv.Password;
+            txtPassGiangVien.Text = "????????";
             lblMaGV.Text = gv.MaGV;
             lblTenGV.Text = gv.TenGV;
             lblGioiTinhGV.Text = gv.GioiTinh;
@@ -167,11 +187,11 @@ namespace GDU_Management.GDU_View
         //show data Sinh viên lên các field
         public void ShowInfoSinhVien()
         {
-            ID_SV = dgvDSAccountSinhVien.CurrentRow.Cells[1].Value.ToString();
+            _ID_SV = dgvDSAccountSinhVien.CurrentRow.Cells[1].Value.ToString();
             SinhVien sv = new SinhVien();
-            sv = sinhVienService.GetSinhVienByMaSinhVien(ID_SV);
+            sv = sinhVienService.GetSinhVienByMaSinhVien(_ID_SV);
             txtEmailSV.Text = sv.Email;
-            txtPassSV.Text = sv.Password;
+            txtPassSV.Text = "????????";
             lblMaSV.Text = sv.MaSV;
             lblTenSV.Text = sv.TenSV;
             lblGioiTinhSV.Text = sv.GioiTinh;
@@ -238,9 +258,9 @@ namespace GDU_Management.GDU_View
         //hàm đếm số thứ tự Admin
         public void CountRowsAdmin()
         {
-            for(int i = 0; i < dgvDanhSachAccount.Rows.Count; i++)
+            for(int i = 0; i < dgvDanhSachAccountAdmin.Rows.Count; i++)
             {
-                dgvDanhSachAccount.Rows[i].Cells[0].Value = (i + 1);
+                dgvDanhSachAccountAdmin.Rows[i].Cells[0].Value = (i + 1);
             }
         }
 
@@ -261,6 +281,83 @@ namespace GDU_Management.GDU_View
                 dgvDSAccountSinhVien.Rows[i].Cells[0].Value = (i + 1);
             }
         }
+
+
+        //kiểm tra quyền người đang đăng nhập
+        public bool CheckRoleUserLogin()
+        {
+            Admin ad = new Admin();
+            ad = adminService.GetAdminByEmail(_email);
+            if(ad.Role != "Ad")
+            {
+                return false;
+            }
+            return true;
+        }
+
+        //show thông tin user không phải là admin
+        public void ShowInfoUserNonAdmin(string email)
+        {
+            Admin ad = new Admin();
+            ad = adminService.GetAdminByEmail(_email);
+            txtEmailAdmin.Text = ad.Email;
+            txtPassAdmin.Text = "????????";
+            lblIdAdmin.Text = ad.MaAdmin;
+            txtTenAdmin.Text = ad.TenAdmin;
+
+            string gioiTinh = ad.GioiTinh;
+            if (gioiTinh == "Nam")
+            {
+                radNam.Checked = true;
+                radNu.Checked = false;
+            }
+            else
+            {
+                radNam.Checked = false;
+                radNu.Checked = true;
+            }
+
+            if (ad.Avt != null)
+            {
+                picAvtAdmin.Image = ByteArrayToImage(ad.Avt.ToArray());
+            }
+            else
+            {
+                picAvtAdmin.Image = Image.FromFile(@"..\..\Resources\avt006_admin_default_160x193.jpg");
+            }
+
+            dtpNamSinhAdmin.Text = ad.NamSinh;
+            txtSDTAdmin.Text = ad.SDT;
+            lblStartDayAdmin.Text = ad.StartDay;
+        }
+
+        //mã hóa pass user
+        public string EncodingPasswordUser(string password)
+        {
+            string maHoaDES = encodingPasswordController.EncryptionByDES(password, "GDUmanagement-User");
+            string maHoaMD5 = encodingPasswordController.EncryptionByMD5(maHoaDES);
+            string passEncoding = maHoaDES + maHoaMD5;
+            return passEncoding;
+        }
+
+        //mã hóa pass giảng viên
+        public string EncodingPasswordLecturers(string password)
+        {
+            string maHoaDES = encodingPasswordController.EncryptionByDES(password, "GDUmanagement-Lecturers");
+            string maHoaMD5 = encodingPasswordController.EncryptionByMD5(maHoaDES);
+            string passEncoding = maHoaDES + maHoaMD5;
+            return passEncoding;
+        }
+
+        //mã hóa pass sinh viên
+        public string EncodingPasswordStudent(string password)
+        {
+            string maHoaDES = encodingPasswordController.EncryptionByDES(password, "GDUmanagement-Student");
+            string maHoaMD5 = encodingPasswordController.EncryptionByMD5(maHoaDES);
+            string passEncoding = maHoaDES + maHoaMD5;
+            return passEncoding;
+        }
+
         //-------------------------KẾT THÚC DS HÀM PUBLIC------------------------------//
         //_________________________________________________________//
 
@@ -275,25 +372,34 @@ namespace GDU_Management.GDU_View
 
         private void frmAccount_Load(object sender, EventArgs e)
         {
-            LoadAdminToDgv();
+            if (CheckRoleUserLogin())
+            {
+                LoadAdminToDgv();
+                
+            }
+            else
+            {
+                dgvDanhSachAccountAdmin.Enabled = false;
+                ShowInfoUserNonAdmin(_email);
+                lblStatusAdmin.Hide();
+            }
             LoadGiangVienToDgv();
             LoadSinhVienToDgv();
+            StartDefault();
         }
 
         private void dgvDanhSachAccount_MouseClick(object sender, MouseEventArgs e)
         {
-            //if (dgvDanhSachAccount.Rows.Count == 0)
-            //{
-            //    dgvDanhSachAccount.Enabled = false;
-            //    MessageBox.Show("false");
-            //}
-            //else
-            //{
-            //    MessageBox.Show("" + dgvDanhSachAccount.Rows.Count);
-            //    dgvDanhSachAccount.Enabled = true;
-            //    MessageBox.Show("true");
-            //    ShowInfoAdmin();
-            //}
+            if (dgvDanhSachAccountAdmin.Rows.Count == 0)
+            {
+                dgvDanhSachAccountAdmin.Enabled = false;
+            }
+            else
+            {
+                dgvDanhSachAccountAdmin.Enabled = true;
+                ShowInfoAdmin();
+                lblAddNewAdmin.Enabled = true;
+            }
         }
 
         private void dgvDSAccountGiangVien_Click(object sender, EventArgs e)
@@ -354,45 +460,29 @@ namespace GDU_Management.GDU_View
 
         private void lblStatusGV_Click(object sender, EventArgs e)
         {
-            if (lblStatusAdmin.BackColor == Color.Lime)
+            if (lblStatusGV.BackColor == Color.Lime)
             {
-                lblStatusAdmin.BackColor = Color.Red;
+                lblStatusGV.BackColor = Color.Red;
             }
-            else if (lblStatusAdmin.BackColor == Color.Red)
+            else if (lblStatusGV.BackColor == Color.Red)
             {
-                lblStatusAdmin.BackColor = Color.Lime;
+                lblStatusGV.BackColor = Color.Lime;
             }
         }
 
         private void lblStatusSinhVien_Click(object sender, EventArgs e)
         {
-            if (lblStatusAdmin.BackColor == Color.Lime)
+            if (lblStatusSV.BackColor == Color.Lime)
             {
-                MessageBox.Show("doi mau lock");
-                lblStatusAdmin.BackColor = Color.Red;
+                lblStatusSV.BackColor = Color.Red;
             }
-            else if (lblStatusAdmin.BackColor == Color.Red)
+            else if (lblStatusSV.BackColor == Color.Red)
             {
-                MessageBox.Show("doi mau acctive");
-                lblStatusAdmin.BackColor = Color.Lime;
+                lblStatusSV.BackColor = Color.Lime;
             }
         }
 
-        private void lblShowPassword_Click(object sender, EventArgs e)
-        {
-            if (showPass)
-            {
-                txtPassAdmin.PasswordChar = '*';
-                lblShowPassword.Image = Image.FromFile(@"..\..\Resources\icons8-eye-24.png");
-                showPass = false;
-            }
-            else
-            {
-                showPass = true;
-                txtPassAdmin.PasswordChar = '\0';
-                lblShowPassword.Image = Image.FromFile(@"..\..\Resources\icons8-forgot-password-24.png");
-            }
-        }
+
 
         private void btnSaveAccountAdmin_Click(object sender, EventArgs e)
         {
@@ -409,7 +499,7 @@ namespace GDU_Management.GDU_View
                 }
                 else
                 {
-                    statusAcc = "Null";
+                    statusAcc = "Not Exist";
                 }
 
                 byte[] Image_admin = ImageToByteArray(picAvtAdmin.Image);
@@ -417,37 +507,51 @@ namespace GDU_Management.GDU_View
 
                 Admin admin = new Admin();
                 admin.MaAdmin = lblIdAdmin.Text.Trim();
-                admin.Password = txtPassAdmin.Text;
+                // mã hóa password
+                admin.Password = EncodingPasswordUser(_passAd);
                 //admin.Avt = img;
                 admin.StatusAcc = statusAcc;
                 adminService.UpadteAccount(admin);
+                lblShowPassAdmin.Hide();
                 LoadAdminToDgv();
+                MessageBox.Show("Update Account Successfully </> ", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
         private void lblUpdateAdmin_Click(object sender, EventArgs e)
         {
-            if (checkDataInfoAdmin())
+            if(txtEmailAdmin.Text == _email)
             {
-                string gioiTinh;
-                if (radNam.Checked)
+                if (checkDataInfoAdmin())
                 {
-                    gioiTinh = "Nam";
-                }
-                else
-                {
-                    gioiTinh = "Nữ";
-                }
+                    string gioiTinh;
+                    if (radNam.Checked)
+                    {
+                        gioiTinh = "Nam";
+                    }
+                    else
+                    {
+                        gioiTinh = "Nữ";
+                    }
 
-                Admin admin = new Admin();
-                admin.MaAdmin = lblIdAdmin.Text.Trim();
-                admin.TenAdmin = txtTenAdmin.Text.Trim();
-                admin.GioiTinh = gioiTinh;
-                admin.NamSinh = dtpNamSinhAdmin.Text.ToString().Trim();
-                admin.SDT = txtSDTAdmin.Text.Trim();
-                adminService.UpdateInfomation(admin);
-                LoadAdminToDgv();
-                ShowInfoAdmin();
+                    Admin admin = new Admin();
+                    admin.MaAdmin = lblIdAdmin.Text.Trim();
+                    admin.TenAdmin = txtTenAdmin.Text.Trim();
+                    admin.GioiTinh = gioiTinh;
+                    admin.NamSinh = dtpNamSinhAdmin.Text.ToString().Trim();
+                    admin.SDT = txtSDTAdmin.Text.Trim();
+                    adminService.UpdateInfomation(admin);
+                    if (checkDataAccountAdmin())
+                    {
+                        LoadAdminToDgv();
+                        ShowInfoAdmin();
+                    }
+                    else
+                    {
+                        ShowInfoUserNonAdmin(_email);
+                    }
+                    MessageBox.Show("Update Information  Successfully </> ", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
         }
 
@@ -476,10 +580,13 @@ namespace GDU_Management.GDU_View
 
                 GiangVien gv = new GiangVien();
                 gv.MaGV = lblMaGV.Text;
-                gv.Password = txtPassGiangVien.Text.Trim();
+                //mã hóa pass
+                // gv.Password = EncodingPasswordLecturers(_passGV);
+                gv.Password = txtPassGiangVien.Text;
                 gv.StatusAcc = statusGVAcc;
                 giangVienService.UpdateAccountGiangVien(gv);
                 ShowInfoGiangVien();
+                MessageBox.Show("Update Successfully </> ", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -508,108 +615,29 @@ namespace GDU_Management.GDU_View
 
                 SinhVien sv = new SinhVien();
                 sv.MaSV = lblMaSV.Text;
-                sv.Password = txtPassSV.Text.Trim();
+                // sv.Password = EncodingPasswordStudent(_passSV);
+                sv.Password = txtPassSV.Text;
                 sv.StatusAcc = statusSVAcc;
                 sinhVienService.UpdateAccountSinhVien(sv);
-            }
-        }
-
-        private void lblShowPassGiangVien_Click(object sender, EventArgs e)
-        {
-            if (showPass)
-            {
-                txtPassGiangVien.PasswordChar = '*';
-                lblShowPassGiangVien.Image = Image.FromFile(@"..\..\Resources\icons8-eye-24.png");
-                showPass = false;
-            }
-            else
-            {
-                showPass = true;
-                txtPassGiangVien.PasswordChar = '\0';
-                lblShowPassGiangVien.Image = Image.FromFile(@"..\..\Resources\icons8-forgot-password-24.png");
-            }
-        }
-
-        private void lblShowPassSV_Click(object sender, EventArgs e)
-        {
-            if (showPass)
-            {
-                txtPassSV.PasswordChar = '*';
-                lblShowPassSV.Image = Image.FromFile(@"..\..\Resources\icons8-eye-24.png");
-                showPass = false;
-            }
-            else
-            {
-                showPass = true;
-                txtPassSV.PasswordChar = '\0';
-                lblShowPassSV.Image = Image.FromFile(@"..\..\Resources\icons8-forgot-password-24.png");
+                MessageBox.Show("Update Successfully </> ", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
         private void lblAddNewAdmin_Click(object sender, EventArgs e)
         {
-            this.Hide();
             frmAddNewAdmin frm_AddNewAdmin = new frmAddNewAdmin();
-            SendIdADmin sendID = new SendIdADmin(frm_AddNewAdmin.FunData);
+            SendInforADmin sendID = new SendInforADmin(frm_AddNewAdmin.FunDataId);
             sendID(this.lblIdAdmin.Text);
+
+            SendInforADmin sendEmail = new SendInforADmin(frm_AddNewAdmin.FunDataEmail);
+            sendEmail(this._email);
+
             frm_AddNewAdmin.ShowDialog();
+            this.Hide();
+            this.Close();
         }
 
-        private void txtTimKiemAdmin_Click(object sender, EventArgs e)
-        {
-            txtTimKiemAdmin.Clear();
-        }
-
-        private void txtTimKiemAdmin_TextChanged(object sender, EventArgs e)
-        {
-            if(txtTimKiemAdmin.Text.Equals(""))
-            {
-                LoadAdminToDgv();
-            }
-            else
-            {
-                dgvDanhSachAccount.DataSource = adminService.SearchAdminEmail(txtTimKiemAdmin.Text.Trim()) ;
-            }
-        }
-
-        private void txtTimKiemAdmin_Leave(object sender, EventArgs e)
-        {
-            txtTimKiemAdmin.Text = "Nhập email để tìm kiếm";
-        }
-
-        private void txtTimKiemAccountGV_TextChanged(object sender, EventArgs e)
-        {
-            if (string.IsNullOrEmpty(txtTimKiemAccountGV.Text))
-            {
-                LoadGiangVienToDgv();
-            }
-            else
-            {
-                dgvDSAccountGiangVien.DataSource = giangVienService.SearchGiangVienByEmail(txtTimKiemAccountGV.Text.Trim()).ToList();
-            }
-        }
-
-        private void txtTimKiemAccountGV_Leave(object sender, EventArgs e)
-        {
-            txtTimKiemAccountGV.Text = "Nhập email để tìm kiếm";
-        }
-
-        private void txtTimKiemAccountSV_TextChanged(object sender, EventArgs e)
-        {
-            if (string.IsNullOrEmpty(txtTimKiemAccountSV.Text))
-            {
-                LoadGiangVienToDgv();
-            }
-            else
-            {
-                dgvDSAccountSinhVien.DataSource = sinhVienService.SearchAccountSinhVienByEmail(txtTimKiemAccountSV.Text.Trim()).ToList();
-            }
-        }
-
-        private void txtTimKiemAccountSV_Leave(object sender, EventArgs e)
-        {
-            txtTimKiemAccountGV.Text = "Nhập email để tìm kiếm";
-        }
+        
 
         private void lblUserSV_Click(object sender, EventArgs e)
         {
@@ -623,18 +651,100 @@ namespace GDU_Management.GDU_View
 
         private void dgvDanhSachAccount_Click(object sender, EventArgs e)
         {
-            //if(dgvDanhSachAccount.Rows.Count == 0)
-            //{
-            //    dgvDanhSachAccount.Enabled = false;
-            //    MessageBox.Show("false");
-            //}
-            //else
-            //{
-            MessageBox.Show("" + dgvDanhSachAccount.Rows.Count);
-            dgvDanhSachAccount.Enabled = true;
-            MessageBox.Show("true");
-            ShowInfoAdmin();
-            //}
+
         }
+
+        private void txtPassAdmin_Click(object sender, EventArgs e)
+        {
+            txtPassAdmin.Clear();
+        }
+
+        private void txtPassGiangVien_MouseClick(object sender, MouseEventArgs e)
+        {
+            txtPassGiangVien.Clear();
+
+        }
+
+        private void txtPassSV_MouseClick(object sender, MouseEventArgs e)
+        {
+            txtPassSV.Clear();
+        }
+
+        private void txtPassAdmin_TextChanged(object sender, EventArgs e)
+        {
+            _passAd = txtPassAdmin.Text.Trim();
+            if (txtPassAdmin.Text != "????????")
+            {
+                lblShowPassAdmin.Show();
+            }
+        }
+
+        private void txtPassGiangVien_TextChanged(object sender, EventArgs e)
+        {
+            _passGV = txtPassGiangVien.Text.Trim();
+            if (txtPassGiangVien.Text != "????????")
+            {
+                lblShowPassGiangVien.Show();
+            }
+        }
+
+        private void txtPassSV_TextChanged(object sender, EventArgs e)
+        {
+            _passSV = txtPassSV.Text.Trim();
+            if (txtPassSV.Text != "????????")
+            {
+                lblShowPassSinhVien.Show();
+            }
+        }
+
+        private void lblShowPassAdmin_Click(object sender, EventArgs e)
+        {
+            if (_showPassAdmin)
+            {
+                txtPassAdmin.PasswordChar = '\0';
+                lblShowPassAdmin.Image = Image.FromFile(@"..\..\Resources\icons8-forgot-password-24.png");
+                _showPassAdmin = false;
+            }
+            else
+            {
+                txtPassAdmin.PasswordChar = '●';
+                lblShowPassAdmin.Image = Image.FromFile(@"..\..\Resources\icons8-eye-24.png");
+                _showPassAdmin = true;
+            }
+        }
+
+        private void lblShowPassGiangVien_Click(object sender, EventArgs e)
+        {
+            if (_showPassGV)
+            {
+                txtPassGiangVien.PasswordChar = '\0';
+                lblShowPassGiangVien.Image = Image.FromFile(@"..\..\Resources\icons8-forgot-password-24.png");
+                _showPassGV = false;
+            }
+            else
+            {
+                txtPassGiangVien.PasswordChar = '●';
+                lblShowPassGiangVien.Image = Image.FromFile(@"..\..\Resources\icons8-eye-24.png");
+                _showPassGV = true;
+            }
+        }
+
+        private void lblShowPassSinhVien_Click(object sender, EventArgs e)
+        {
+            if (_showPassSV)
+            {
+                txtPassSV.PasswordChar = '\0';
+                lblShowPassSinhVien.Image = Image.FromFile(@"..\..\Resources\icons8-forgot-password-24.png");
+                _showPassSV = false;
+            }
+            else
+            {
+                txtPassSV.PasswordChar = '●';
+                lblShowPassSinhVien.Image = Image.FromFile(@"..\..\Resources\icons8-eye-24.png");
+                _showPassSV = true;
+            }
+        }
+
+       
     }
 }
